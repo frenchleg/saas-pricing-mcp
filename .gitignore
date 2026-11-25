@@ -3,5 +3,7 @@ node_modules/
 .dev.vars
 dist/
 report.md
+LISTING.md
+ReadmeMe.md
 check-summary.json
 data/proposed/
