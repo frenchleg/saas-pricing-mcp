@@ -33,3 +33,17 @@ CREATE TABLE IF NOT EXISTS feedback (
   suggested_price TEXT,
   user_agent TEXT
 );
+
+-- Failed MCP requests (also created automatically by the Worker on the first failure)
+CREATE TABLE IF NOT EXISTS errors (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  ts TEXT NOT NULL,
+  method TEXT,
+  status INTEGER,
+  message TEXT,
+  rpc_method TEXT,
+  protocol_version TEXT,
+  user_agent TEXT,
+  country TEXT
+);
+CREATE INDEX IF NOT EXISTS errors_ts ON errors (ts);

@@ -1,4 +1,5 @@
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
+import { LATEST_PROTOCOL_VERSION, SUPPORTED_PROTOCOL_VERSIONS } from "@modelcontextprotocol/sdk/types.js";
 import { buildServer, SERVER_NAME, SERVER_VERSION, type CallLog } from "./server";
 import { dataset, products, CATEGORIES } from "./pricing";
 import type { Env } from "./types";
@@ -31,7 +32,72 @@ function clientFromBody(body: unknown): { name?: string; version?: string; metho
   return {};
 }
 
+interface RequestMeta {
+  rpc_method: string | null;
+  protocol_version: string | null;
+  adjusted: string[];
+}
+
+/**
+ * Be liberal in what we accept: a client that is newer than our SDK (unknown protocol version header)
+ * or that only advertises one of the two Accept types still gets served instead of a 400/406.
+ */
+function normaliseRequest(request: Request, meta: RequestMeta): Request {
+  const headers = new Headers(request.headers);
+  let changed = false;
+  const pv = headers.get("mcp-protocol-version");
+  if (pv && !SUPPORTED_PROTOCOL_VERSIONS.includes(pv)) {
+    headers.set("mcp-protocol-version", LATEST_PROTOCOL_VERSION);
+    meta.adjusted.push(`protocol ${pv} -> ${LATEST_PROTOCOL_VERSION}`);
+    changed = true;
+  }
+  const accept = headers.get("accept") ?? "";
+  if (request.method === "POST" && !(accept.includes("application/json") && accept.includes("text/event-stream"))) {
+    headers.set("accept", "application/json, text/event-stream");
+    meta.adjusted.push(`accept '${accept.slice(0, 40)}'`);
+    changed = true;
+  }
+  return changed ? new Request(request, { headers }) : request;
+}
+
+async function logFailure(env: Env, request: Request, response: Response, meta: RequestMeta): Promise<void> {
+  if (!env.DB) return;
+  let message = "";
+  try {
+    const body = (await response.clone().json()) as { error?: { message?: string } };
+    message = body.error?.message ?? "";
+  } catch {
+    message = (await response.clone().text().catch(() => "")).slice(0, 200);
+  }
+  const country = (request as unknown as { cf?: { country?: string } }).cf?.country ?? null;
+  await env.DB.batch([
+    env.DB.prepare(
+      "CREATE TABLE IF NOT EXISTS errors (id INTEGER PRIMARY KEY AUTOINCREMENT, ts TEXT NOT NULL, method TEXT, status INTEGER, message TEXT, rpc_method TEXT, protocol_version TEXT, user_agent TEXT, country TEXT)",
+    ),
+    env.DB.prepare("INSERT INTO errors (ts, method, status, message, rpc_method, protocol_version, user_agent, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?)").bind(
+      new Date().toISOString(),
+      request.method,
+      response.status,
+      message.slice(0, 300),
+      meta.rpc_method,
+      meta.protocol_version,
+      (request.headers.get("user-agent") ?? "").slice(0, 200),
+      country,
+    ),
+  ]);
+}
+
 async function handleMcp(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  const meta: RequestMeta = { rpc_method: null, protocol_version: request.headers.get("mcp-protocol-version"), adjusted: [] };
+  const response = await handleMcpInner(request, env, ctx, meta);
+  // GET -> 405 is normal: standard clients probe for an SSE stream, then fall back to POST. Don't log it.
+  const expected = response.status === 405 && request.method === "GET";
+  if (response.status >= 400 && !expected) ctx.waitUntil(logFailure(env, request, response, meta).catch((e) => console.error("log failure failed", e)));
+  if (meta.adjusted.length) console.log("normalised request:", meta.adjusted.join("; "), request.headers.get("user-agent"));
+  return response;
+}
+
+async function handleMcpInner(request: Request, env: Env, ctx: ExecutionContext, meta: RequestMeta): Promise<Response> {
   if (request.method === "GET" || request.method === "DELETE") {
     // Stateless server: no standalone SSE stream or sessions.
     return new Response(JSON.stringify({ jsonrpc: "2.0", error: { code: -32000, message: "Method not allowed. POST JSON-RPC to this endpoint." }, id: null }), {
@@ -49,6 +115,8 @@ async function handleMcp(request: Request, env: Env, ctx: ExecutionContext): Pro
   const ua = request.headers.get("user-agent") ?? "";
   const country = (request as unknown as { cf?: { country?: string } }).cf?.country ?? null;
   const client = clientFromBody(parsed);
+  meta.rpc_method = client.method ?? null;
+  request = normaliseRequest(request, meta);
   const started = Date.now();
   const logs: CallLog[] = [];
 
@@ -109,7 +177,19 @@ async function stats(request: Request, env: Env): Promise<Response> {
        SELECT p AS product, COUNT(*) AS requests FROM split WHERE p != '' GROUP BY p ORDER BY requests DESC LIMIT 30`),
     q("SELECT ts, product, plan, details, suggested_price FROM feedback WHERE ts >= ? ORDER BY ts DESC LIMIT 50"),
   ]);
-  return Response.json({ days, calls_by_tool: byTool, sessions_by_client: byClient, calls_by_day: byDay, most_requested_products: topProducts, requested_but_not_covered: missing, recent_feedback: feedback });
+  // failed requests (table is created lazily on the first failure)
+  let failed: Record<string, unknown> = { note: "no failed requests logged yet" };
+  try {
+    const [byReason, byAgent, recent] = await Promise.all([
+      q("SELECT status, message, COUNT(*) AS count FROM errors WHERE ts >= ? GROUP BY status, message ORDER BY count DESC LIMIT 20"),
+      q("SELECT COALESCE(NULLIF(user_agent, ''), '(none)') AS user_agent, COUNT(*) AS count FROM errors WHERE ts >= ? GROUP BY user_agent ORDER BY count DESC LIMIT 20"),
+      q("SELECT ts, method, status, message, rpc_method, protocol_version, user_agent, country FROM errors WHERE ts >= ? ORDER BY ts DESC LIMIT 25"),
+    ]);
+    failed = { by_reason: byReason, by_user_agent: byAgent, recent };
+  } catch {
+    /* errors table not created yet */
+  }
+  return Response.json({ days, calls_by_tool: byTool, sessions_by_client: byClient, calls_by_day: byDay, most_requested_products: topProducts, requested_but_not_covered: missing, recent_feedback: feedback, failed_requests: failed });
 }
 
 export default {

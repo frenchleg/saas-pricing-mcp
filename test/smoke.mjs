@@ -102,5 +102,22 @@ ok(!all.includes("basecamp") && !all.includes("resend") && r.body.meets_all.leng
 r = await call("find_compliant_tools", { requirements: ["cyber_essentials"], max_price: 30, currency: "GBP" });
 ok(r.body.meets_all.every((m) => m.cheapest_paid_plan.price_per_month <= 30), `Cyber Essentials under £30: ${r.body.meets_all.map((m) => m.product_id).join(", ")}`);
 
+// ---- robustness: clients newer than our SDK, or with a partial Accept header, still get served ----
+{
+  const raw = async (headers, body) => {
+    const res = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json", ...headers }, body });
+    return { status: res.status, body: await res.text() };
+  };
+  const list = JSON.stringify({ jsonrpc: "2.0", id: 9, method: "tools/list" });
+  let x = await raw({ Accept: "application/json, text/event-stream", "mcp-protocol-version": "2099-01-01" }, list);
+  ok(x.status === 200 && x.body.includes("get_compliance"), "unknown future protocol version is served, not rejected");
+  x = await raw({ Accept: "application/json" }, list);
+  ok(x.status === 200, "Accept: application/json alone is served");
+  x = await raw({}, list);
+  ok(x.status === 200, "missing Accept header is served");
+  x = await raw({ Accept: "application/json, text/event-stream" }, "{bad");
+  ok(x.status === 400, "malformed JSON still gets a 400 parse error");
+}
+
 await client.close();
 console.log(`\n${passed} checks passed`);
