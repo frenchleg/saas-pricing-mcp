@@ -109,4 +109,4 @@ Pricing corrections, new products and bug fixes are welcome. When you update a p
 
 ## License
 
-[MIT](LICENSE)
+[GNU Affero General Public License v3.0](LICENSE)
