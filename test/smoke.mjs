@@ -1,0 +1,79 @@
+// End-to-end check using the official MCP client against a running server.
+// Usage: node test/smoke.mjs [endpoint]   (default http://127.0.0.1:8787/mcp)
+import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
+import assert from "node:assert/strict";
+
+const endpoint = process.argv[2] ?? "http://127.0.0.1:8787/mcp";
+const client = new Client({ name: "smoke-test", version: "1.0.0" });
+await client.connect(new StreamableHTTPClientTransport(new URL(endpoint)));
+
+const call = async (name, args) => {
+  const r = await client.callTool({ name, arguments: args });
+  const body = JSON.parse(r.content[0].text);
+  return { isError: !!r.isError, body };
+};
+let passed = 0;
+const ok = (cond, msg) => { assert.ok(cond, msg); passed++; console.log("  ✓", msg); };
+
+const { tools } = await client.listTools();
+ok(tools.length === 5, `lists 5 tools (${tools.map((t) => t.name).join(", ")})`);
+
+let r = await call("list_products", {});
+ok(r.body.count === 50, "list_products returns 50 products");
+r = await call("list_products", { category: "ai" });
+ok(r.body.products.every((p) => p.category === "ai") && r.body.count === 4, "category filter works (ai = 4)");
+
+r = await call("get_pricing", { product: "Slack" });
+const pro = r.body.plans.find((p) => p.name === "Pro");
+ok(pro.price_billed_monthly === 8.75 && pro.price_per_month_billed_annually === 7.25, "Slack Pro USD 8.75 / 7.25");
+
+r = await call("get_pricing", { product: "slack", currency: "GBP" });
+const proG = r.body.plans.find((p) => p.name === "Pro");
+ok(proG.price_basis === "converted" && r.body.meta.fx && proG.price_billed_monthly > 5 && proG.price_billed_monthly < 8, `Slack Pro GBP converted (£${proG.price_billed_monthly}, rate ${r.body.meta.fx.usd_to_gbp} from ${r.body.meta.fx.source})`);
+ok(!!r.body.meta.vat_note, "GBP response carries VAT note");
+
+r = await call("get_pricing", { product: "gsuite", currency: "GBP" });
+const std = r.body.plans.find((p) => p.name === "Business Standard");
+ok(r.body.product.id === "google-workspace" && std.price_basis === "official" && std.price_per_month_billed_annually === 11.8 && std.price_billed_monthly === 14, "alias 'gsuite' -> Google Workspace, official GBP £14 / £11.80");
+
+r = await call("get_pricing", { product: "M365" });
+ok(r.body.currency === "GBP" && r.body.plans[0].price_per_month_billed_annually === 5.4, "M365 native GBP £5.40");
+
+r = await call("get_pricing", { product: "Xero", currency: "USD" });
+ok(r.body.plans[0].price_basis === "converted" && r.body.plans[0].price_billed_monthly > 18, `Xero GBP->USD converted ($${r.body.plans[0].price_billed_monthly})`);
+
+r = await call("get_pricing", { product: "Basecamp" });
+ok(r.isError && Array.isArray(r.body.did_you_mean), `unknown product returns suggestions (${r.body.did_you_mean})`);
+
+r = await call("compare_products", { products: ["Notion", "Confluence", "Basecamp"], seats: 10, billing: "monthly", paid_plans_only: true });
+const notion = r.body.comparison.find((c) => c.product_id === "notion");
+ok(notion.cheapest_paid_plan === "Plus" && notion.cheapest_paid_monthly_total === 100, "Notion 10 seats: Plus = $100/month");
+ok(r.body.not_covered?.includes("Basecamp"), "compare reports uncovered products");
+
+r = await call("compare_products", { products: ["monday"], seats: 1, billing: "annual" });
+const basic = r.body.comparison[0].plans.find((p) => p.plan === "Basic");
+ok(basic.seats_billed === 3 && basic.monthly_total === 27 && /Minimum 3/.test(basic.caveat), "monday Basic applies 3-seat minimum ($27)");
+
+r = await call("compare_products", { products: ["linear"], seats: 5, billing: "monthly" });
+const lb = r.body.comparison[0].plans.find((p) => p.plan === "Basic");
+ok(lb.per_unit.billing_used === "annual" && /No monthly price/.test(lb.caveat), "falls back to annual price with caveat when monthly missing");
+
+r = await call("search_plans", { feature: "saml", category: "project-management" });
+ok(r.body.products_matched === 3 && r.body.cheapest_plan_per_product.every((x) => x.product_id), `search SAML in PM finds ${r.body.products_matched} products`);
+
+r = await call("search_plans", { feature: "saml", limit: 50 });
+ok(r.body.cheapest_plan_per_product.every((x) => x.match === "assumed from lower tier ('everything in…')" || x.match.some((m) => /saml/i.test(m))), "'saml' search never matches Google-only SSO");
+ok(!r.body.cheapest_plan_per_product.some((x) => x.product_id === "linear" && x.plan === "Free"), "Linear Free (Google SSO) excluded from SAML results");
+
+r = await call("search_plans", { feature: "sso", max_price: 10, currency: "GBP", billing: "annual" });
+ok(r.body.cheapest_plan_per_product.every((x) => x.price_per_month <= 10), "search with GBP budget respects max_price");
+
+r = await call("search_plans", {});
+ok(r.isError, "search with no criteria is an error");
+
+r = await call("report_outdated", { product: "Basecamp", details: "Please add Basecamp" });
+ok(r.body.received && r.body.covered === false, "report_outdated accepts uncovered product");
+
+await client.close();
+console.log(`\n${passed} checks passed`);

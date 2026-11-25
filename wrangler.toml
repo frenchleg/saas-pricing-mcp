@@ -1,0 +1,15 @@
+name = "saas-pricing-mcp"
+main = "src/index.ts"
+compatibility_date = "2026-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Free-tier friendly. Create the database with:
+#   npx wrangler d1 create saas-pricing-mcp
+# then paste the database_id it prints below.
+[[d1_databases]]
+binding = "DB"
+database_name = "saas-pricing-mcp"
+database_id = "8621f958-8f5d-4cfa-aa3a-409904ebbacf"
+
+[observability]
+enabled = true

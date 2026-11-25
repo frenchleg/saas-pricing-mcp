@@ -1,0 +1,3542 @@
+{
+  "dataset_version": "2026-11-25",
+  "notes": "List prices as published by each vendor, excluding tax/VAT. 'monthly' = price per month when billed monthly. 'annual_monthly' = per-month equivalent when billed annually. null = not published / not confirmed. 'source: secondary' means the vendor page could not be read directly and figures come from dated third-party write-ups; treat with more caution.",
+  "products": [
+    {
+      "id": "notion",
+      "name": "Notion",
+      "category": "productivity",
+      "pricing_url": "https://www.notion.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Yearly billing saves up to 20%; yearly per-member prices not shown on the page.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "per_user",
+          "limits": [
+            "Limited blocks",
+            "5 MB uploads",
+            "7-day page history"
+          ],
+          "features": [
+            "Basic forms and sites",
+            "Notion Calendar",
+            "Notion AI trial"
+          ]
+        },
+        {
+          "name": "Plus",
+          "monthly": 10,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [
+            "5 GB uploads",
+            "30-day page history"
+          ],
+          "features": [
+            "Custom forms and sites",
+            "Charts",
+            "Basic Slack/Google Drive connections"
+          ]
+        },
+        {
+          "name": "Business",
+          "monthly": 20,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [
+            "90-day page history"
+          ],
+          "features": [
+            "SAML SSO",
+            "Notion Agent",
+            "AI Meeting Notes",
+            "Private teamspaces",
+            "Granular database permissions"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "SCIM provisioning",
+            "Audit log",
+            "Zero data retention with LLM providers",
+            "Domain management"
+          ]
+        },
+        {
+          "name": "Custom Agents",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "usage",
+          "note": "$10 per 1,000 monthly Notion credits",
+          "limits": [],
+          "features": [
+            "Autonomous agents"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slack",
+      "name": "Slack",
+      "category": "communication",
+      "pricing_url": "https://slack.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Promo: 50% off monthly Pro/Business+ for 3 months for new teams (not annual).",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "per_user",
+          "limits": [
+            "90-day message history",
+            "10 apps",
+            "1:1 huddles only"
+          ],
+          "features": [
+            "Basic AI summaries",
+            "1:1 Slack Connect"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 8.75,
+          "annual_monthly": 7.25,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Unlimited message history",
+            "Unlimited apps",
+            "Group huddles",
+            "Google OAuth SSO"
+          ]
+        },
+        {
+          "name": "Business+",
+          "monthly": 18,
+          "annual_monthly": 15,
+          "unit": "per_user",
+          "limits": [
+            "Slackbot 15 messages/user/week"
+          ],
+          "features": [
+            "SAML SSO",
+            "SCIM",
+            "Advanced AI",
+            "Data residency",
+            "Full data exports"
+          ]
+        },
+        {
+          "name": "Enterprise+",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "note": "Contact sales",
+          "limits": [],
+          "features": [
+            "Multi-SAML SSO",
+            "Audit logs and legal holds",
+            "DLP",
+            "HIPAA support"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "asana",
+      "name": "Asana",
+      "category": "project-management",
+      "pricing_url": "https://asana.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": null,
+      "plans": [
+        {
+          "name": "Personal",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "2 users",
+            "100 MB per file"
+          ],
+          "features": [
+            "Unlimited tasks and projects",
+            "List, board, calendar views"
+          ]
+        },
+        {
+          "name": "Starter",
+          "monthly": 13.49,
+          "annual_monthly": 10.99,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Timeline and Gantt",
+            "Reporting dashboards",
+            "Unlimited automations",
+            "AI Studio"
+          ]
+        },
+        {
+          "name": "Advanced",
+          "monthly": 30.49,
+          "annual_monthly": 24.99,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Goals",
+            "Portfolios",
+            "Resource management",
+            "Approvals and proofing",
+            "Time tracking"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "SAML",
+            "SCIM",
+            "Capacity planning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trello",
+      "name": "Trello",
+      "category": "project-management",
+      "pricing_url": "https://trello.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "Premium trial for Workspaces",
+      "notes": null,
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "10 collaborators per Workspace",
+            "10 boards",
+            "250 command runs/month",
+            "10 MB per file"
+          ],
+          "features": [
+            "Unlimited cards",
+            "Unlimited Power-Ups"
+          ]
+        },
+        {
+          "name": "Standard",
+          "monthly": 6,
+          "annual_monthly": 5,
+          "unit": "per_user",
+          "limits": [
+            "1,000 command runs/month",
+            "250 MB per file"
+          ],
+          "features": [
+            "Unlimited boards",
+            "AI",
+            "Custom fields",
+            "Card mirroring"
+          ]
+        },
+        {
+          "name": "Premium",
+          "monthly": 12.5,
+          "annual_monthly": 10,
+          "unit": "per_user",
+          "limits": [
+            "Unlimited command runs"
+          ],
+          "features": [
+            "Calendar, timeline, table, dashboard, map views",
+            "Admin and security features"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": 17.5,
+          "unit": "per_user",
+          "note": "Billed annually ($210/user/year)",
+          "limits": [],
+          "features": [
+            "Organization-wide permissions",
+            "SSO and provisioning via Atlassian Guard"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monday",
+      "name": "monday.com (Work Management)",
+      "category": "project-management",
+      "pricing_url": "https://monday.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "14-day Pro trial",
+      "notes": "Paid plans start from 3 seats. CRM, Service and Dev products are priced separately.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "2 seats",
+            "3 boards",
+            "3 docs"
+          ],
+          "features": [
+            "200+ templates",
+            "Unlimited viewers"
+          ]
+        },
+        {
+          "name": "Basic",
+          "monthly": null,
+          "annual_monthly": 9,
+          "unit": "per_user",
+          "note": "Minimum 3 seats",
+          "limits": [
+            "1,000 AI credits/month"
+          ],
+          "features": [
+            "Unlimited items",
+            "Sidekick AI assistant"
+          ],
+          "min_seats": 3
+        },
+        {
+          "name": "Standard",
+          "monthly": null,
+          "annual_monthly": 12,
+          "unit": "per_user",
+          "note": "Minimum 3 seats",
+          "limits": [
+            "250 automation actions/month",
+            "1,000 API calls/day"
+          ],
+          "features": [
+            "Timeline and Gantt",
+            "Calendar view",
+            "Guest access",
+            "Automations and integrations"
+          ],
+          "min_seats": 3
+        },
+        {
+          "name": "Pro",
+          "monthly": null,
+          "annual_monthly": 19,
+          "unit": "per_user",
+          "note": "Minimum 3 seats",
+          "limits": [
+            "25,000 automation actions/month",
+            "10,000 API calls/day"
+          ],
+          "features": [
+            "Private boards",
+            "Time tracking",
+            "AI workflow builder"
+          ],
+          "min_seats": 3
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [
+            "25,000 API calls/day"
+          ],
+          "features": [
+            "Enterprise security and governance",
+            "Multi-level permissions",
+            "99.9% uptime SLA"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clickup",
+      "name": "ClickUp",
+      "category": "project-management",
+      "pricing_url": "https://clickup.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Annual-billed prices shown. Page also shows 'regular' prices of $12 Core, $25 Business, $120 Max (likely the monthly-billing rate; not confirmed).",
+      "plans": [
+        {
+          "name": "Free Forever",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "per_user",
+          "limits": [
+            "60 MB storage",
+            "5 Spaces"
+          ],
+          "features": [
+            "Unlimited tasks",
+            "Docs",
+            "Kanban",
+            "Sprints"
+          ]
+        },
+        {
+          "name": "Core",
+          "monthly": null,
+          "annual_monthly": 9,
+          "unit": "per_user",
+          "limits": [
+            "1K AI credits/user/month",
+            "1K automations/month"
+          ],
+          "features": [
+            "Custom fields",
+            "Unlimited Gantt",
+            "Goals",
+            "Guest permissions"
+          ]
+        },
+        {
+          "name": "Business",
+          "monthly": null,
+          "annual_monthly": 17,
+          "unit": "per_user",
+          "limits": [
+            "10K automations/month"
+          ],
+          "features": [
+            "Google SSO",
+            "Advanced dashboards",
+            "Webhooks",
+            "Timesheets"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [
+            "HIPAA with BAA"
+          ],
+          "features": [
+            "SAML SSO",
+            "SCIM",
+            "Audit logs",
+            "White labelling",
+            "Data residency"
+          ]
+        },
+        {
+          "name": "Max",
+          "monthly": null,
+          "annual_monthly": 100,
+          "unit": "per_user",
+          "limits": [
+            "10K AI credits/user/month"
+          ],
+          "features": [
+            "Unlimited Autopilot Agents",
+            "SAML SSO",
+            "SCIM"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "category": "project-management",
+      "pricing_url": "https://linear.app/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Page shows yearly-billed prices only.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "250 issues",
+            "2 teams",
+            "10 MB uploads"
+          ],
+          "features": [
+            "Linear Agent",
+            "Google SSO"
+          ]
+        },
+        {
+          "name": "Basic",
+          "monthly": null,
+          "annual_monthly": 10,
+          "unit": "per_user",
+          "limits": [
+            "5 teams",
+            "Unlimited issues"
+          ],
+          "features": [
+            "Admin roles",
+            "Google SSO",
+            "Cloud coding agent"
+          ]
+        },
+        {
+          "name": "Business",
+          "monthly": null,
+          "annual_monthly": 16,
+          "unit": "per_user",
+          "limits": [
+            "Unlimited teams"
+          ],
+          "features": [
+            "Private teams and guests",
+            "Linear Insights",
+            "Triage Intelligence"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "note": "Annual only",
+          "limits": [],
+          "features": [
+            "SAML SSO",
+            "SCIM",
+            "Audit log",
+            "HIPAA"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "airtable",
+      "name": "Airtable",
+      "category": "database",
+      "pricing_url": "https://www.airtable.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Charged per user with edit permission; read-only collaborators are free. Record limits not shown on page.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [],
+          "features": [
+            "Core app-building blocks"
+          ]
+        },
+        {
+          "name": "Team",
+          "monthly": null,
+          "annual_monthly": 20,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "More capacity than Free"
+          ]
+        },
+        {
+          "name": "Business",
+          "monthly": null,
+          "annual_monthly": 45,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Admin features",
+            "Greater data scale"
+          ]
+        },
+        {
+          "name": "Enterprise Scale",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "Unlimited workspaces and bases"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "miro",
+      "name": "Miro",
+      "category": "design",
+      "pricing_url": "https://miro.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "Business free for 14 days",
+      "notes": null,
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "per_user",
+          "limits": [
+            "3 editable boards",
+            "100 MCP calls/day"
+          ],
+          "features": [
+            "Templates",
+            "250+ integrations"
+          ]
+        },
+        {
+          "name": "Starter",
+          "monthly": null,
+          "annual_monthly": 8,
+          "unit": "per_user",
+          "limits": [
+            "25 AI credits/member/month",
+            "500 MCP calls/day"
+          ],
+          "features": [
+            "Unlimited boards",
+            "High-res exports"
+          ]
+        },
+        {
+          "name": "Business",
+          "monthly": null,
+          "annual_monthly": 20,
+          "unit": "per_user",
+          "limits": [
+            "50 AI credits/member/month",
+            "2,000 MCP calls/day"
+          ],
+          "features": [
+            "SAML SSO",
+            "Unlimited guests",
+            "Two-way Jira/Asana sync"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "note": "From 30 members",
+          "limits": [
+            "10,000 MCP calls/day"
+          ],
+          "features": [
+            "SCIM",
+            "Audit logs",
+            "Regional data hosting"
+          ],
+          "min_seats": 30
+        }
+      ]
+    },
+    {
+      "id": "zoom",
+      "name": "Zoom Workplace",
+      "category": "communication",
+      "pricing_url": "https://zoom.us/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": null,
+      "plans": [
+        {
+          "name": "Basic",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "40 min meetings",
+            "100 participants",
+            "3 AI summaries/month"
+          ],
+          "features": [
+            "Team Chat",
+            "Whiteboards (3)"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 16.99,
+          "annual_monthly": 14.16,
+          "unit": "per_user",
+          "limits": [
+            "30-hour meetings",
+            "100 participants",
+            "10 GB cloud storage"
+          ],
+          "features": [
+            "Unlimited AI summaries",
+            "Zoom Mail and Calendar"
+          ]
+        },
+        {
+          "name": "Business",
+          "monthly": 21.99,
+          "annual_monthly": 18.33,
+          "unit": "per_user",
+          "limits": [
+            "300 participants"
+          ],
+          "features": [
+            "SAML SSO",
+            "Managed domains",
+            "Unlimited whiteboards"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [
+            "1,000 participants"
+          ],
+          "features": [
+            "SAML SSO",
+            "Full PBX",
+            "Rooms"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jira",
+      "name": "Jira (Cloud)",
+      "category": "project-management",
+      "pricing_url": "https://www.atlassian.com/software/jira/pricing",
+      "currency": "USD",
+      "source": "secondary",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Per-user rate depends on seat band. Figures are the 100-user reference rate after Atlassian's 13 Oct 2026 price change (monthly billing). Check the vendor calculator for exact team sizes.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "Up to 10 users",
+            "2 GB storage"
+          ],
+          "features": []
+        },
+        {
+          "name": "Standard",
+          "monthly": 9.7,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [
+            "400 automation steps/user/month",
+            "25 Rovo credits/user/month"
+          ],
+          "features": [
+            "User roles and permissions"
+          ]
+        },
+        {
+          "name": "Premium",
+          "monthly": 19.6,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [
+            "750 automation steps/user/month",
+            "70 Rovo credits/user/month"
+          ],
+          "features": [
+            "Cross-team planning",
+            "99.9% uptime SLA",
+            "Unlimited storage"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "note": "Annual only",
+          "limits": [
+            "150 Rovo credits/user/month"
+          ],
+          "features": [
+            "Multiple sites",
+            "Atlassian Guard included"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "confluence",
+      "name": "Confluence (Cloud)",
+      "category": "productivity",
+      "pricing_url": "https://www.atlassian.com/software/confluence/pricing",
+      "currency": "USD",
+      "source": "secondary",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Per-user rate depends on seat band. Figures are Atlassian calculator monthly rates reported in October 2026 and may predate the 13 Oct 2026 price change. Verify before relying on them.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "Up to 10 users",
+            "2 GB storage"
+          ],
+          "features": []
+        },
+        {
+          "name": "Standard",
+          "monthly": 5.78,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [
+            "250 GB storage"
+          ],
+          "features": [
+            "Page permissions",
+            "Rovo credits"
+          ]
+        },
+        {
+          "name": "Premium",
+          "monthly": 11.16,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [
+            "Unlimited storage"
+          ],
+          "features": [
+            "Analytics",
+            "24/7 support",
+            "99.9% uptime SLA"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "note": "Annual only",
+          "limits": [],
+          "features": [
+            "Up to 150 sites"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "calendly",
+      "name": "Calendly",
+      "category": "scheduling",
+      "pricing_url": "https://calendly.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Prices as displayed on the page; billing period (monthly vs annual) not confirmed.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "1 event type",
+            "1 calendar connection"
+          ],
+          "features": [
+            "Booking page"
+          ]
+        },
+        {
+          "name": "Standard",
+          "monthly": 10,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [
+            "6 calendar connections"
+          ],
+          "features": [
+            "Unlimited event types",
+            "Automations and reminders",
+            "Stripe/PayPal"
+          ]
+        },
+        {
+          "name": "Teams",
+          "monthly": 16,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Round-robin scheduling",
+            "Lead routing",
+            "SSO add-on (optional)"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "note": "Starts at $15k/year, from 50 seats",
+          "limits": [],
+          "features": [
+            "SSO and SAML",
+            "Audit log"
+          ],
+          "min_seats": 50
+        }
+      ]
+    },
+    {
+      "id": "loom",
+      "name": "Loom",
+      "category": "video-audio",
+      "pricing_url": "https://www.loom.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "14 days",
+      "notes": "Prices as displayed; billing period not confirmed.",
+      "plans": [
+        {
+          "name": "Starter",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "per_user",
+          "limits": [
+            "25 videos",
+            "5-minute recordings",
+            "720p"
+          ],
+          "features": [
+            "Transcriptions"
+          ]
+        },
+        {
+          "name": "Business",
+          "monthly": 18,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [
+            "Unlimited videos",
+            "4K"
+          ],
+          "features": [
+            "Remove branding",
+            "Basic editing",
+            "Password-protected videos"
+          ]
+        },
+        {
+          "name": "Business + AI",
+          "monthly": 24,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Auto meeting notes",
+            "AI video enhancement"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "SAML SSO",
+            "SCIM",
+            "Salesforce integration"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "category": "dev-tools",
+      "pricing_url": "https://github.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "30 days (Enterprise)",
+      "notes": null,
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "2,000 CI/CD minutes/month",
+            "500 MB Packages storage"
+          ],
+          "features": [
+            "Unlimited public/private repos",
+            "Dependabot"
+          ]
+        },
+        {
+          "name": "Team",
+          "monthly": 4,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [
+            "3,000 CI/CD minutes/month",
+            "2 GB Packages storage"
+          ],
+          "features": [
+            "Codespaces access",
+            "Code owners",
+            "Required reviewers"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": 21,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [
+            "50,000 CI/CD minutes/month",
+            "50 GB Packages storage"
+          ],
+          "features": [
+            "SAML SSO",
+            "SCIM",
+            "Audit log API",
+            "Data residency"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gitlab",
+      "name": "GitLab",
+      "category": "dev-tools",
+      "pricing_url": "https://about.gitlab.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "Yes (length not stated)",
+      "notes": null,
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "per_user",
+          "limits": [
+            "5 users per group",
+            "400 compute minutes/month",
+            "10 GiB storage"
+          ],
+          "features": [
+            "SCM and CI/CD",
+            "SAST"
+          ]
+        },
+        {
+          "name": "Premium",
+          "monthly": null,
+          "annual_monthly": 29,
+          "unit": "per_user",
+          "note": "Billed annually; includes $8 GitLab Credits/user/month",
+          "limits": [
+            "10,000 compute minutes/month",
+            "500 GiB storage"
+          ],
+          "features": [
+            "Advanced CI/CD",
+            "Priority support"
+          ]
+        },
+        {
+          "name": "Ultimate",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [
+            "50,000 compute minutes/month"
+          ],
+          "features": [
+            "Application security testing",
+            "Compliance and governance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "category": "hosting",
+      "pricing_url": "https://vercel.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "Yes",
+      "notes": "Usage beyond included amounts is billed.",
+      "plans": [
+        {
+          "name": "Hobby",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "1M function invocations/month",
+            "100 GB fast data transfer",
+            "Non-commercial use"
+          ],
+          "features": [
+            "CI/CD",
+            "Global CDN",
+            "WAF"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 20,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "note": "$20/month per developer seat; includes $20 usage credit",
+          "limits": [
+            "$200 default on-demand budget"
+          ],
+          "features": [
+            "Team collaboration",
+            "Free viewer seats",
+            "Spend management"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [
+            "99.99% SLA"
+          ],
+          "features": [
+            "SCIM and directory sync",
+            "Multi-region failover"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "netlify",
+      "name": "Netlify",
+      "category": "hosting",
+      "pricing_url": "https://www.netlify.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Credit-based usage.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "300 credits/month",
+            "1 concurrent build"
+          ],
+          "features": [
+            "Deploy previews",
+            "Custom domain",
+            "Global CDN"
+          ]
+        },
+        {
+          "name": "Personal",
+          "monthly": 9,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "1,000 credits/month",
+            "1 concurrent build"
+          ],
+          "features": [
+            "Priority support",
+            "1-day rollback history"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 20,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "Unlimited members; credits 3,000-20,000/month by tier",
+          "limits": [
+            "3 concurrent builds"
+          ],
+          "features": [
+            "Shared secrets",
+            "Access control"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "SAML SSO",
+            "99.99% uptime"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "category": "database",
+      "pricing_url": "https://supabase.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Usage beyond included quotas billed; first project included, extra projects from $10/month.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "2 active projects",
+            "500 MB database",
+            "50,000 MAU",
+            "Paused after 1 week inactive"
+          ],
+          "features": [
+            "Unlimited API requests",
+            "Social OAuth"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 25,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "100,000 MAU",
+            "8 GB disk/project",
+            "250 GB egress",
+            "100 GB file storage"
+          ],
+          "features": [
+            "SAML SSO (50 MAU included)",
+            "Daily backups (7 days)",
+            "Email support"
+          ]
+        },
+        {
+          "name": "Team",
+          "monthly": 599,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "100,000 MAU"
+          ],
+          "features": [
+            "SOC2 and ISO 27001",
+            "14-day backups",
+            "Audit logs",
+            "SLAs"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "Uptime SLAs",
+            "24/7 support"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "render",
+      "name": "Render",
+      "category": "hosting",
+      "pricing_url": "https://render.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Workspace plan price is plus compute. Cheapest paid web service instance: $7/month.",
+      "plans": [
+        {
+          "name": "Hobby",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "note": "+ compute",
+          "limits": [
+            "25 services",
+            "5 GB bandwidth",
+            "1 seat"
+          ],
+          "features": [
+            "Custom domains",
+            "DDoS mitigation"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 25,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "+ compute",
+          "limits": [
+            "25 GB bandwidth",
+            "Unlimited seats"
+          ],
+          "features": [
+            "Preview environments",
+            "Autoscaling",
+            "Audit logs"
+          ]
+        },
+        {
+          "name": "Scale",
+          "monthly": 499,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "+ compute",
+          "limits": [
+            "1 TB bandwidth"
+          ],
+          "features": [
+            "SAML SSO",
+            "SCIM",
+            "HIPAA workspaces"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "Contractual SLAs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "railway",
+      "name": "Railway",
+      "category": "hosting",
+      "pricing_url": "https://railway.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "$5 credits for first 30 days",
+      "notes": "Plan price is a minimum spend that includes the same amount of usage credit.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "$1 usage credit/month",
+            "0.5 GB RAM per service",
+            "1 project"
+          ],
+          "features": [
+            "Postgres, Redis, MySQL"
+          ]
+        },
+        {
+          "name": "Hobby",
+          "monthly": 5,
+          "annual_monthly": null,
+          "unit": "usage",
+          "limits": [
+            "$5 usage credit",
+            "48 vCPU / 48 GB RAM per service"
+          ],
+          "features": [
+            "7-day logs"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 20,
+          "annual_monthly": null,
+          "unit": "usage",
+          "limits": [
+            "$20 usage credit"
+          ],
+          "features": [
+            "Unlimited seats",
+            "30-day logs",
+            "99.99% availability target"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "SSO",
+            "SCIM",
+            "HIPAA BAAs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sentry",
+      "name": "Sentry",
+      "category": "dev-tools",
+      "pricing_url": "https://sentry.io/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "Business for 14 days",
+      "notes": null,
+      "plans": [
+        {
+          "name": "Developer",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "5k errors",
+            "5M spans",
+            "1 user"
+          ],
+          "features": [
+            "Error monitoring",
+            "Tracing"
+          ]
+        },
+        {
+          "name": "Team",
+          "monthly": 29,
+          "annual_monthly": 26,
+          "unit": "flat",
+          "limits": [
+            "50k errors",
+            "Unlimited users"
+          ],
+          "features": [
+            "Integrations",
+            "Google and GitHub SSO"
+          ]
+        },
+        {
+          "name": "Business",
+          "monthly": 89,
+          "annual_monthly": 80,
+          "unit": "flat",
+          "limits": [
+            "50k errors",
+            "90-day lookback"
+          ],
+          "features": [
+            "SAML + SCIM",
+            "Unlimited dashboards",
+            "Code owners"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "Technical account manager"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "postman",
+      "name": "Postman",
+      "category": "dev-tools",
+      "pricing_url": "https://www.postman.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": null,
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "100 AI credits"
+          ],
+          "features": [
+            "API client",
+            "Mock servers",
+            "Native Git"
+          ]
+        },
+        {
+          "name": "Solo",
+          "monthly": null,
+          "annual_monthly": 9,
+          "unit": "flat",
+          "limits": [
+            "1 user",
+            "400 AI credits/month"
+          ],
+          "features": [
+            "Custom-branded docs",
+            "Expanded monitoring"
+          ]
+        },
+        {
+          "name": "Team",
+          "monthly": null,
+          "annual_monthly": 19,
+          "unit": "per_user",
+          "limits": [
+            "400 AI credits/user/month"
+          ],
+          "features": [
+            "Team collaboration",
+            "Basic RBAC",
+            "SSO/SAML via add-on"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "SSO/SAML",
+            "Audit logs",
+            "API catalog"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "neon",
+      "name": "Neon",
+      "category": "database",
+      "pricing_url": "https://neon.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Paid plans are pure usage, no monthly minimum.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "100 CU-hours/project",
+            "0.5-1 GB storage/project",
+            "100 projects"
+          ],
+          "features": [
+            "Scale to zero",
+            "Branching"
+          ]
+        },
+        {
+          "name": "Launch",
+          "monthly": 0,
+          "annual_monthly": null,
+          "unit": "usage",
+          "note": "$0.106/CU-hour, $0.35/GB-month storage",
+          "limits": [
+            "Autoscaling to 16 CU"
+          ],
+          "features": [
+            "Protected branches",
+            "Instant restore"
+          ]
+        },
+        {
+          "name": "Scale",
+          "monthly": 0,
+          "annual_monthly": null,
+          "unit": "usage",
+          "note": "$0.222/CU-hour, $0.35/GB-month storage",
+          "limits": [
+            "1,000 projects"
+          ],
+          "features": [
+            "Private networking",
+            "HIPAA/SOC 2",
+            "Uptime SLA"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "category": "design",
+      "pricing_url": "https://www.figma.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Full seat prices shown. Dev and Collab seats cost less (see plan notes). Verified against page text 2026-11-25.",
+      "plans": [
+        {
+          "name": "Starter",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "Unlimited drafts",
+            "Up to 500 AI credits/month"
+          ],
+          "features": [
+            "UI kits and templates"
+          ]
+        },
+        {
+          "name": "Professional",
+          "monthly": null,
+          "annual_monthly": 16,
+          "unit": "per_user",
+          "note": "Full seat $16/mo (+3,000 AI credits); Dev seat $12; Collab seat $3. Page shows a monthly/annual toggle; billing period of the displayed price not confirmed.",
+          "limits": [],
+          "features": [
+            "Unlimited files and projects",
+            "Team-wide design libraries",
+            "Dev Mode and MCP server"
+          ]
+        },
+        {
+          "name": "Organization",
+          "monthly": null,
+          "annual_monthly": 55,
+          "unit": "per_user",
+          "note": "Billed annually. Full seat $55/mo (+3,500 AI credits); Dev seat $25; Collab seat $5.",
+          "limits": [],
+          "features": [
+            "SAML SSO",
+            "Org-wide libraries",
+            "Centralised admin"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": 90,
+          "unit": "per_user",
+          "note": "Billed annually. Full seat $90/mo (+4,250 AI credits); Dev seat $35; Collab seat $5.",
+          "limits": [],
+          "features": [
+            "SAML SSO",
+            "SCIM",
+            "Advanced security"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "canva",
+      "name": "Canva",
+      "category": "design",
+      "pricing_url": "https://www.canva.com/pricing/",
+      "currency": "USD",
+      "source": "secondary",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "30 days (Pro)",
+      "notes": "US prices as read from canva.com/pricing by third parties in Nov 2026. Canva shows local currency by region.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [],
+          "features": [
+            "Templates",
+            "Basic AI credits"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 18,
+          "annual_monthly": 12,
+          "unit": "flat",
+          "note": "1 person; $144/year",
+          "limits": [
+            "1 TB storage"
+          ],
+          "features": [
+            "Premium assets",
+            "Background remover",
+            "Brand kits"
+          ]
+        },
+        {
+          "name": "Business",
+          "monthly": 25,
+          "annual_monthly": 20.83,
+          "unit": "per_user",
+          "note": "$250/person/year; replaced Teams",
+          "limits": [],
+          "features": [
+            "Brand controls",
+            "Approvals",
+            "Team reporting"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "SSO"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "framer",
+      "name": "Framer",
+      "category": "website-builder",
+      "pricing_url": "https://www.framer.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Per site.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "Framer domain",
+            "5 GB bandwidth"
+          ],
+          "features": []
+        },
+        {
+          "name": "Basic",
+          "monthly": 10,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "2 CMS collections",
+            "50 GB bandwidth"
+          ],
+          "features": [
+            "Custom domain",
+            "SEO"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 30,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "10 CMS collections",
+            "100 GB bandwidth"
+          ],
+          "features": [
+            "Staging",
+            "Redirects",
+            "Branching"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "SSO",
+            "SCIM",
+            "Uptime guarantee"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "webflow",
+      "name": "Webflow",
+      "category": "website-builder",
+      "pricing_url": "https://webflow.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Site plans, per site, billed annually.",
+      "plans": [
+        {
+          "name": "Starter",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "2 pages",
+            "50 CMS items",
+            "webflow.io domain"
+          ],
+          "features": []
+        },
+        {
+          "name": "Basic",
+          "monthly": null,
+          "annual_monthly": 15,
+          "unit": "flat",
+          "limits": [
+            "No CMS",
+            "10 GB bandwidth"
+          ],
+          "features": [
+            "Custom domain",
+            "Password protection"
+          ]
+        },
+        {
+          "name": "Premium",
+          "monthly": null,
+          "annual_monthly": 25,
+          "unit": "flat",
+          "limits": [
+            "20,000 CMS items",
+            "50 GB+ bandwidth"
+          ],
+          "features": [
+            "CMS",
+            "Site search",
+            "Code components"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hubspot-marketing",
+      "name": "HubSpot Marketing Hub",
+      "category": "marketing",
+      "pricing_url": "https://www.hubspot.com/pricing/marketing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "28 days",
+      "notes": "Starter annual discount is for new customers.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "2 users",
+            "2,000 email sends/month"
+          ],
+          "features": [
+            "Live chat",
+            "Ad management"
+          ]
+        },
+        {
+          "name": "Starter",
+          "monthly": 20,
+          "annual_monthly": 7,
+          "unit": "per_user",
+          "limits": [
+            "1,000 marketing contacts"
+          ],
+          "features": [
+            "Email automation",
+            "Remove HubSpot branding"
+          ]
+        },
+        {
+          "name": "Professional",
+          "monthly": 890,
+          "annual_monthly": 800,
+          "unit": "flat",
+          "note": "Includes 3 seats; extra seats from $45; $3,000 onboarding",
+          "limits": [
+            "2,000 marketing contacts"
+          ],
+          "features": [
+            "Omni-channel automation",
+            "Lead scoring",
+            "Social (50 accounts)"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": 3600,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "Includes 5 seats; $7,000 onboarding",
+          "limits": [
+            "10,000 marketing contacts"
+          ],
+          "features": [
+            "Revenue attribution",
+            "Custom events"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mailchimp",
+      "name": "Mailchimp",
+      "category": "marketing",
+      "pricing_url": "https://mailchimp.com/pricing/marketing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "14 days",
+      "notes": "Starting prices at the lowest contact tier; price scales with contacts.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "250 contacts",
+            "500 emails/month",
+            "1 seat"
+          ],
+          "features": [
+            "Popup forms"
+          ]
+        },
+        {
+          "name": "Essentials",
+          "monthly": 13,
+          "annual_monthly": null,
+          "unit": "usage",
+          "limits": [
+            "10x contacts emails/month",
+            "3 seats"
+          ],
+          "features": [
+            "Email scheduling",
+            "24/7 support"
+          ]
+        },
+        {
+          "name": "Standard",
+          "monthly": 20,
+          "annual_monthly": null,
+          "unit": "usage",
+          "limits": [
+            "12x contacts emails/month",
+            "5 seats"
+          ],
+          "features": [
+            "Generative AI",
+            "Custom reports",
+            "Dynamic content"
+          ]
+        },
+        {
+          "name": "Premium",
+          "monthly": 350,
+          "annual_monthly": null,
+          "unit": "usage",
+          "limits": [
+            "15x contacts emails/month",
+            "Unlimited seats"
+          ],
+          "features": [
+            "Enterprise SSO",
+            "Multivariate testing",
+            "Phone support"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kit",
+      "name": "Kit (ConvertKit)",
+      "category": "marketing",
+      "pricing_url": "https://kit.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "14 days",
+      "notes": "Prices for 1,000 subscribers; scales with list size. Yearly saves 17%.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "Up to 10,000 subscribers",
+            "1 user"
+          ],
+          "features": [
+            "Landing pages",
+            "Broadcasts",
+            "Sell digital products"
+          ]
+        },
+        {
+          "name": "Creator",
+          "monthly": 39,
+          "annual_monthly": null,
+          "unit": "usage",
+          "limits": [
+            "2 users"
+          ],
+          "features": [
+            "Visual automations",
+            "Sequences",
+            "SMS"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 79,
+          "annual_monthly": null,
+          "unit": "usage",
+          "limits": [
+            "Unlimited users"
+          ],
+          "features": [
+            "Engagement analytics",
+            "Deliverability reporting"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "buffer",
+      "name": "Buffer",
+      "category": "marketing",
+      "pricing_url": "https://buffer.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "14 days",
+      "notes": "Paid plans are priced per connected social channel.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "3 channels",
+            "10 scheduled posts/channel"
+          ],
+          "features": [
+            "AI assistant",
+            "Community inbox"
+          ]
+        },
+        {
+          "name": "Essentials",
+          "monthly": 5,
+          "annual_monthly": 5,
+          "unit": "per_channel",
+          "note": "$60/channel/year",
+          "limits": [
+            "1 user"
+          ],
+          "features": [
+            "Unlimited scheduled posts",
+            "Advanced analytics"
+          ]
+        },
+        {
+          "name": "Team",
+          "monthly": 10,
+          "annual_monthly": 10,
+          "unit": "per_channel",
+          "note": "$120/channel/year",
+          "limits": [
+            "Unlimited users"
+          ],
+          "features": [
+            "Approval workflows",
+            "Branded reports"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "intercom",
+      "name": "Intercom",
+      "category": "support",
+      "pricing_url": "https://www.intercom.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "Yes",
+      "notes": "Fin AI Agent is charged per outcome on top of seats.",
+      "plans": [
+        {
+          "name": "Essential",
+          "monthly": 29,
+          "annual_monthly": 19,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Shared inbox and ticketing",
+            "Messenger",
+            "Help center"
+          ]
+        },
+        {
+          "name": "Advanced",
+          "monthly": null,
+          "annual_monthly": 85,
+          "unit": "per_user",
+          "limits": [
+            "20 free Lite seats"
+          ],
+          "features": [
+            "Workflows",
+            "Multiple inboxes"
+          ]
+        },
+        {
+          "name": "Expert",
+          "monthly": null,
+          "annual_monthly": 132,
+          "unit": "per_user",
+          "limits": [
+            "50 free Lite seats"
+          ],
+          "features": [
+            "SSO",
+            "HIPAA",
+            "SLAs"
+          ]
+        },
+        {
+          "name": "Fin AI Agent",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "usage",
+          "note": "From $0.99 per Fin outcome",
+          "limits": [],
+          "features": [
+            "Works with existing helpdesk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zendesk",
+      "name": "Zendesk",
+      "category": "support",
+      "pricing_url": "https://www.zendesk.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "14 days",
+      "notes": "Per agent. Extra automated resolutions $2.00 pay-as-you-go.",
+      "plans": [
+        {
+          "name": "Support Team",
+          "monthly": 25,
+          "annual_monthly": 19,
+          "unit": "per_user",
+          "limits": [
+            "5 automated resolutions/agent/month"
+          ],
+          "features": [
+            "Ticketing",
+            "Macros",
+            "Triggers"
+          ]
+        },
+        {
+          "name": "Suite Team",
+          "monthly": 69,
+          "annual_monthly": 55,
+          "unit": "per_user",
+          "limits": [
+            "5 automated resolutions/agent/month"
+          ],
+          "features": [
+            "AI agents",
+            "Knowledge base",
+            "Messaging and live chat"
+          ]
+        },
+        {
+          "name": "Suite Professional",
+          "monthly": 149,
+          "annual_monthly": 115,
+          "unit": "per_user",
+          "limits": [
+            "10 automated resolutions/agent/month"
+          ],
+          "features": [
+            "Skills-based routing",
+            "Admin Copilot"
+          ]
+        },
+        {
+          "name": "Suite Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "Sandbox",
+            "Approval workflows"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pipedrive",
+      "name": "Pipedrive",
+      "category": "crm",
+      "pricing_url": "https://www.pipedrive.com/en/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "14 days",
+      "notes": "Annual-billed prices shown.",
+      "plans": [
+        {
+          "name": "Lite",
+          "monthly": null,
+          "annual_monthly": 14,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Pipeline management",
+            "AI reports"
+          ]
+        },
+        {
+          "name": "Growth",
+          "monthly": null,
+          "annual_monthly": 39,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Email sync",
+            "Automations",
+            "Meeting scheduler"
+          ]
+        },
+        {
+          "name": "Premium",
+          "monthly": null,
+          "annual_monthly": 59,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Lead routing",
+            "Contracts and e-signatures"
+          ]
+        },
+        {
+          "name": "Ultimate",
+          "monthly": null,
+          "annual_monthly": 79,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Security rules",
+            "Sandbox",
+            "Phone support"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shopify",
+      "name": "Shopify",
+      "category": "ecommerce",
+      "pricing_url": "https://www.shopify.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "3 days",
+      "notes": "Card rates shown are US Shopify Payments online rates.",
+      "plans": [
+        {
+          "name": "Basic",
+          "monthly": 39,
+          "annual_monthly": 29,
+          "unit": "flat",
+          "limits": [
+            "Card rate 2.9% + 30c",
+            "0 extra staff accounts"
+          ],
+          "features": [
+            "Online store",
+            "Shopify Payments"
+          ]
+        },
+        {
+          "name": "Grow",
+          "monthly": 105,
+          "annual_monthly": 79,
+          "unit": "flat",
+          "limits": [
+            "Card rate 2.7% + 30c",
+            "5 staff accounts"
+          ],
+          "features": [
+            "Shipping discounts"
+          ]
+        },
+        {
+          "name": "Advanced",
+          "monthly": 399,
+          "annual_monthly": 299,
+          "unit": "flat",
+          "limits": [
+            "Card rate 2.5% + 30c",
+            "15 staff accounts"
+          ],
+          "features": [
+            "Third-party calculated shipping",
+            "Regional customisation"
+          ]
+        },
+        {
+          "name": "Plus",
+          "monthly": 2300,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "Starting price",
+          "limits": [
+            "Card rate 2.25% + 30c",
+            "Unlimited staff"
+          ],
+          "features": [
+            "Customisable checkout",
+            "Priority 24/7 support"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "squarespace",
+      "name": "Squarespace",
+      "category": "website-builder",
+      "pricing_url": "https://www.squarespace.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "14 days",
+      "notes": null,
+      "plans": [
+        {
+          "name": "Basic",
+          "monthly": 25,
+          "annual_monthly": 19,
+          "unit": "flat",
+          "limits": [
+            "2% store transaction fee",
+            "2 contributors"
+          ],
+          "features": [
+            "SEO tools",
+            "Free domain 1 year (annual)"
+          ]
+        },
+        {
+          "name": "Core",
+          "monthly": 39,
+          "annual_monthly": 29,
+          "unit": "flat",
+          "limits": [
+            "No transaction fees"
+          ],
+          "features": [
+            "Unlimited contributors",
+            "Lead capture",
+            "Automated taxes"
+          ]
+        },
+        {
+          "name": "Plus",
+          "monthly": 65,
+          "annual_monthly": 49,
+          "unit": "flat",
+          "limits": [
+            "Card rates from 2.7% + $0.30"
+          ],
+          "features": [
+            "Advanced promotions"
+          ]
+        },
+        {
+          "name": "Advanced",
+          "monthly": 139,
+          "annual_monthly": 99,
+          "unit": "flat",
+          "limits": [
+            "Card rates from 2.5% + $0.30"
+          ],
+          "features": [
+            "High-traffic checkout"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wix",
+      "name": "Wix",
+      "category": "website-builder",
+      "pricing_url": "https://www.wix.com/plans",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "14 days",
+      "notes": "Annual prices shown were marked 'Save 50%' (promotional).",
+      "plans": [
+        {
+          "name": "Light",
+          "monthly": null,
+          "annual_monthly": 17.77,
+          "unit": "flat",
+          "limits": [
+            "2 GB storage",
+            "2 collaborators"
+          ],
+          "features": [
+            "Free domain 1 year"
+          ]
+        },
+        {
+          "name": "Core",
+          "monthly": null,
+          "annual_monthly": 29.77,
+          "unit": "flat",
+          "limits": [
+            "50 GB storage",
+            "5 collaborators"
+          ],
+          "features": [
+            "Accept payments",
+            "Basic ecommerce"
+          ]
+        },
+        {
+          "name": "Business",
+          "monthly": null,
+          "annual_monthly": 39.77,
+          "unit": "flat",
+          "limits": [
+            "100 GB storage",
+            "10 collaborators"
+          ],
+          "features": [
+            "Standard ecommerce"
+          ]
+        },
+        {
+          "name": "Business Elite",
+          "monthly": null,
+          "annual_monthly": 159.77,
+          "unit": "flat",
+          "limits": [
+            "Unlimited storage",
+            "100 collaborators"
+          ],
+          "features": [
+            "Advanced ecommerce"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xero",
+      "name": "Xero (UK)",
+      "category": "accounting",
+      "pricing_url": "https://www.xero.com/uk/pricing-plans/",
+      "currency": "GBP",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "1 month",
+      "notes": "UK prices, excl. VAT. Promo: 90% off for 6 months for new UK customers.",
+      "plans": [
+        {
+          "name": "Ignite",
+          "monthly": 18,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "20 invoices and quotes",
+            "10 bills"
+          ],
+          "features": [
+            "MTD VAT returns",
+            "Bank reconciliation"
+          ]
+        },
+        {
+          "name": "Grow",
+          "monthly": 39,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "Payroll for 1 person"
+          ],
+          "features": [
+            "Auto-reconcile",
+            "Bill automation",
+            "Expenses"
+          ]
+        },
+        {
+          "name": "Comprehensive",
+          "monthly": 55,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "Payroll for 5 people"
+          ],
+          "features": [
+            "Multi-currency",
+            "Budgets"
+          ]
+        },
+        {
+          "name": "Ultimate",
+          "monthly": 70,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "Payroll for 10 people"
+          ],
+          "features": [
+            "Projects",
+            "KPI analysis"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "google-workspace",
+      "name": "Google Workspace",
+      "category": "productivity",
+      "pricing_url": "https://workspace.google.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "14 days",
+      "notes": "USD from Google support docs; official UK prices (excl. VAT) from Google's UK pages. Max 300 users on Business plans.",
+      "plans": [
+        {
+          "name": "Business Starter",
+          "monthly": 8.4,
+          "annual_monthly": 7,
+          "gbp_monthly": 7,
+          "gbp_annual_monthly": 5.9,
+          "unit": "per_user",
+          "limits": [
+            "30 GB pooled storage/user",
+            "100 Meet participants"
+          ],
+          "features": [
+            "Custom email",
+            "Gemini in Gmail"
+          ]
+        },
+        {
+          "name": "Business Standard",
+          "monthly": 16.8,
+          "annual_monthly": 14,
+          "gbp_monthly": 14,
+          "gbp_annual_monthly": 11.8,
+          "unit": "per_user",
+          "limits": [
+            "2 TB pooled storage/user",
+            "150 Meet participants"
+          ],
+          "features": [
+            "Gemini in Docs/Sheets/Meet",
+            "Meeting recordings",
+            "Booking pages"
+          ]
+        },
+        {
+          "name": "Business Plus",
+          "monthly": 26.4,
+          "annual_monthly": 22,
+          "gbp_monthly": 22,
+          "gbp_annual_monthly": 18.4,
+          "unit": "per_user",
+          "limits": [
+            "5 TB pooled storage/user",
+            "500 Meet participants"
+          ],
+          "features": [
+            "eDiscovery (Vault)",
+            "Advanced endpoint management",
+            "eSignature"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [
+            "1,000 Meet participants"
+          ],
+          "features": [
+            "DLP",
+            "Data regions",
+            "Context-aware access"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "microsoft-365-business",
+      "name": "Microsoft 365 Business (UK)",
+      "category": "productivity",
+      "pricing_url": "https://www.microsoft.com/en-gb/microsoft-365/business/compare-all-microsoft-365-business-products",
+      "currency": "GBP",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "1 month (card required)",
+      "notes": "UK prices excl. VAT, annual subscription. Max 300 users.",
+      "plans": [
+        {
+          "name": "Business Basic",
+          "monthly": null,
+          "annual_monthly": 5.4,
+          "unit": "per_user",
+          "limits": [
+            "1 TB OneDrive",
+            "Web and mobile apps only"
+          ],
+          "features": [
+            "Teams",
+            "Exchange email"
+          ]
+        },
+        {
+          "name": "Apps for business",
+          "monthly": null,
+          "annual_monthly": 9.8,
+          "unit": "per_user",
+          "limits": [
+            "1 TB OneDrive",
+            "No Teams or email"
+          ],
+          "features": [
+            "Desktop Office apps"
+          ]
+        },
+        {
+          "name": "Business Standard (with Copilot)",
+          "monthly": null,
+          "annual_monthly": 18.1,
+          "unit": "per_user",
+          "limits": [
+            "1 TB OneDrive"
+          ],
+          "features": [
+            "Desktop Office apps",
+            "Copilot in apps",
+            "Teams"
+          ]
+        },
+        {
+          "name": "Business Premium (with Copilot)",
+          "monthly": null,
+          "annual_monthly": 24.6,
+          "unit": "per_user",
+          "limits": [
+            "1.5 TB archive mailbox"
+          ],
+          "features": [
+            "Intune device management",
+            "Entra ID P1",
+            "Defender for Business"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dropbox",
+      "name": "Dropbox",
+      "category": "storage",
+      "pricing_url": "https://www.dropbox.com/plans",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "30 days",
+      "notes": null,
+      "plans": [
+        {
+          "name": "Basic",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "2 GB storage"
+          ],
+          "features": []
+        },
+        {
+          "name": "Plus",
+          "monthly": 9.99,
+          "annual_monthly": 7.99,
+          "unit": "flat",
+          "note": "1 person",
+          "limits": [
+            "2 TB storage",
+            "50 GB transfers"
+          ],
+          "features": [
+            "PDF editing",
+            "Remote wipe"
+          ]
+        },
+        {
+          "name": "Standard",
+          "monthly": 15,
+          "annual_monthly": 12,
+          "unit": "per_user",
+          "limits": [
+            "3 TB team storage",
+            "180-day restore"
+          ],
+          "features": [
+            "Team folders",
+            "Admin console"
+          ]
+        },
+        {
+          "name": "Advanced",
+          "monthly": 24,
+          "annual_monthly": 19.2,
+          "unit": "per_user",
+          "note": "3+ users",
+          "limits": [
+            "15 TB team storage",
+            "1-year restore"
+          ],
+          "features": [
+            "SSO",
+            "End-to-end encryption",
+            "Tiered admins"
+          ],
+          "min_seats": 3
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "Security integrations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1password",
+      "name": "1Password",
+      "category": "security",
+      "pricing_url": "https://1password.com/pricing",
+      "currency": "USD",
+      "source": "secondary",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "14 days",
+      "notes": "From 1Password signup pages and Oct 2026 reports. Individual/Families shown at regular annual-billed rate (first-year promo: $2.99 / $4.49).",
+      "plans": [
+        {
+          "name": "Individual",
+          "monthly": null,
+          "annual_monthly": 3.99,
+          "unit": "flat",
+          "limits": [
+            "1 user"
+          ],
+          "features": [
+            "Autofill",
+            "Secure sharing"
+          ]
+        },
+        {
+          "name": "Families",
+          "monthly": null,
+          "annual_monthly": 5.99,
+          "unit": "flat",
+          "limits": [
+            "Up to 5 family members"
+          ],
+          "features": [
+            "Unlimited shared vaults"
+          ]
+        },
+        {
+          "name": "Teams Starter Pack",
+          "monthly": null,
+          "annual_monthly": 24.95,
+          "unit": "flat",
+          "note": "Includes 10 members; extra seats up to 20 total",
+          "limits": [
+            "20 members max"
+          ],
+          "features": [
+            "Role-based permissions",
+            "Security alerts"
+          ],
+          "included_seats": 10,
+          "max_seats": 20
+        },
+        {
+          "name": "Business",
+          "monthly": null,
+          "annual_monthly": 8.99,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "SSO with Okta/Entra/OneLogin",
+            "Insights and reporting"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zapier",
+      "name": "Zapier",
+      "category": "automation",
+      "pricing_url": "https://zapier.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "14-day Professional trial",
+      "notes": "Starting prices; scales with task volume.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "100 tasks/month",
+            "15-min polling"
+          ],
+          "features": [
+            "Two-step Zaps",
+            "Tables and Forms"
+          ]
+        },
+        {
+          "name": "Professional",
+          "monthly": 19.99,
+          "annual_monthly": null,
+          "unit": "usage",
+          "limits": [
+            "2-min polling"
+          ],
+          "features": [
+            "Multi-step Zaps",
+            "Premium apps",
+            "Webhooks"
+          ]
+        },
+        {
+          "name": "Team",
+          "monthly": 69,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "25 users"
+          ],
+          "features": [
+            "SAML SSO",
+            "Shared Zaps",
+            "Priority support"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "SAML SSO",
+            "Advanced admin"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "make",
+      "name": "Make",
+      "category": "automation",
+      "pricing_url": "https://www.make.com/en/pricing",
+      "currency": "USD",
+      "source": "secondary",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Prices for 10,000 credits/month; scale with credits. Reports in 2026 disagree; figures here match the most recent captures (Sept-Oct 2026).",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "1,000 credits/month"
+          ],
+          "features": []
+        },
+        {
+          "name": "Core",
+          "monthly": 16,
+          "annual_monthly": 12,
+          "unit": "usage",
+          "limits": [
+            "10,000 credits/month"
+          ],
+          "features": [
+            "Unlimited active scenarios",
+            "Make API"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 28,
+          "annual_monthly": 21,
+          "unit": "usage",
+          "limits": [
+            "10,000 credits/month"
+          ],
+          "features": [
+            "Priority execution",
+            "Custom variables",
+            "Full-text log search"
+          ]
+        },
+        {
+          "name": "Teams",
+          "monthly": 51,
+          "annual_monthly": 38,
+          "unit": "usage",
+          "limits": [
+            "10,000 credits/month"
+          ],
+          "features": [
+            "Team roles",
+            "Shared templates"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "SSO",
+            "Audit compliance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chatgpt",
+      "name": "ChatGPT",
+      "category": "ai",
+      "pricing_url": "https://chatgpt.com/pricing",
+      "currency": "USD",
+      "source": "secondary",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Pricing page did not render prices; figures from OpenAI announcements and Oct 2026 reports. Pro has three tiers.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "Limited uploads, images, deep research"
+          ],
+          "features": []
+        },
+        {
+          "name": "Go",
+          "monthly": 8,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "US price; may include ads",
+          "limits": [],
+          "features": [
+            "More messages and uploads"
+          ]
+        },
+        {
+          "name": "Plus",
+          "monthly": 20,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [],
+          "features": [
+            "Advanced reasoning models",
+            "Projects and custom GPTs",
+            "Codex"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 100,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "Tiers at $100, $200 and $500/month",
+          "limits": [],
+          "features": [
+            "Pro reasoning models",
+            "Maximum deep research"
+          ]
+        },
+        {
+          "name": "Business",
+          "monthly": 25,
+          "annual_monthly": 20,
+          "unit": "per_user",
+          "note": "Minimum 2 users",
+          "limits": [],
+          "features": [
+            "SAML SSO",
+            "Admin console",
+            "No training on data"
+          ],
+          "min_seats": 2
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "Invoicing",
+            "Enterprise privacy controls"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "claude",
+      "name": "Claude",
+      "category": "ai",
+      "pricing_url": "https://claude.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "App subscription plans (not API token prices).",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "Limited usage per 5 hours and weekly"
+          ],
+          "features": [
+            "Web search",
+            "Memory",
+            "Artifacts",
+            "Connectors"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 20,
+          "annual_monthly": 17,
+          "unit": "flat",
+          "note": "Annual billed $200 up front",
+          "limits": [],
+          "features": [
+            "Claude Code",
+            "Projects",
+            "Research",
+            "Claude in Chrome"
+          ]
+        },
+        {
+          "name": "Max",
+          "monthly": 100,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "5x Pro usage",
+            "$100/month API credits"
+          ],
+          "features": [
+            "Priority access",
+            "Early access to features"
+          ]
+        },
+        {
+          "name": "Ultra",
+          "monthly": 200,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "10x Pro usage weekly",
+            "$200/month API credits"
+          ],
+          "features": [
+            "No 5-hour limit (verified accounts)"
+          ]
+        },
+        {
+          "name": "Team",
+          "monthly": 25,
+          "annual_monthly": 20,
+          "unit": "per_user",
+          "note": "Standard seat; Premium seat $125 monthly / $100 annual; 2-150 users",
+          "limits": [],
+          "features": [
+            "SSO",
+            "Central billing",
+            "Claude Code"
+          ],
+          "min_seats": 2
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": 20,
+          "unit": "per_user",
+          "note": "Seat price plus usage at API rates; 20-seat minimum",
+          "limits": [],
+          "features": [
+            "SSO",
+            "SCIM",
+            "Audit logs"
+          ],
+          "min_seats": 20
+        }
+      ]
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "category": "ai",
+      "pricing_url": "https://cursor.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Lineup on cursor.com changed in 2026 and now includes Grok/X features. Prices shown per month; annual prices not shown. Third-party models on Premium and above are billed by usage at API list price. Verified against page text 2026-11-25.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "Limited agent and chat requests"
+          ],
+          "features": []
+        },
+        {
+          "name": "Plus",
+          "monthly": 8,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "Introductory plan; Grok models only",
+          "limits": [
+            "Shared AI usage pool"
+          ],
+          "features": [
+            "Grok chat, voice and build"
+          ]
+        },
+        {
+          "name": "Premium",
+          "monthly": 30,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "4x Plus usage"
+          ],
+          "features": [
+            "Cloud agents and automations",
+            "Code hosting and AI code reviews",
+            "Third-party models (billed by usage)"
+          ]
+        },
+        {
+          "name": "Super",
+          "monthly": 100,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "15x Plus usage"
+          ],
+          "features": [
+            "Priority model access at peak times"
+          ]
+        },
+        {
+          "name": "Ultra",
+          "monthly": 200,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "50x Plus usage"
+          ],
+          "features": [
+            "Earliest access to products and models"
+          ]
+        },
+        {
+          "name": "Teams",
+          "monthly": 30,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "note": "From $30/user/month; usage 4-50x Plus by seat tier",
+          "limits": [
+            "Pooled usage"
+          ],
+          "features": [
+            "SAML/OIDC SSO",
+            "Central billing and admin",
+            "Usage analytics"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "SCIM",
+            "Audit logs",
+            "Invoice/PO billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "github-copilot",
+      "name": "GitHub Copilot",
+      "category": "ai",
+      "pricing_url": "https://github.com/features/copilot/plans",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Business and Enterprise prices not shown on the plans page.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "2,000 completions/month",
+            "Limited chat and agent"
+          ],
+          "features": [
+            "Copilot CLI"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 10,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "$15 monthly credits",
+            "Unlimited completions"
+          ],
+          "features": [
+            "Cloud agent",
+            "Code review",
+            "Third-party agents"
+          ]
+        },
+        {
+          "name": "Pro+",
+          "monthly": 39,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "$70 monthly credits"
+          ],
+          "features": [
+            "Premium models incl. Opus",
+            "Audit logs"
+          ]
+        },
+        {
+          "name": "Max",
+          "monthly": 100,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "$200 monthly credits"
+          ],
+          "features": [
+            "Priority access to new models"
+          ]
+        },
+        {
+          "name": "Business",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "SAML SSO",
+            "IP indemnity",
+            "Admin usage limits"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "SAML SSO",
+            "Enterprise security"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elevenlabs",
+      "name": "ElevenLabs",
+      "category": "video-audio",
+      "pricing_url": "https://elevenlabs.io/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Some annual prices were Black Friday promos ending 1 Dec 2026; regular annual: Creator $220/yr, Pro $990/yr.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "10k credits/month (~10 min)"
+          ],
+          "features": [
+            "TTS",
+            "STT",
+            "Sound effects"
+          ]
+        },
+        {
+          "name": "Starter",
+          "monthly": 6,
+          "annual_monthly": 5,
+          "unit": "flat",
+          "limits": [
+            "30k credits (~30 min)"
+          ],
+          "features": [
+            "Commercial licence",
+            "Instant voice cloning"
+          ]
+        },
+        {
+          "name": "Creator",
+          "monthly": 22,
+          "annual_monthly": 18.33,
+          "unit": "flat",
+          "limits": [
+            "121k credits (~121 min)"
+          ],
+          "features": [
+            "Professional voice cloning"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 99,
+          "annual_monthly": 82.5,
+          "unit": "flat",
+          "limits": [
+            "600k credits (~600 min)"
+          ],
+          "features": [
+            "44.1kHz PCM via API"
+          ]
+        },
+        {
+          "name": "Scale",
+          "monthly": 299,
+          "annual_monthly": 249.17,
+          "unit": "flat",
+          "limits": [
+            "1.8M credits",
+            "3 seats"
+          ],
+          "features": [
+            "Team collaboration"
+          ]
+        },
+        {
+          "name": "Business",
+          "monthly": 990,
+          "annual_monthly": 825,
+          "unit": "flat",
+          "limits": [
+            "6M credits",
+            "10 seats"
+          ],
+          "features": [
+            "Low-latency TTS from 5c/min"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": [
+            "Custom SSO",
+            "HIPAA BAAs"
+          ]
+        }
+      ]
+    }
+  ]
+}
