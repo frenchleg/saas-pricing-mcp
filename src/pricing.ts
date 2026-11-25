@@ -1,4 +1,4 @@
-import type { Billing, Currency, Dataset, Plan, Product, Rates } from "./types";
+import type { Billing, Compliance, Currency, Dataset, Plan, Product, Rates } from "./types";
 import raw from "../data/products.json";
 
 export const dataset = raw as unknown as Dataset;
@@ -212,3 +212,61 @@ export function plansWithFeature(product: Product, terms: string[]): { plan: Pla
 }
 
 export const CATEGORIES = [...new Set(products.map((p) => p.category))].sort();
+
+// ---------- compliance ----------
+
+export const REQUIREMENTS = {
+  soc2: { label: "SOC 2 (any type)", test: (c: Compliance) => c.soc2 === "yes" || c.soc2 === "type2" },
+  soc2_type2: { label: "SOC 2 Type II", test: (c: Compliance) => c.soc2 === "type2" },
+  iso27001: { label: "ISO 27001", test: (c: Compliance) => c.iso27001 === "yes" },
+  iso42001: { label: "ISO 42001 (AI management)", test: (c: Compliance) => c.iso42001 === "yes" },
+  cyber_essentials: { label: "Cyber Essentials (UK)", test: (c: Compliance) => c.cyber_essentials === "yes" },
+  pci_dss: { label: "PCI DSS", test: (c: Compliance) => c.pci_dss === "yes" },
+  gdpr: { label: "GDPR statement", test: (c: Compliance) => c.gdpr === "yes" },
+  hipaa: { label: "HIPAA / BAA available", test: (c: Compliance) => c.hipaa === "yes" },
+  eu_data_residency: { label: "EU data residency option", test: (c: Compliance) => c.eu_data_residency === "yes" },
+  uk_data_residency: { label: "UK data residency option", test: (c: Compliance) => c.uk_data_residency === "yes" },
+  no_ai_training: {
+    label: "Does not train AI on customer data (at least on business plans)",
+    test: (c: Compliance) => c.ai_training === "no_training" || c.ai_training === "no_training_business",
+  },
+} satisfies Record<string, { label: string; test: (c: Compliance) => boolean }>;
+
+export type Requirement = keyof typeof REQUIREMENTS;
+export const REQUIREMENT_KEYS = Object.keys(REQUIREMENTS) as Requirement[];
+
+/** Which requirements a product meets, explicitly fails ("no" stated by vendor), or is unknown on. */
+export function checkRequirements(p: Product, reqs: Requirement[]) {
+  const c = p.compliance;
+  const met: Requirement[] = [];
+  const failed: Requirement[] = [];
+  const unknown: Requirement[] = [];
+  for (const r of reqs) {
+    if (!c) { unknown.push(r); continue; }
+    if (REQUIREMENTS[r].test(c)) met.push(r);
+    else {
+      const field = r === "soc2_type2" ? "soc2" : r === "no_ai_training" ? "ai_training" : r;
+      const v = (c as unknown as Record<string, unknown>)[field];
+      if (v === "no" || (r === "soc2_type2" && c.soc2 === "yes") || (r === "no_ai_training" && c.ai_training === "opt_out")) failed.push(r);
+      else unknown.push(r);
+    }
+  }
+  return { met, failed, unknown };
+}
+
+export function complianceSummary(p: Product): string[] {
+  const c = p.compliance;
+  if (!c) return [];
+  const out: string[] = [];
+  if (c.soc2 === "type2") out.push("SOC 2 Type II"); else if (c.soc2 === "yes") out.push("SOC 2");
+  if (c.iso27001 === "yes") out.push("ISO 27001");
+  if (c.iso42001 === "yes") out.push("ISO 42001");
+  if (c.cyber_essentials === "yes") out.push("Cyber Essentials");
+  if (c.hipaa === "yes") out.push("HIPAA/BAA");
+  if (c.eu_data_residency === "yes") out.push("EU data residency");
+  if (c.uk_data_residency === "yes") out.push("UK data residency");
+  if (c.ai_training === "no_training") out.push("no AI training on customer data");
+  if (c.ai_training === "no_training_business") out.push("no AI training on business data");
+  if (c.ai_training === "opt_out") out.push("AI training opt-out");
+  return out;
+}

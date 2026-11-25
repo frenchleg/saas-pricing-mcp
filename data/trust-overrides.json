@@ -1,0 +1,399 @@
+{
+ "clickup": {
+  "hipaa": "yes"
+ },
+ "slack": {
+  "hipaa": "yes",
+  "eu_data_residency": null,
+  "_note_eu": "Slack offers data residency for some plans; regions not captured automatically."
+ },
+ "linear": {
+  "hipaa": "yes",
+  "eu_data_residency": "yes"
+ },
+ "asana": {
+  "hipaa": "yes",
+  "eu_data_residency": "yes"
+ },
+ "monday": {
+  "hipaa": "yes",
+  "eu_data_residency": "yes"
+ },
+ "notion": {
+  "hipaa": "yes",
+  "_note_hipaa": "BAA for Enterprise customers.",
+  "ai_training": "no_training"
+ },
+ "airtable": {
+  "hipaa": "yes",
+  "eu_data_residency": "yes"
+ },
+ "zoom": {
+  "hipaa": "yes",
+  "ai_training": "no_training",
+  "_note_ai": "Zoom states it does not use audio, video or chat content to train AI."
+ },
+ "render": {
+  "hipaa": "yes"
+ },
+ "supabase": {
+  "hipaa": "yes",
+  "eu_data_residency": "yes"
+ },
+ "vercel": {
+  "hipaa": "yes",
+  "ai_training": "opt_out"
+ },
+ "netlify": {
+  "hipaa": "yes",
+  "ai_training": "no_training",
+  "_note_ai": "No training on code/content unless the customer opts in."
+ },
+ "neon": {
+  "hipaa": "yes"
+ },
+ "postman": {
+  "hipaa": "yes",
+  "eu_data_residency": null
+ },
+ "intercom": {
+  "hipaa": "yes",
+  "eu_data_residency": "yes"
+ },
+ "zendesk": {
+  "hipaa": "yes",
+  "gdpr": "yes"
+ },
+ "google-workspace": {
+  "hipaa": "yes",
+  "_note_hipaa": "BAA available; some newer features are excluded from the BAA."
+ },
+ "wix": {
+  "hipaa": "yes"
+ },
+ "dropbox": {
+  "hipaa": "yes"
+ },
+ "chatgpt": {
+  "hipaa": "yes",
+  "ai_training": "no_training_business",
+  "_note_ai": "Business/Enterprise data not used for training by default; consumer users can opt out."
+ },
+ "cursor": {
+  "hipaa": "yes",
+  "ai_training": "no_training",
+  "_note_ai": "No training when Privacy Mode is enabled (team setting)."
+ },
+ "zoho-crm": {
+  "hipaa": "yes",
+  "eu_data_residency": "yes"
+ },
+ "help-scout": {
+  "hipaa": "yes"
+ },
+ "sprout-social": {
+  "hipaa": "yes"
+ },
+ "docusign": {
+  "hipaa": "yes"
+ },
+ "smartsheet": {
+  "hipaa": "yes",
+  "eu_data_residency": "yes"
+ },
+ "grammarly": {
+  "hipaa": "yes",
+  "ai_training": "opt_out"
+ },
+ "jotform": {
+  "hipaa": "yes",
+  "eu_data_residency": "yes",
+  "uk_data_residency": "yes",
+  "_note_uk": "UK public-sector offering with local data residency."
+ },
+ "bitwarden": {
+  "hipaa": "yes"
+ },
+ "posthog": {
+  "hipaa": "yes",
+  "eu_data_residency": "yes"
+ },
+ "wrike": {
+  "hipaa": "yes",
+  "eu_data_residency": "yes",
+  "ai_training": "no_training"
+ },
+ "digitalocean": {
+  "hipaa": "yes"
+ },
+ "perplexity": {
+  "hipaa": "yes",
+  "ai_training": "no_training_business",
+  "_note_ai": "No training on Enterprise/API customer content by default."
+ },
+ "activecampaign": {
+  "hipaa": "yes",
+  "_note_hipaa": "Marketing page states a focus on HIPAA compliance; confirm BAA availability with vendor."
+ },
+ "surveymonkey": {
+  "hipaa": "yes",
+  "_note_hipaa": "Enterprise plan; BAAs are a paid add-on.",
+  "eu_data_residency": "yes"
+ },
+ "trello": {
+  "hipaa": null
+ },
+ "jira": {
+  "hipaa": null
+ },
+ "confluence": {
+  "hipaa": null
+ },
+ "loom": {
+  "hipaa": null,
+  "soc2": null,
+  "iso27001": null,
+  "_note": "Loom is part of Atlassian; Loom-specific certifications not confirmed from pages read."
+ },
+ "gitlab": {
+  "hipaa": null,
+  "ai_training": "no_training",
+  "_note_ai": "Will not use AI inputs to train models without instruction."
+ },
+ "sentry": {
+  "hipaa": null
+ },
+ "mailchimp": {
+  "hipaa": null,
+  "eu_data_residency": null
+ },
+ "1password": {
+  "hipaa": null,
+  "eu_data_residency": null
+ },
+ "basecamp": {
+  "hipaa": "no",
+  "soc2": "no",
+  "iso27001": "no",
+  "eu_data_residency": "no",
+  "_note": "37signals states it has not completed a company-level SOC 2 or ISO 27001 audit, hosts in AWS US-East with no EU hosting, and does not sign BAAs.",
+  "ai_training": "no_training"
+ },
+ "resend": {
+  "hipaa": "no",
+  "iso27001": "no",
+  "_note": "Resend states it holds SOC 2 Type II, is not ISO 27001 certified, and is not HIPAA compliant (in progress).",
+  "ai_training": "no_training",
+  "pci_dss": null
+ },
+ "webflow": {
+  "soc2": "type2",
+  "iso27001": "yes",
+  "iso42001": "yes",
+  "pci_dss": "yes",
+  "hipaa": "no",
+  "_note": "Webflow states it is not HIPAA compliant by default.",
+  "_evidence_url": "https://webflow.com/security"
+ },
+ "adobe-creative-cloud": {
+  "soc2": "type2",
+  "iso27001": "yes",
+  "_evidence_url": "https://www.adobe.com/trust/compliance/compliance-list.html"
+ },
+ "pandadoc": {
+  "soc2": "type2",
+  "_note": "Lets customers choose where data is stored (regions not captured).",
+  "_evidence_url": "https://www.pandadoc.com/security/"
+ },
+ "box": {
+  "ai_training": "no_training",
+  "_evidence_url": "https://www.box.com/security",
+  "_evidence": {
+   "soc2": "https://www.box.com/trust",
+   "iso27001": "https://www.box.com/trust",
+   "pci_dss": "https://www.box.com/trust",
+   "hipaa": "https://support.box.com/hc/en-us/articles/360044194833-Box-HIPAA-and-HITECH-Overview-and-FAQ",
+   "uk_data_residency": "https://blog.box.com/en/multizones-storage-data-residency-compliance",
+   "eu_data_residency": "https://blog.box.com/en/multizones-storage-data-residency-compliance"
+  },
+  "soc2": "type2",
+  "iso27001": "yes",
+  "pci_dss": "yes",
+  "hipaa": "yes",
+  "uk_data_residency": "yes",
+  "eu_data_residency": "yes",
+  "_note_hipaa": "BAAs for Enterprise-tier customers.",
+  "_note_eu": "UK and EU (Ireland, Germany) storage via the Box Zones add-on."
+ },
+ "capsule-crm": {
+  "soc2": null,
+  "iso27001": null,
+  "_note": "SOC 2 / ISO 27001 statements found refer to Capsule's data centres, not Capsule itself.",
+  "eu_data_residency": null,
+  "ai_training": "no_training",
+  "pci_dss": "yes"
+ },
+ "miro": {
+  "eu_data_residency": "yes"
+ },
+ "hubspot-marketing": {
+  "eu_data_residency": "yes",
+  "iso27001": null
+ },
+ "klaviyo": {
+  "eu_data_residency": "yes",
+  "_note_eu": "EU data centre is opt-in for new accounts."
+ },
+ "lovable": {
+  "eu_data_residency": "yes",
+  "ai_training": "no_training_business",
+  "_note_ai": "Business and Enterprise data not used for training; Free and Pro can opt out."
+ },
+ "squarespace": {
+  "eu_data_residency": null
+ },
+ "claude": {
+  "eu_data_residency": null,
+  "ai_training": "no_training_business",
+  "_note_ai": "Commercial terms: no training on customer content. Consumer plans: used unless the user opts out.",
+  "_evidence_ai": "https://www.anthropic.com/legal/commercial-terms",
+  "_evidence": {
+   "hipaa": "https://privacy.claude.com/en/articles/10015870-what-certifications-has-anthropic-obtained",
+   "soc2": "https://privacy.claude.com/en/articles/10015870-what-certifications-has-anthropic-obtained",
+   "iso27001": "https://privacy.claude.com/en/articles/10015870-what-certifications-has-anthropic-obtained",
+   "iso42001": "https://privacy.claude.com/en/articles/10015870-what-certifications-has-anthropic-obtained"
+  },
+  "hipaa": "yes",
+  "_note_hipaa": "HIPAA-ready configuration with BAA for commercial customers (Claude for Work / API).",
+  "soc2": "type2",
+  "iso27001": "yes",
+  "iso42001": "yes"
+ },
+ "brighthr": {
+  "eu_data_residency": null
+ },
+ "tide": {
+  "uk_data_residency": null,
+  "_note_uk": "States personal data is stored in the UK or EEA."
+ },
+ "cloudflare": {
+  "ai_training": "no_training"
+ },
+ "zapier": {
+  "ai_training": "no_training",
+  "_note_ai": "States its AI subprocessors do not train on customer content."
+ },
+ "framer": {
+  "ai_training": null
+ },
+ "figma": {
+  "ai_training": null
+ },
+ "elevenlabs": {
+  "ai_training": "opt_out",
+  "_evidence": {
+   "soc2": "https://elevenlabs.io/text-to-speech",
+   "iso27001": "https://elevenlabs.io/text-to-speech",
+   "iso42001": "https://elevenlabs.io/realtime",
+   "pci_dss": "https://elevenlabs.io/text-to-speech",
+   "hipaa": "https://elevenlabs.io/text-to-speech",
+   "eu_data_residency": "https://elevenlabs.io/text-to-speech"
+  },
+  "soc2": "type2",
+  "iso27001": "yes",
+  "iso42001": "yes",
+  "pci_dss": "yes",
+  "hipaa": "yes",
+  "eu_data_residency": "yes",
+  "_note_hipaa": "BAA for Enterprise customers.",
+  "_note_eu": "EU data residency on Enterprise."
+ },
+ "github-copilot": {
+  "ai_training": "opt_out"
+ },
+ "pipedrive": {
+  "soc2": "type2",
+  "iso27001": "yes",
+  "_evidence": {
+   "soc2": "https://trustcenter.pipedrive.com/",
+   "iso27001": "https://trustcenter.pipedrive.com/"
+  }
+ },
+ "mailerlite": {
+  "iso27001": null,
+  "_note": "ISO 27001 statement found refers to its storage provider."
+ },
+ "microsoft-365-business": {
+  "_evidence": {
+   "soc2": "https://learn.microsoft.com/en-us/compliance/regulatory/offering-soc-2",
+   "iso27001": "https://learn.microsoft.com/en-us/compliance/regulatory/offering-iso-27001",
+   "hipaa": "https://learn.microsoft.com/en-us/compliance/regulatory/offering-hipaa-hitech",
+   "uk_data_residency": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/m365-dr-services-data-location",
+   "eu_data_residency": "https://www.microsoft.com/en/trust-center/compliance/europe-digital-resilience"
+  },
+  "soc2": "type2",
+  "iso27001": "yes",
+  "hipaa": "yes",
+  "uk_data_residency": "yes",
+  "eu_data_residency": "yes",
+  "cyber_essentials": null,
+  "_note": "UK is a Microsoft 365 Local Region Geography (stronger commitments with the paid Advanced Data Residency add-on); EU Data Boundary applies. Microsoft's Cyber Essentials Plus certificate covers Azure only."
+ },
+ "salesforce": {
+  "_evidence": {
+   "soc2": "https://compliance.salesforce.com/en/categories",
+   "iso27001": "https://www.salesforce.com/en-us/wp-content/uploads/sites/4/documents/legal/misc/salesforce-security-privacy-and-architecture.pdf"
+  },
+  "soc2": "type2",
+  "iso27001": "yes"
+ },
+ "canva": {
+  "_evidence": {
+   "soc2": "https://www.canva.com/security/",
+   "iso27001": "https://www.canva.com/security/"
+  },
+  "soc2": "type2",
+  "iso27001": "yes"
+ },
+ "freshdesk": {
+  "_evidence": {
+   "soc2": "https://trust.freshworks.com/",
+   "iso27001": "https://trust.freshworks.com/",
+   "cyber_essentials": "https://trust.freshworks.com/",
+   "eu_data_residency": "https://www.freshworks.com/gdpr/company/"
+  },
+  "soc2": "type2",
+  "iso27001": "yes",
+  "cyber_essentials": "yes",
+  "eu_data_residency": "yes",
+  "_note_eu": "EU data centre available on appropriate plans."
+ },
+ "typeform": {
+  "_evidence": {
+   "soc2": "https://www.typeform.com/admin-security",
+   "iso27001": "https://www.typeform.com/admin-security",
+   "hipaa": "https://www.typeform.com/legal/privacy-policy",
+   "eu_data_residency": "https://www.typeform.com/admin-security"
+  },
+  "soc2": "type2",
+  "iso27001": "yes",
+  "hipaa": "yes",
+  "eu_data_residency": "yes"
+ },
+ "railway": {
+  "_evidence": {
+   "hipaa": "https://docs.railway.com/enterprise/compliance"
+  },
+  "hipaa": "yes",
+  "_note_hipaa": "BAA under a shared-responsibility model."
+ },
+ "otter": {
+  "_evidence": {},
+  "iso27001": null,
+  "_note": "Otter states its policies are based on the ISO 27001 framework (not a certification claim).",
+  "hipaa": null
+ },
+ "hotjar": {
+  "gdpr": "yes"
+ }
+}

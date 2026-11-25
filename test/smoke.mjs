@@ -17,12 +17,12 @@ let passed = 0;
 const ok = (cond, msg) => { assert.ok(cond, msg); passed++; console.log("  ✓", msg); };
 
 const { tools } = await client.listTools();
-ok(tools.length === 5, `lists 5 tools (${tools.map((t) => t.name).join(", ")})`);
+ok(tools.length === 7, `lists 7 tools (${tools.map((t) => t.name).join(", ")})`);
 
 let r = await call("list_products", {});
-ok(r.body.count === 50, "list_products returns 50 products");
+ok(r.body.count === 100, "list_products returns 100 products");
 r = await call("list_products", { category: "ai" });
-ok(r.body.products.every((p) => p.category === "ai") && r.body.count === 4, "category filter works (ai = 4)");
+ok(r.body.products.every((p) => p.category === "ai") && r.body.count === 6, "category filter works (ai = 6)");
 
 r = await call("get_pricing", { product: "Slack" });
 const pro = r.body.plans.find((p) => p.name === "Pro");
@@ -43,13 +43,13 @@ ok(r.body.currency === "GBP" && r.body.plans[0].price_per_month_billed_annually 
 r = await call("get_pricing", { product: "Xero", currency: "USD" });
 ok(r.body.plans[0].price_basis === "converted" && r.body.plans[0].price_billed_monthly > 18, `Xero GBP->USD converted ($${r.body.plans[0].price_billed_monthly})`);
 
-r = await call("get_pricing", { product: "Basecamp" });
+r = await call("get_pricing", { product: "Pipefy" });
 ok(r.isError && Array.isArray(r.body.did_you_mean), `unknown product returns suggestions (${r.body.did_you_mean})`);
 
-r = await call("compare_products", { products: ["Notion", "Confluence", "Basecamp"], seats: 10, billing: "monthly", paid_plans_only: true });
+r = await call("compare_products", { products: ["Notion", "Confluence", "Pipefy"], seats: 10, billing: "monthly", paid_plans_only: true });
 const notion = r.body.comparison.find((c) => c.product_id === "notion");
 ok(notion.cheapest_paid_plan === "Plus" && notion.cheapest_paid_monthly_total === 100, "Notion 10 seats: Plus = $100/month");
-ok(r.body.not_covered?.includes("Basecamp"), "compare reports uncovered products");
+ok(r.body.not_covered?.includes("Pipefy"), "compare reports uncovered products");
 
 r = await call("compare_products", { products: ["monday"], seats: 1, billing: "annual" });
 const basic = r.body.comparison[0].plans.find((p) => p.plan === "Basic");
@@ -72,8 +72,35 @@ ok(r.body.cheapest_plan_per_product.every((x) => x.price_per_month <= 10), "sear
 r = await call("search_plans", {});
 ok(r.isError, "search with no criteria is an error");
 
-r = await call("report_outdated", { product: "Basecamp", details: "Please add Basecamp" });
+r = await call("report_outdated", { product: "Pipefy", details: "Please add Pipefy" });
 ok(r.body.received && r.body.covered === false, "report_outdated accepts uncovered product");
+
+// ---- v0.2: new products ----
+r = await call("get_pricing", { product: "Salesforce", currency: "GBP" });
+const sfs = r.body.plans.find((p) => p.name === "Starter Suite");
+ok(sfs.price_basis === "official" && sfs.price_billed_monthly === 20, "Salesforce uses official GBP (£20 Starter Suite)");
+r = await call("get_pricing", { product: "Adobe Creative Cloud" });
+ok(r.body.product.prices_include_vat === true, "Adobe UK flagged as VAT-inclusive");
+r = await call("compare_products", { products: ["FreeAgent", "Xero", "QuickBooks UK", "Sage"], seats: 1, currency: "GBP", paid_plans_only: true });
+ok(r.body.comparison.length === 4 && r.body.comparison.every((c) => c.cheapest_paid_monthly_total > 0), "UK accounting comparison covers all 4 in GBP");
+ok(r.body.comparison.every((c) => Array.isArray(c.compliance)), "compare includes compliance summaries");
+
+// ---- compliance ----
+r = await call("get_compliance", { product: "basecamp" });
+ok(r.body.compliance.hipaa === "no" && r.body.compliance.soc2 === "no" && r.body.compliance.eu_data_residency === "no", "Basecamp: vendor-stated negatives recorded (no SOC 2 audit, no HIPAA, no EU hosting)");
+r = await call("get_compliance", { product: "resend" });
+ok(r.body.compliance.soc2 === "type2" && r.body.compliance.iso27001 === "no", "Resend: SOC 2 Type II yes, ISO 27001 explicitly no");
+r = await call("get_compliance", { product: "notion" });
+ok(r.body.compliance.ai_training === "no_training" && r.body.compliance.evidence.soc2?.startsWith("https://"), "Notion: no AI training + evidence URL");
+r = await call("find_compliant_tools", { requirements: ["soc2_type2", "eu_data_residency"], category: "project-management" });
+const ids = r.body.meets_all.map((m) => m.product_id);
+ok(["linear", "asana", "monday"].every((x) => ids.includes(x)) && !ids.includes("basecamp"), `SOC 2 Type II + EU residency in PM: ${ids.join(", ")}`);
+ok(r.body.meets_all.every((m) => m.evidence.soc2_type2 && m.evidence.eu_data_residency), "every match carries evidence for each requirement");
+r = await call("find_compliant_tools", { requirements: ["hipaa"] });
+const all = [...r.body.meets_all, ...r.body.possible_matches_unknown_fields].map((m) => m.product_id);
+ok(!all.includes("basecamp") && !all.includes("resend") && r.body.meets_all.length >= 30, `HIPAA: ${r.body.meets_all.length} tools, explicit 'no' vendors excluded`);
+r = await call("find_compliant_tools", { requirements: ["cyber_essentials"], max_price: 30, currency: "GBP" });
+ok(r.body.meets_all.every((m) => m.cheapest_paid_plan.price_per_month <= 30), `Cyber Essentials under £30: ${r.body.meets_all.map((m) => m.product_id).join(", ")}`);
 
 await client.close();
 console.log(`\n${passed} checks passed`);

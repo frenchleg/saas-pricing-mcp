@@ -1,0 +1,475 @@
+{
+ "notion": {
+  "urls": [
+   "https://www.notion.com/security"
+  ]
+ },
+ "slack": {
+  "urls": [
+   "https://slack.com/trust/compliance",
+   "https://slack.com/trust/data-residency"
+  ]
+ },
+ "asana": {
+  "urls": [
+   "https://asana.com/trust"
+  ]
+ },
+ "trello": {
+  "home": "https://www.atlassian.com",
+  "urls": [
+   "https://www.atlassian.com/trust/compliance",
+   "https://www.atlassian.com/trust/data-protection/data-residency"
+  ]
+ },
+ "jira": {
+  "home": "https://www.atlassian.com",
+  "urls": [
+   "https://www.atlassian.com/trust/compliance",
+   "https://www.atlassian.com/trust/data-protection/data-residency"
+  ]
+ },
+ "confluence": {
+  "home": "https://www.atlassian.com",
+  "urls": [
+   "https://www.atlassian.com/trust/compliance",
+   "https://www.atlassian.com/trust/data-protection/data-residency"
+  ]
+ },
+ "monday": {
+  "urls": [
+   "https://monday.com/trustcenter"
+  ]
+ },
+ "clickup": {
+  "urls": [
+   "https://clickup.com/security"
+  ]
+ },
+ "linear": {
+  "urls": [
+   "https://linear.app/security"
+  ]
+ },
+ "airtable": {
+  "urls": [
+   "https://www.airtable.com/security"
+  ]
+ },
+ "miro": {
+  "urls": [
+   "https://miro.com/trust/",
+   "https://miro.com/trust/compliance/"
+  ]
+ },
+ "zoom": {
+  "home": "https://www.zoom.com",
+  "urls": [
+   "https://www.zoom.com/en/trust/",
+   "https://www.zoom.com/en/trust/compliance/"
+  ]
+ },
+ "github": {
+  "urls": [
+   "https://trust.github.com/",
+   "https://security.github.com/",
+   "https://github.com/trust-center",
+   "https://github.com/security"
+  ]
+ },
+ "github-copilot": {
+  "home": "https://github.com",
+  "urls": [
+   "https://github.com/security",
+   "https://github.com/features/copilot"
+  ]
+ },
+ "gitlab": {
+  "home": "https://about.gitlab.com",
+  "urls": [
+   "https://about.gitlab.com/security/"
+  ]
+ },
+ "vercel": {
+  "urls": [
+   "https://vercel.com/security"
+  ]
+ },
+ "netlify": {
+  "urls": [
+   "https://www.netlify.com/security/"
+  ]
+ },
+ "supabase": {
+  "urls": [
+   "https://supabase.com/security"
+  ]
+ },
+ "figma": {
+  "urls": [
+   "https://www.figma.com/security/"
+  ]
+ },
+ "canva": {
+  "urls": [
+   "https://www.canva.com/trust/security/",
+   "https://www.canva.com/security/",
+   "https://www.canva.com/trust/privacy/",
+   "https://www.canva.com/trust/"
+  ]
+ },
+ "hubspot-marketing": {
+  "urls": [
+   "https://legal.hubspot.com/security",
+   "https://legal.hubspot.com/dpa"
+  ]
+ },
+ "google-workspace": {
+  "urls": [
+   "https://cloud.google.com/security/compliance/soc-2",
+   "https://workspace.google.com/security/compliance/",
+   "https://cloud.google.com/security/compliance/cyber-essentials-plus",
+   "https://workspace.google.com/security/",
+   "https://workspace.google.com/learn-more/security/security-whitepaper/page-7.html"
+  ]
+ },
+ "microsoft-365-business": {
+  "home": "https://www.microsoft.com",
+  "urls": [
+   "https://learn.microsoft.com/en-us/compliance/regulatory/offering-soc-2",
+   "https://learn.microsoft.com/en-us/compliance/regulatory/offering-iso-27001",
+   "https://learn.microsoft.com/en-us/compliance/regulatory/offering-cyber-essentials-plus-uk",
+   "https://learn.microsoft.com/en-us/microsoft-365/enterprise/m365-dr-overview",
+   "https://learn.microsoft.com/en-us/compliance/regulatory/offering-hipaa-hitech",
+   "https://www.microsoft.com/en-gb/trust-center",
+   "https://www.microsoft.com/en-gb/trust-center/privacy/data-location"
+  ]
+ },
+ "claude": {
+  "home": "https://www.anthropic.com",
+  "urls": [
+   "https://trust.anthropic.com/",
+   "https://privacy.claude.com/en/articles/10458704-how-does-anthropic-protect-the-personal-data-of-claude-users",
+   "https://privacy.claude.com/"
+  ]
+ },
+ "chatgpt": {
+  "home": "https://openai.com",
+  "urls": [
+   "https://openai.com/security-and-privacy/",
+   "https://openai.com/enterprise-privacy/",
+   "https://trust.openai.com/"
+  ]
+ },
+ "cursor": {
+  "urls": [
+   "https://cursor.com/security"
+  ]
+ },
+ "dropbox": {
+  "urls": [
+   "https://www.dropbox.com/security"
+  ]
+ },
+ "1password": {
+  "urls": [
+   "https://1password.com/security"
+  ]
+ },
+ "zapier": {
+  "urls": [
+   "https://zapier.com/security",
+   "https://docs.zapier.com/mcp/security"
+  ]
+ },
+ "xero": {
+  "urls": [
+   "https://www.xero.com/uk/security/"
+  ]
+ },
+ "shopify": {
+  "urls": [
+   "https://www.shopify.com/security"
+  ]
+ },
+ "docusign": {
+  "home": "https://www.docusign.com",
+  "urls": [
+   "https://www.docusign.com/trust"
+  ]
+ },
+ "hotjar": {
+  "home": "https://www.hotjar.com",
+  "urls": [
+   "https://trust.contentsquare.com/",
+   "https://security.contentsquare.com/",
+   "https://www.hotjar.com/legal/compliance/",
+   "https://contentsquare.com/trust/",
+   "https://www.hotjar.com/security/"
+  ]
+ },
+ "salesforce": {
+  "urls": [
+   "https://compliance.salesforce.com/en/certifications",
+   "https://trust.salesforce.com/en/compliance/",
+   "https://compliance.salesforce.com/en",
+   "https://trust.salesforce.com/"
+  ]
+ },
+ "elevenlabs": {
+  "urls": [
+   "https://trust.elevenlabs.io/",
+   "https://security.elevenlabs.io/",
+   "https://elevenlabs.io/security",
+   "https://compliance.elevenlabs.io/"
+  ]
+ },
+ "adobe-creative-cloud": {
+  "urls": [
+   "https://www.adobe.com/trust.html"
+  ]
+ },
+ "perplexity": {
+  "urls": [
+   "https://www.perplexity.ai/enterprise"
+  ]
+ },
+ "posthog": {
+  "urls": [
+   "https://posthog.com/handbook/company/security"
+  ]
+ },
+ "cloudflare": {
+  "urls": [
+   "https://www.cloudflare.com/trust-hub/compliance-resources/"
+  ]
+ },
+ "sage-accounting": {
+  "urls": [
+   "https://trust.sage.com/",
+   "https://security.sage.com/",
+   "https://www.sage.com/en-gb/trust-security/"
+  ]
+ },
+ "quickbooks-uk": {
+  "urls": [
+   "https://trust.intuit.com/",
+   "https://security.intuit.com/",
+   "https://quickbooks.intuit.com/uk/security/"
+  ]
+ },
+ "deel": {
+  "urls": [
+   "https://www.deel.com/security"
+  ]
+ },
+ "intercom": {
+  "urls": [
+   "https://www.intercom.com/security"
+  ]
+ },
+ "zendesk": {
+  "urls": [
+   "https://www.zendesk.com/trust-center/"
+  ]
+ },
+ "loom": {
+  "urls": [
+   "https://trust.loom.com/",
+   "https://security.loom.com/",
+   "https://www.loom.com/security",
+   "https://www.atlassian.com/trust/compliance/resources"
+  ]
+ },
+ "railway": {
+  "urls": [
+   "https://trust.railway.com/",
+   "https://security.railway.com/",
+   "https://railway.com/legal/security",
+   "https://trust.railway.com",
+   "https://docs.railway.com/maturity/compliance"
+  ]
+ },
+ "kit": {
+  "urls": [
+   "https://trust.kit.com/",
+   "https://security.kit.com/",
+   "https://kit.com/security",
+   "https://kit.com/legal/security"
+  ]
+ },
+ "buffer": {
+  "urls": [
+   "https://trust.buffer.com/",
+   "https://security.buffer.com/",
+   "https://buffer.com/security"
+  ]
+ },
+ "pipedrive": {
+  "urls": [
+   "https://trust.pipedrive.com/",
+   "https://security.pipedrive.com/",
+   "https://www.pipedrive.com/en/trust-center",
+   "https://www.pipedrive.com/en/features/security"
+  ]
+ },
+ "squarespace": {
+  "urls": [
+   "https://trust.squarespace.com/",
+   "https://security.squarespace.com/",
+   "https://www.squarespace.com/security"
+  ]
+ },
+ "freeagent": {
+  "urls": [
+   "https://trust.freeagent.com/",
+   "https://security.freeagent.com/",
+   "https://www.freeagent.com/security/"
+  ]
+ },
+ "dext": {
+  "urls": [
+   "https://trust.dext.com/",
+   "https://security.dext.com/",
+   "https://dext.com/en/security",
+   "https://dext.com/uk/security"
+  ]
+ },
+ "tide": {
+  "urls": [
+   "https://trust.tide.co/",
+   "https://security.tide.co/",
+   "https://www.tide.co/security/"
+  ]
+ },
+ "gocardless": {
+  "urls": [
+   "https://trust.gocardless.com/",
+   "https://security.gocardless.com/",
+   "https://gocardless.com/security/"
+  ]
+ },
+ "breathe-hr": {
+  "urls": [
+   "https://trust.breathehr.com/",
+   "https://security.breathehr.com/",
+   "https://www.breathehr.com/en-gb/security"
+  ]
+ },
+ "charliehr": {
+  "urls": [
+   "https://trust.charliehr.com/",
+   "https://security.charliehr.com/",
+   "https://www.charliehr.com/security"
+  ]
+ },
+ "rotacloud": {
+  "urls": [
+   "https://trust.rotacloud.com/",
+   "https://security.rotacloud.com/",
+   "https://rotacloud.com/security/"
+  ]
+ },
+ "capsule-crm": {
+  "urls": [
+   "https://trust.capsulecrm.com/",
+   "https://security.capsulecrm.com/",
+   "https://capsulecrm.com/security/"
+  ]
+ },
+ "pleo": {
+  "urls": [
+   "https://trust.pleo.io/",
+   "https://security.pleo.io/",
+   "https://www.pleo.io/en/security",
+   "https://www.pleo.io/en/trust"
+  ]
+ },
+ "freshdesk": {
+  "urls": [
+   "https://www.freshworks.com/security/certifications/",
+   "https://www.freshworks.com/compliance/"
+  ]
+ },
+ "brevo": {
+  "urls": [
+   "https://trust.brevo.com/",
+   "https://security.brevo.com/",
+   "https://www.brevo.com/security/"
+  ]
+ },
+ "mailerlite": {
+  "urls": [
+   "https://trust.mailerlite.com/",
+   "https://security.mailerlite.com/",
+   "https://www.mailerlite.com/security"
+  ]
+ },
+ "later": {
+  "urls": [
+   "https://trust.later.com/",
+   "https://security.later.com/",
+   "https://later.com/security/"
+  ]
+ },
+ "semrush": {
+  "urls": [
+   "https://trust.semrush.com/",
+   "https://security.semrush.com/",
+   "https://www.semrush.com/company/legal/security/"
+  ]
+ },
+ "ahrefs": {
+  "urls": [
+   "https://trust.ahrefs.com/",
+   "https://security.ahrefs.com/",
+   "https://ahrefs.com/security"
+  ]
+ },
+ "typeform": {
+  "urls": [
+   "https://trust.typeform.com/",
+   "https://security.typeform.com/",
+   "https://www.typeform.com/security/",
+   "https://www.typeform.com/trust/"
+  ]
+ },
+ "pandadoc": {
+  "urls": [
+   "https://trust.pandadoc.com/",
+   "https://security.pandadoc.com/",
+   "https://www.pandadoc.com/security/"
+  ]
+ },
+ "otter": {
+  "urls": [
+   "https://trust.otter.ai/",
+   "https://security.otter.ai/",
+   "https://otter.ai/security",
+   "https://otter.ai/privacy-security"
+  ]
+ },
+ "descript": {
+  "urls": [
+   "https://trust.descript.com/",
+   "https://security.descript.com/",
+   "https://www.descript.com/security"
+  ]
+ },
+ "todoist": {
+  "urls": [
+   "https://trust.doist.com/",
+   "https://security.doist.com/",
+   "https://www.todoist.com/security",
+   "https://www.doist.com/security"
+  ]
+ },
+ "box": {
+  "urls": [
+   "https://trust.box.com/",
+   "https://security.box.com/",
+   "https://www.box.com/trust/compliance",
+   "https://www.box.com/compliance"
+  ]
+ }
+}

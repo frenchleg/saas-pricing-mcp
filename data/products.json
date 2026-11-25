@@ -85,7 +85,31 @@
             "Autonomous agents"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.notion.com/security",
+        "subprocessors_url": "https://trust.notion.com/subprocessors",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "no_training",
+        "notes": "BAA for Enterprise customers.",
+        "evidence": {
+          "soc2": "https://trust.notion.com/",
+          "iso27001": "https://www.notion.com/security",
+          "gdpr": "https://www.notion.com/security",
+          "hipaa": "https://www.notion.com/security",
+          "ai_training": "https://trust.notion.com/"
+        }
+      }
     },
     {
       "id": "slack",
@@ -157,7 +181,31 @@
             "HIPAA support"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://slack.com/intl/en-gb/trust/compliance",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "yes",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "Slack offers data residency for some plans; regions not captured automatically.",
+        "evidence": {
+          "soc2": "https://slack.com/intl/en-gb/trust/compliance",
+          "iso27001": "https://slack.com/intl/en-gb/trust/compliance",
+          "iso42001": "https://slack.com/intl/en-gb/trust/compliance",
+          "gdpr": "https://slack.com/intl/en-gb/trust/compliance",
+          "hipaa": "https://slack.com/intl/en-gb/trust/compliance"
+        }
+      }
     },
     {
       "id": "asana",
@@ -224,7 +272,31 @@
             "Capacity planning"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://asana.com/trust",
+        "subprocessors_url": null,
+        "dpa_url": "https://asana.com/terms/data-processing",
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://asana.com/trust",
+          "iso27001": "https://asana.com/trust",
+          "gdpr": "https://asana.com/trust",
+          "hipaa": "https://asana.com/trust",
+          "eu_data_residency": "https://asana.com/trust"
+        }
+      }
     },
     {
       "id": "trello",
@@ -295,7 +367,29 @@
             "SSO and provisioning via Atlassian Guard"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.atlassian.com/trust/data-protection",
+        "subprocessors_url": "https://www.atlassian.com/legal/sub-processors",
+        "dpa_url": null,
+        "soc2": "yes",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.atlassian.com/trust/ai",
+          "iso27001": "https://www.atlassian.com/trust/ai",
+          "gdpr": "https://www.atlassian.com/trust/ai"
+        }
+      }
     },
     {
       "id": "monday",
@@ -388,7 +482,31 @@
             "99.9% uptime SLA"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://monday.com/trustcenter",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://monday.com/trustcenter",
+          "iso27001": "https://monday.com/trustcenter",
+          "gdpr": "https://monday.com/trustcenter",
+          "hipaa": "https://monday.com/trustcenter",
+          "eu_data_residency": "https://monday.com/l/privacy/monday-com-is-gdpr-ready/"
+        }
+      }
     },
     {
       "id": "clickup",
@@ -479,7 +597,31 @@
             "SCIM"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://clickup.com/security",
+        "subprocessors_url": "https://clickup.com/terms/dpa/subprocessors",
+        "dpa_url": "https://clickup.com/terms/dpa",
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://clickup.com/security",
+          "iso27001": "https://clickup.com/security",
+          "iso42001": "https://clickup.com/security",
+          "gdpr": "https://clickup.com/security",
+          "hipaa": "https://clickup.com/security"
+        }
+      }
     },
     {
       "id": "linear",
@@ -551,7 +693,31 @@
             "HIPAA"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://linear.app/security",
+        "subprocessors_url": null,
+        "dpa_url": "https://linear.app/dpa",
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://linear.app/security",
+          "iso27001": "https://linear.app/security",
+          "gdpr": "https://linear.app/security",
+          "hipaa": "https://linear.app/security",
+          "eu_data_residency": "https://linear.app/security"
+        }
+      }
     },
     {
       "id": "airtable",
@@ -606,7 +772,31 @@
             "Unlimited workspaces and bases"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.airtable.com/company/trust-and-security",
+        "subprocessors_url": "https://www.airtable.com/company/subprocessors",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.airtable.com/company/trust-and-security",
+          "iso27001": "https://www.airtable.com/company/trust-and-security",
+          "gdpr": "https://www.airtable.com/company/trust-and-security",
+          "hipaa": "https://www.airtable.com/company/trust-and-security",
+          "eu_data_residency": "https://www.airtable.com/company/trust-and-security"
+        }
+      }
     },
     {
       "id": "miro",
@@ -679,7 +869,32 @@
           ],
           "min_seats": 30
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://trust.miro.com/",
+        "subprocessors_url": "https://trust.miro.com/subprocessors",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": "yes",
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://trust.miro.com/",
+          "iso27001": "https://trust.miro.com/",
+          "iso42001": "https://trust.miro.com/",
+          "cyber_essentials": "https://trust.miro.com/",
+          "gdpr": "https://trust.miro.com/",
+          "eu_data_residency": "https://trust.miro.com/"
+        }
+      }
     },
     {
       "id": "zoom",
@@ -751,7 +966,33 @@
             "Rooms"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.zoom.com/en/trust/",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": "yes",
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "no_training",
+        "notes": "Zoom states it does not use audio, video or chat content to train AI.",
+        "evidence": {
+          "soc2": "https://www.zoom.com/en/trust/privacy/",
+          "iso27001": "https://www.zoom.com/en/trust/legal-compliance/",
+          "cyber_essentials": "https://www.zoom.com/en/trust/legal-compliance/",
+          "pci_dss": "https://www.zoom.com/en/trust/legal-compliance/",
+          "gdpr": "https://www.zoom.com/en/trust/privacy/",
+          "hipaa": "https://www.zoom.com/en/trust/privacy/",
+          "ai_training": "https://www.zoom.com/en/trust/terms/"
+        }
+      }
     },
     {
       "id": "jira",
@@ -763,7 +1004,7 @@
       "checked": "2026-11-25",
       "free_tier": true,
       "free_trial": null,
-      "notes": "Per-user rate depends on seat band. Figures are the 100-user reference rate after Atlassian's 13 Oct 2026 price change (monthly billing). Check the vendor calculator for exact team sizes.",
+      "notes": "Per-user rate depends on seat band; figures are the default rates displayed on atlassian.com (search snapshot ~Sept 2026). Third-party reports cite $9.70 / $19.60 at 100 users after a 13 Oct 2026 change, while Atlassian's Confluence page still showed unchanged rates in Nov 2026. Check Atlassian's calculator for your team size.",
       "plans": [
         {
           "name": "Free",
@@ -778,7 +1019,7 @@
         },
         {
           "name": "Standard",
-          "monthly": 9.7,
+          "monthly": 8.48,
           "annual_monthly": null,
           "unit": "per_user",
           "limits": [
@@ -791,7 +1032,7 @@
         },
         {
           "name": "Premium",
-          "monthly": 19.6,
+          "monthly": 15.56,
           "annual_monthly": null,
           "unit": "per_user",
           "limits": [
@@ -818,7 +1059,29 @@
             "Atlassian Guard included"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.atlassian.com/trust/data-protection",
+        "subprocessors_url": "https://www.atlassian.com/legal/sub-processors",
+        "dpa_url": null,
+        "soc2": "yes",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.atlassian.com/trust/ai",
+          "iso27001": "https://www.atlassian.com/trust/ai",
+          "gdpr": "https://www.atlassian.com/trust/ai"
+        }
+      }
     },
     {
       "id": "confluence",
@@ -826,11 +1089,11 @@
       "category": "productivity",
       "pricing_url": "https://www.atlassian.com/software/confluence/pricing",
       "currency": "USD",
-      "source": "secondary",
+      "source": "vendor_page",
       "checked": "2026-11-25",
       "free_tier": true,
       "free_trial": null,
-      "notes": "Per-user rate depends on seat band. Figures are Atlassian calculator monthly rates reported in October 2026 and may predate the 13 Oct 2026 price change. Verify before relying on them.",
+      "notes": "Per-user rate depends on seat band; figures are the default rates displayed on atlassian.com (confirmed Nov 2026). Annual billing is sold in user tiers (minimum 1-10 users).",
       "plans": [
         {
           "name": "Free",
@@ -881,7 +1144,29 @@
             "Up to 150 sites"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.atlassian.com/trust/data-protection",
+        "subprocessors_url": "https://www.atlassian.com/legal/sub-processors",
+        "dpa_url": null,
+        "soc2": "yes",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.atlassian.com/trust/ai",
+          "iso27001": "https://www.atlassian.com/trust/ai",
+          "gdpr": "https://www.atlassian.com/trust/ai"
+        }
+      }
     },
     {
       "id": "calendly",
@@ -947,7 +1232,29 @@
           ],
           "min_seats": 50
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://calendly.com/security",
+        "subprocessors_url": "https://calendly.com/help/calendly-sub-processors-gdpr-ccpa",
+        "dpa_url": "https://calendly.com/legal/data-processing-addendum",
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://calendly.com/security",
+          "iso27001": "https://calendly.com/security",
+          "gdpr": "https://calendly.com/help/calendly-platform-security-and-compliance"
+        }
+      }
     },
     {
       "id": "loom",
@@ -1013,7 +1320,27 @@
             "Salesforce integration"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.atlassian.com/legal/security-measures",
+        "subprocessors_url": null,
+        "dpa_url": "https://www.atlassian.com/legal/data-processing-addendum",
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "Loom is part of Atlassian; Loom-specific certifications not confirmed from pages read.",
+        "evidence": {
+          "gdpr": "https://www.atlassian.com/trust/compliance/resources"
+        }
+      }
     },
     {
       "id": "github",
@@ -1072,7 +1399,28 @@
             "Data residency"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://github.com/trust-center",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "yes",
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://github.com/security",
+          "gdpr": "https://github.com/security"
+        }
+      }
     },
     {
       "id": "gitlab",
@@ -1129,7 +1477,31 @@
             "Compliance and governance"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://about.gitlab.com/security/",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "no_training",
+        "notes": "Will not use AI inputs to train models without instruction.",
+        "evidence": {
+          "soc2": "https://about.gitlab.com/security/",
+          "iso27001": "https://about.gitlab.com/security/",
+          "pci_dss": "https://about.gitlab.com/solutions/software-compliance/",
+          "gdpr": "https://about.gitlab.com/security/",
+          "ai_training": "https://about.gitlab.com/privacy/"
+        }
+      }
     },
     {
       "id": "vercel",
@@ -1187,7 +1559,33 @@
             "Multi-region failover"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://vercel.com/security",
+        "subprocessors_url": null,
+        "dpa_url": "https://vercel.com/legal/dpa",
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "opt_out",
+        "notes": null,
+        "evidence": {
+          "soc2": "https://vercel.com/docs/security",
+          "iso27001": "https://vercel.com/security",
+          "iso42001": "https://vercel.com/security",
+          "pci_dss": "https://vercel.com/security",
+          "gdpr": "https://vercel.com/security",
+          "hipaa": "https://vercel.com/security",
+          "ai_training": "https://vercel.com/legal/privacy-notice"
+        }
+      }
     },
     {
       "id": "netlify",
@@ -1255,7 +1653,32 @@
             "99.99% uptime"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.netlify.com/security/",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "no_training",
+        "notes": "No training on code/content unless the customer opts in.",
+        "evidence": {
+          "soc2": "https://www.netlify.com/security/",
+          "iso27001": "https://www.netlify.com/security/",
+          "pci_dss": "https://www.netlify.com/security/",
+          "gdpr": "https://www.netlify.com/security/",
+          "hipaa": "https://www.netlify.com/security/",
+          "ai_training": "https://www.netlify.com/privacy/"
+        }
+      }
     },
     {
       "id": "supabase",
@@ -1328,7 +1751,31 @@
             "24/7 support"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://supabase.com/security",
+        "subprocessors_url": "https://supabase.com/legal/customer-resources/subprocessor-list",
+        "dpa_url": "https://supabase.com/legal/customer-resources/data-processing-addendum",
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://supabase.com/security",
+          "iso27001": "https://supabase.com/security",
+          "gdpr": "https://supabase.com/security",
+          "hipaa": "https://supabase.com/security",
+          "eu_data_residency": "https://supabase.com/security"
+        }
+      }
     },
     {
       "id": "render",
@@ -1399,7 +1846,30 @@
             "Contractual SLAs"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://render.com/security",
+        "subprocessors_url": null,
+        "dpa_url": "https://render.com/dpa",
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://render.com/security",
+          "iso27001": "https://render.com/security",
+          "gdpr": "https://render.com/security",
+          "hipaa": "https://render.com/security"
+        }
+      }
     },
     {
       "id": "railway",
@@ -1466,7 +1936,29 @@
             "HIPAA BAAs"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": "https://railway.com/legal/dpa",
+        "soc2": "type2",
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "BAA under a shared-responsibility model.",
+        "evidence": {
+          "soc2": "https://docs.railway.com/enterprise/compliance",
+          "gdpr": "https://docs.railway.com/enterprise/compliance",
+          "hipaa": "https://docs.railway.com/enterprise/compliance"
+        }
+      }
     },
     {
       "id": "sentry",
@@ -1534,7 +2026,29 @@
             "Technical account manager"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://sentry.io/security/?",
+        "subprocessors_url": "https://sentry.io/legal/subprocessors/",
+        "dpa_url": "https://sentry.io/legal/dpa/",
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://sentry.io/security/?",
+          "iso27001": "https://sentry.io/trust/?",
+          "gdpr": "https://sentry.io/trust/?"
+        }
+      }
     },
     {
       "id": "postman",
@@ -1602,7 +2116,32 @@
             "API catalog"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.postman.com/security/",
+        "subprocessors_url": "https://www.postman.com/legal/sub-processors/",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.postman.com/security/",
+          "iso27001": "https://www.postman.com/security/",
+          "iso42001": "https://www.postman.com/security/",
+          "pci_dss": "https://www.postman.com/security/",
+          "gdpr": "https://www.postman.com/security/",
+          "hipaa": "https://www.postman.com/security/"
+        }
+      }
     },
     {
       "id": "neon",
@@ -1660,7 +2199,31 @@
             "Uptime SLA"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://neon.com/security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://neon.com/security",
+          "iso27001": "https://neon.com/security",
+          "pci_dss": "https://neon.com/security",
+          "gdpr": "https://neon.com/security",
+          "hipaa": "https://neon.com/security"
+        }
+      }
     },
     {
       "id": "figma",
@@ -1726,7 +2289,31 @@
             "Advanced security"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.figma.com/security/",
+        "subprocessors_url": "https://www.figma.com/sub-processors/",
+        "dpa_url": "https://www.figma.com/legal/dpa/",
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.figma.com/security/",
+          "iso27001": "https://www.figma.com/security/",
+          "iso42001": "https://www.figma.com/security/",
+          "pci_dss": "https://compliance.figma.com/",
+          "gdpr": "https://www.figma.com/security/"
+        }
+      }
     },
     {
       "id": "canva",
@@ -1734,11 +2321,11 @@
       "category": "design",
       "pricing_url": "https://www.canva.com/pricing/",
       "currency": "USD",
-      "source": "secondary",
+      "source": "vendor_page",
       "checked": "2026-11-25",
       "free_tier": true,
       "free_trial": "30 days (Pro)",
-      "notes": "US prices as read from canva.com/pricing by third parties in Nov 2026. Canva shows local currency by region.",
+      "notes": "US prices from canva.com (Pro: $144/year or $18 month-to-month; Business: $250/person/year or $25 month-to-month). Canva shows local currency by region.",
       "plans": [
         {
           "name": "Free",
@@ -1789,7 +2376,28 @@
             "SSO"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": null,
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "Vendor's security pages could not be read automatically; check its trust centre.",
+        "evidence": {
+          "soc2": "https://www.canva.com/security/",
+          "iso27001": "https://www.canva.com/security/"
+        }
+      }
     },
     {
       "id": "framer",
@@ -1855,7 +2463,29 @@
             "Uptime guarantee"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.framer.com/legal/security",
+        "subprocessors_url": null,
+        "dpa_url": "https://www.framer.com/legal/data-processing-addendum",
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.framer.com/legal/security",
+          "iso27001": "https://www.framer.com/legal/security",
+          "gdpr": "https://www.framer.com/legal/security"
+        }
+      }
     },
     {
       "id": "webflow",
@@ -1910,7 +2540,31 @@
             "Code components"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": null,
+        "hipaa": "no",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "Webflow states it is not HIPAA compliant by default. Vendor's security pages could not be read automatically; check its trust centre.",
+        "evidence": {
+          "soc2": "https://webflow.com/security",
+          "iso27001": "https://webflow.com/security",
+          "iso42001": "https://webflow.com/security",
+          "pci_dss": "https://webflow.com/security",
+          "hipaa": "https://webflow.com/security"
+        }
+      }
     },
     {
       "id": "hubspot-marketing",
@@ -1980,7 +2634,29 @@
             "Custom events"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://legal.hubspot.com/security",
+        "subprocessors_url": null,
+        "dpa_url": "https://legal.hubspot.com/dpa",
+        "soc2": "type2",
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://legal.hubspot.com/security",
+          "gdpr": "https://legal.hubspot.com/security",
+          "eu_data_residency": "https://legal.hubspot.com/security"
+        }
+      }
     },
     {
       "id": "mailchimp",
@@ -2052,7 +2728,29 @@
             "Phone support"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://mailchimp.com/about/security/",
+        "subprocessors_url": "https://mailchimp.com/legal/subprocessors/",
+        "dpa_url": "https://mailchimp.com/legal/data-processing-addendum/",
+        "soc2": "yes",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://mailchimp.com/about/security/",
+          "iso27001": "https://mailchimp.com/about/security/",
+          "gdpr": "https://mailchimp.com/legal/subprocessors/"
+        }
+      }
     },
     {
       "id": "kit",
@@ -2108,7 +2806,25 @@
             "Deliverability reporting"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": null,
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "Vendor's security pages could not be read automatically; check its trust centre.",
+        "evidence": {}
+      }
     },
     {
       "id": "buffer",
@@ -2164,7 +2880,27 @@
             "Branded reports"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "gdpr": "https://buffer.com/legal"
+        }
+      }
     },
     {
       "id": "intercom",
@@ -2228,7 +2964,32 @@
             "Works with existing helpdesk"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.intercom.com/security",
+        "subprocessors_url": "https://www.intercom.com/legal/subprocessors-list",
+        "dpa_url": "https://www.intercom.com/legal/data-processing-agreement",
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.intercom.com/security",
+          "iso27001": "https://www.intercom.com/security",
+          "iso42001": "https://www.intercom.com/security",
+          "gdpr": "https://www.intercom.com/security",
+          "hipaa": "https://www.intercom.com/security",
+          "eu_data_residency": "https://www.intercom.com/legal/subprocessors-list"
+        }
+      }
     },
     {
       "id": "zendesk",
@@ -2294,7 +3055,33 @@
             "Approval workflows"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.zendesk.com/trust-center/",
+        "subprocessors_url": null,
+        "dpa_url": "https://www.zendesk.com/company/data-processing-agreement/",
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": "yes",
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.zendesk.com/trust-center/",
+          "iso27001": "https://www.zendesk.com/trust-center/",
+          "iso42001": "https://www.zendesk.com/trust-center/",
+          "cyber_essentials": "https://www.zendesk.com/trust-center/",
+          "pci_dss": "https://www.zendesk.com/trust-center/",
+          "hipaa": "https://www.zendesk.com/trust-center/",
+          "gdpr": "https://www.zendesk.com/trust-center/"
+        }
+      }
     },
     {
       "id": "pipedrive",
@@ -2354,7 +3141,29 @@
             "Phone support"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": "https://www.pipedrive.com/en/subprocessors",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "gdpr": "https://www.pipedrive.com/en/privacy",
+          "soc2": "https://trustcenter.pipedrive.com/",
+          "iso27001": "https://trustcenter.pipedrive.com/"
+        }
+      }
     },
     {
       "id": "shopify",
@@ -2424,7 +3233,29 @@
             "Priority 24/7 support"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.shopify.com/security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.shopify.com/security",
+          "pci_dss": "https://www.shopify.com/security",
+          "gdpr": "https://www.shopify.com/security"
+        }
+      }
     },
     {
       "id": "squarespace",
@@ -2490,7 +3321,28 @@
             "High-traffic checkout"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://trust.squarespace.com/",
+        "subprocessors_url": null,
+        "dpa_url": "https://www.squarespace.com/dpa",
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "pci_dss": "https://www.squarespace.com/security",
+          "gdpr": "https://www.squarespace.com/security"
+        }
+      }
     },
     {
       "id": "wix",
@@ -2557,7 +3409,31 @@
             "Advanced ecommerce"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.wix.com/website-security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.wix.com/website-security",
+          "iso27001": "https://www.wix.com/website-security",
+          "pci_dss": "https://www.wix.com/website-security",
+          "gdpr": "https://www.wix.com/website-security",
+          "hipaa": "https://www.wix.com/website-security"
+        }
+      }
     },
     {
       "id": "xero",
@@ -2625,7 +3501,29 @@
             "KPI analysis"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.xero.com/uk/security/",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": null,
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.xero.com/us/security/soc-report/",
+          "iso27001": "https://www.xero.com/uk/security/",
+          "pci_dss": "https://www.xero.com/uk/security/"
+        }
+      }
     },
     {
       "id": "google-workspace",
@@ -2703,7 +3601,31 @@
             "Context-aware access"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://cloud.google.com/security/compliance/soc-2",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "BAA available; some newer features are excluded from the BAA.",
+        "evidence": {
+          "soc2": "https://cloud.google.com/security/compliance/soc-2",
+          "iso27001": "https://knowledge.workspace.google.com/admin/generative-ai/generative-ai-in-google-workspace-privacy-hub",
+          "iso42001": "https://knowledge.workspace.google.com/admin/generative-ai/generative-ai-in-google-workspace-privacy-hub",
+          "gdpr": "https://knowledge.workspace.google.com/admin/generative-ai/generative-ai-in-google-workspace-privacy-hub",
+          "hipaa": "https://workspace.google.com/security/"
+        }
+      }
     },
     {
       "id": "microsoft-365-business",
@@ -2772,7 +3694,32 @@
             "Defender for Business"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.microsoft.com/en-gb/trust-center",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": "yes",
+        "ai_training": null,
+        "notes": "UK is a Microsoft 365 Local Region Geography (stronger commitments with the paid Advanced Data Residency add-on); EU Data Boundary applies. Microsoft's Cyber Essentials Plus certificate covers Azure only.",
+        "evidence": {
+          "soc2": "https://learn.microsoft.com/en-us/compliance/regulatory/offering-soc-2",
+          "iso27001": "https://learn.microsoft.com/en-us/compliance/regulatory/offering-iso-27001",
+          "gdpr": "https://www.microsoft.com/en-gb/trust-center",
+          "hipaa": "https://learn.microsoft.com/en-us/compliance/regulatory/offering-hipaa-hitech",
+          "uk_data_residency": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/m365-dr-services-data-location",
+          "eu_data_residency": "https://www.microsoft.com/en/trust-center/compliance/europe-digital-resilience"
+        }
+      }
     },
     {
       "id": "dropbox",
@@ -2852,7 +3799,31 @@
             "Security integrations"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.dropbox.com/features/security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "yes",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://trust.dropbox.com/?itemUid=aec41c33-0f3a-4030-ac59-49adfd4a975b&source=click",
+          "iso27001": "https://trust.dropbox.com/?itemUid=aec41c33-0f3a-4030-ac59-49adfd4a975b&source=click",
+          "pci_dss": "https://trust.dropbox.com/?itemUid=aec41c33-0f3a-4030-ac59-49adfd4a975b&source=click",
+          "gdpr": "https://www.dropbox.com/features/security",
+          "hipaa": "https://www.dropbox.com/features/security"
+        }
+      }
     },
     {
       "id": "1password",
@@ -2860,11 +3831,11 @@
       "category": "security",
       "pricing_url": "https://1password.com/pricing",
       "currency": "USD",
-      "source": "secondary",
+      "source": "vendor_page",
       "checked": "2026-11-25",
       "free_tier": false,
       "free_trial": "14 days",
-      "notes": "From 1Password signup pages and Oct 2026 reports. Individual/Families shown at regular annual-billed rate (first-year promo: $2.99 / $4.49).",
+      "notes": "From 1password.com. Individual/Families shown at regular annual-billed rate (first-year promo: $2.99 / $4.49). Teams Starter Pack: 10 members, up to 20 with extra seats.",
       "plans": [
         {
           "name": "Individual",
@@ -2918,7 +3889,29 @@
             "Insights and reporting"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://1password.com/security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://1password.com/security",
+          "iso27001": "https://1password.com/features/watchtower-identifies-security-risks",
+          "gdpr": "https://1password.com/legal/privacy"
+        }
+      }
     },
     {
       "id": "zapier",
@@ -2985,7 +3978,29 @@
             "Advanced admin"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://docs.zapier.com/mcp/manage/security",
+        "subprocessors_url": "https://zapier.com/legal/subprocessors",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "no_training",
+        "notes": "States its AI subprocessors do not train on customer content.",
+        "evidence": {
+          "soc2": "https://docs.zapier.com/mcp/manage/security",
+          "gdpr": "https://zapier.com/security-compliance",
+          "ai_training": "https://zapier.com/legal/subprocessors"
+        }
+      }
     },
     {
       "id": "make",
@@ -2993,11 +4008,11 @@
       "category": "automation",
       "pricing_url": "https://www.make.com/en/pricing",
       "currency": "USD",
-      "source": "secondary",
+      "source": "vendor_page",
       "checked": "2026-11-25",
       "free_tier": true,
       "free_trial": null,
-      "notes": "Prices for 10,000 credits/month; scale with credits. Reports in 2026 disagree; figures here match the most recent captures (Sept-Oct 2026).",
+      "notes": "Prices for 10,000 credits/month from make.com (annual billing $9/$16/$29; monthly $12/$21/$38); prices scale with credits.",
       "plans": [
         {
           "name": "Free",
@@ -3011,8 +4026,8 @@
         },
         {
           "name": "Core",
-          "monthly": 16,
-          "annual_monthly": 12,
+          "monthly": 12,
+          "annual_monthly": 9,
           "unit": "usage",
           "limits": [
             "10,000 credits/month"
@@ -3024,8 +4039,8 @@
         },
         {
           "name": "Pro",
-          "monthly": 28,
-          "annual_monthly": 21,
+          "monthly": 21,
+          "annual_monthly": 16,
           "unit": "usage",
           "limits": [
             "10,000 credits/month"
@@ -3038,8 +4053,8 @@
         },
         {
           "name": "Teams",
-          "monthly": 51,
-          "annual_monthly": 38,
+          "monthly": 38,
+          "annual_monthly": 29,
           "unit": "usage",
           "limits": [
             "10,000 credits/month"
@@ -3060,7 +4075,29 @@
             "Audit compliance"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.make.com/security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.make.com/security",
+          "iso27001": "https://www.make.com/security",
+          "gdpr": "https://www.make.com/security"
+        }
+      }
     },
     {
       "id": "chatgpt",
@@ -3068,11 +4105,11 @@
       "category": "ai",
       "pricing_url": "https://chatgpt.com/pricing",
       "currency": "USD",
-      "source": "secondary",
+      "source": "vendor_page",
       "checked": "2026-11-25",
       "free_tier": true,
       "free_trial": null,
-      "notes": "Pricing page did not render prices; figures from OpenAI announcements and Oct 2026 reports. Pro has three tiers.",
+      "notes": "From openai.com and help.openai.com. Pro has $100, $200 and $500/month tiers. Business offers Standard and Premium seats.",
       "plans": [
         {
           "name": "Free",
@@ -3120,7 +4157,7 @@
           ]
         },
         {
-          "name": "Business",
+          "name": "Business (Standard seat)",
           "monthly": 25,
           "annual_monthly": 20,
           "unit": "per_user",
@@ -3130,6 +4167,19 @@
             "SAML SSO",
             "Admin console",
             "No training on data"
+          ],
+          "min_seats": 2
+        },
+        {
+          "name": "Business (Premium seat)",
+          "monthly": 125,
+          "annual_monthly": 100,
+          "unit": "per_user",
+          "note": "More usage than Standard, no 5-hour limit",
+          "limits": [],
+          "features": [
+            "SAML SSO",
+            "Admin console"
           ],
           "min_seats": 2
         },
@@ -3144,7 +4194,33 @@
             "Enterprise privacy controls"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://openai.com/security-and-privacy/",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "no_training_business",
+        "notes": "Business/Enterprise data not used for training by default; consumer users can opt out.",
+        "evidence": {
+          "soc2": "https://openai.com/security-and-privacy/",
+          "iso27001": "https://openai.com/security-and-privacy/",
+          "iso42001": "https://openai.com/security-and-privacy/",
+          "pci_dss": "https://openai.com/security-and-privacy/",
+          "gdpr": "https://openai.com/security-and-privacy/",
+          "hipaa": "https://openai.com/security-and-privacy/",
+          "ai_training": "https://openai.com/security-and-privacy/"
+        }
+      }
     },
     {
       "id": "claude",
@@ -3242,7 +4318,32 @@
           ],
           "min_seats": 20
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "no_training_business",
+        "notes": "HIPAA-ready configuration with BAA for commercial customers (Claude for Work / API). Commercial terms: no training on customer content. Consumer plans: used unless the user opts out.",
+        "evidence": {
+          "gdpr": "https://www.anthropic.com/legal/privacy",
+          "hipaa": "https://privacy.claude.com/en/articles/10015870-what-certifications-has-anthropic-obtained",
+          "ai_training": "https://www.anthropic.com/legal/commercial-terms",
+          "soc2": "https://privacy.claude.com/en/articles/10015870-what-certifications-has-anthropic-obtained",
+          "iso27001": "https://privacy.claude.com/en/articles/10015870-what-certifications-has-anthropic-obtained",
+          "iso42001": "https://privacy.claude.com/en/articles/10015870-what-certifications-has-anthropic-obtained"
+        }
+      }
     },
     {
       "id": "cursor",
@@ -3344,7 +4445,32 @@
             "Invoice/PO billing"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://cursor.com/security",
+        "subprocessors_url": "https://cursor.com/legal/subprocessors",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "no_training",
+        "notes": "No training when Privacy Mode is enabled (team setting).",
+        "evidence": {
+          "soc2": "https://cursor.com/security",
+          "iso27001": "https://cursor.com/security",
+          "iso42001": "https://cursor.com/security",
+          "gdpr": "https://cursor.com/docs/enterprise",
+          "hipaa": "https://cursor.com/docs/enterprise/security-hardening",
+          "ai_training": "https://cursor.com/security"
+        }
+      }
     },
     {
       "id": "github-copilot",
@@ -3434,7 +4560,29 @@
             "Enterprise security"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://github.com/security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "yes",
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "opt_out",
+        "notes": null,
+        "evidence": {
+          "soc2": "https://github.com/security",
+          "gdpr": "https://github.com/security",
+          "ai_training": "https://github.com/features/copilot"
+        }
+      }
     },
     {
       "id": "elevenlabs",
@@ -3536,7 +4684,3863 @@
             "HIPAA BAAs"
           ]
         }
-      ]
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": "https://compliance.elevenlabs.io/subprocessors",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": null,
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": "opt_out",
+        "notes": "BAA for Enterprise customers. EU data residency on Enterprise.",
+        "evidence": {
+          "ai_training": "https://elevenlabs.io/privacy-policy",
+          "soc2": "https://elevenlabs.io/text-to-speech",
+          "iso27001": "https://elevenlabs.io/text-to-speech",
+          "iso42001": "https://elevenlabs.io/realtime",
+          "pci_dss": "https://elevenlabs.io/text-to-speech",
+          "hipaa": "https://elevenlabs.io/text-to-speech",
+          "eu_data_residency": "https://elevenlabs.io/text-to-speech"
+        }
+      }
+    },
+    {
+      "id": "freeagent",
+      "name": "FreeAgent",
+      "category": "accounting",
+      "pricing_url": "https://www.freeagent.com/pricing/",
+      "currency": "GBP",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "30 days",
+      "notes": "UK prices excl. VAT. New customers: 50% off for 6 months (monthly) or the first year (annual). Regular annual price not shown. Smart Capture: 10 receipts/bills a month as standard.",
+      "plans": [
+        {
+          "name": "Sole trader",
+          "monthly": 19,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [],
+          "features": [
+            "MTD for Income Tax",
+            "Self Assessment",
+            "Invoicing",
+            "Bank feeds"
+          ]
+        },
+        {
+          "name": "Landlord",
+          "monthly": 10,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [],
+          "features": [
+            "MTD for Income Tax",
+            "Property finances"
+          ]
+        },
+        {
+          "name": "Partnership or LLP",
+          "monthly": 27,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [],
+          "features": [
+            "Invoicing",
+            "VAT",
+            "Payroll"
+          ]
+        },
+        {
+          "name": "Limited company",
+          "monthly": 33,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [],
+          "features": [
+            "Invoicing",
+            "VAT",
+            "Payroll",
+            "Bank feeds"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.freeagent.com/features/security/",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": "yes",
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "iso27001": "https://www.freeagent.com/features/security/",
+          "cyber_essentials": "https://www.freeagent.com/features/security/",
+          "gdpr": "https://www.freeagent.com/features/security/"
+        }
+      }
+    },
+    {
+      "id": "sage-accounting",
+      "name": "Sage Accounting (UK)",
+      "category": "accounting",
+      "pricing_url": "https://www.sage.com/en-gb/sage-business-cloud/accounting/pricing/",
+      "currency": "GBP",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "1 month",
+      "notes": "Excl. VAT, from sage.com (Nov 2026): Sole Trader £7, Start £20, Standard £43, Plus £59. Offers of 90% off for 10 months are common. Payroll included.",
+      "plans": [
+        {
+          "name": "Sole Trader",
+          "monthly": 7,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "For non-VAT-registered sole traders",
+          "limits": [
+            "1 user"
+          ],
+          "features": [
+            "Self Assessment",
+            "Cashflow"
+          ]
+        },
+        {
+          "name": "Start",
+          "monthly": 20,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "1 user"
+          ],
+          "features": [
+            "Invoicing",
+            "Bank reconciliation",
+            "MTD VAT"
+          ]
+        },
+        {
+          "name": "Standard",
+          "monthly": 43,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "3 users"
+          ],
+          "features": [
+            "CIS",
+            "Accrual accounting",
+            "Payroll included"
+          ]
+        },
+        {
+          "name": "Plus",
+          "monthly": 59,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "Unlimited users"
+          ],
+          "features": [
+            "Inventory",
+            "Multi-currency",
+            "Budgets"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": null,
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "Vendor's security pages could not be read automatically; check its trust centre.",
+        "evidence": {}
+      }
+    },
+    {
+      "id": "quickbooks-uk",
+      "name": "QuickBooks Online (UK)",
+      "category": "accounting",
+      "pricing_url": "https://quickbooks.intuit.com/uk/pricing/",
+      "currency": "GBP",
+      "source": "secondary",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "30 days",
+      "notes": "Excl. VAT. QuickBooks' own page data shows 90%-off offer prices of £1.80 (Simple Start) and £4 (Essentials), implying £18 and £40; a March 2026 UK review listed £16 and £38. Sole Trader Plus, Plus and Advanced are from that review. Prices load dynamically; verify before relying on them.",
+      "plans": [
+        {
+          "name": "Sole Trader Plus",
+          "monthly": 10,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "1 user",
+            "No VAT submission"
+          ],
+          "features": [
+            "MTD for Income Tax",
+            "Self Assessment prep"
+          ]
+        },
+        {
+          "name": "Simple Start",
+          "monthly": 18,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "1 user"
+          ],
+          "features": [
+            "MTD VAT submission",
+            "Bank feeds"
+          ]
+        },
+        {
+          "name": "Essentials",
+          "monthly": 40,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "3 users"
+          ],
+          "features": [
+            "Multi-currency",
+            "Bill management"
+          ]
+        },
+        {
+          "name": "Plus",
+          "monthly": 56,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "5 users"
+          ],
+          "features": [
+            "Inventory",
+            "Project profitability",
+            "Budgeting"
+          ]
+        },
+        {
+          "name": "Advanced",
+          "monthly": 123,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "25 users"
+          ],
+          "features": [
+            "Custom reports",
+            "Forecasting",
+            "Premium support"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": null,
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {}
+      }
+    },
+    {
+      "id": "dext",
+      "name": "Dext",
+      "category": "accounting",
+      "pricing_url": "https://dext.com/uk/business/pricing",
+      "currency": "GBP",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "Yes",
+      "notes": "UK prices excl. VAT.",
+      "plans": [
+        {
+          "name": "Business (250 docs, 5 users)",
+          "monthly": null,
+          "annual_monthly": 24.17,
+          "unit": "usage",
+          "note": "£290 billed annually; price scales with document allowance (slider); annual up to 19% cheaper than monthly",
+          "limits": [
+            "250 documents/month",
+            "5 users"
+          ],
+          "features": [
+            "Receipt and invoice capture",
+            "Accounting integrations",
+            "Vault storage (100 MB free)"
+          ]
+        },
+        {
+          "name": "AI Assist add-on",
+          "monthly": 7.5,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "£7.50/month until 31 Jan 2027",
+          "limits": [],
+          "features": [
+            "Automated bookkeeping suggestions"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://dext.com/en/information-security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "iso27001": "https://dext.com/en/information-security",
+          "pci_dss": "https://dext.com/en/information-security",
+          "gdpr": "https://dext.com/en/information-security"
+        }
+      }
+    },
+    {
+      "id": "tide",
+      "name": "Tide Business Account",
+      "category": "finance",
+      "pricing_url": "https://www.tide.co/pricing/",
+      "currency": "GBP",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "UK business bank account plans. VAT treatment not stated on the page.",
+      "plans": [
+        {
+          "name": "Lite",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "5 bank transfers/month"
+          ],
+          "features": [
+            "Business account",
+            "Card payments abroad 2.75% FX fee"
+          ]
+        },
+        {
+          "name": "Smart",
+          "monthly": 12.49,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "30 bank transfers/month",
+            "2 CHAPS payments"
+          ],
+          "features": [
+            "Xero connector",
+            "Invoicing",
+            "1 team card"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 27.49,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "Unlimited bank transfers"
+          ],
+          "features": [
+            "Tide Accounting",
+            "Team access (2)"
+          ]
+        },
+        {
+          "name": "Max",
+          "monthly": 69.99,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "Unlimited bank transfers",
+            "5 CHAPS payments"
+          ],
+          "features": [
+            "0.5% cashback up to £200/month",
+            "Payroll software",
+            "Unlimited invoicing"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "States personal data is stored in the UK or EEA.",
+        "evidence": {
+          "gdpr": "https://www.tide.co/terms/privacy/"
+        }
+      }
+    },
+    {
+      "id": "gocardless",
+      "name": "GoCardless",
+      "category": "finance",
+      "pricing_url": "https://gocardless.com/pricing/",
+      "currency": "GBP",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": null,
+      "notes": "UK domestic rates; no monthly fee on published plans. Check 'See all fees' on the page for caps and international rates.",
+      "plans": [
+        {
+          "name": "Standard",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "usage",
+          "note": "1% + 20p per transaction, excl. VAT",
+          "limits": [],
+          "features": [
+            "One-off and recurring Direct Debit payments"
+          ]
+        },
+        {
+          "name": "Advanced",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "usage",
+          "note": "1.25% + 20p per transaction, excl. VAT",
+          "limits": [],
+          "features": [
+            "Advanced payment failure reduction"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "usage",
+          "note": "1.4% + 20p per transaction, excl. VAT",
+          "limits": [],
+          "features": [
+            "Payment failure and fraud reduction"
+          ]
+        },
+        {
+          "name": "Custom",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "note": "For £1m+ annual revenue",
+          "limits": [],
+          "features": [
+            "Volume discounts",
+            "Dedicated support"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://gocardless.com/security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "iso27001": "https://gocardless.com/security",
+          "gdpr": "https://gocardless.com/security"
+        }
+      }
+    },
+    {
+      "id": "brighthr",
+      "name": "BrightHR",
+      "category": "hr",
+      "pricing_url": "https://www.brighthr.com/pricing/",
+      "currency": "GBP",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Free tool: Rota Lite scheduling. Paid plans need a fixed-term contract.",
+      "plans": [
+        {
+          "name": "Core HR software",
+          "monthly": 16.67,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "note": "Per employee per month, excl. VAT, on a fixed term (online purchase: 36 months)",
+          "limits": [
+            "24, 36 or 60 month terms"
+          ],
+          "features": [
+            "Holiday planner",
+            "Clock-in app",
+            "Rotas",
+            "Absence management"
+          ]
+        },
+        {
+          "name": "Software, 24/7 HR advice & documents",
+          "monthly": 21.2,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "note": "Per employee per month, excl. VAT",
+          "limits": [],
+          "features": [
+            "24/7 employment law helpline",
+            "HR document templates"
+          ]
+        },
+        {
+          "name": "Software, advice, documents & EAP",
+          "monthly": 31.3,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "note": "Per employee per month, excl. VAT",
+          "limits": [],
+          "features": [
+            "Health and safety software and advice",
+            "Employee wellbeing support"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.brighthr.com/security/",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "yes",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": "yes",
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.brighthr.com/security/",
+          "iso27001": "https://www.brighthr.com/security/",
+          "cyber_essentials": "https://www.brighthr.com/security/",
+          "pci_dss": "https://www.brighthr.com/security/",
+          "gdpr": "https://www.brighthr.com/security/"
+        }
+      }
+    },
+    {
+      "id": "breathe-hr",
+      "name": "Breathe HR",
+      "category": "hr",
+      "pricing_url": "https://www.breathehr.com/en-gb/hr-software/hr-software-prices",
+      "currency": "GBP",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "14 days",
+      "notes": "Priced per business per month by headcount band, not per user. Add-ons extra (e.g. Rota, Time and Attendance from £11/month).",
+      "plans": [
+        {
+          "name": "Micro (1-10 people)",
+          "monthly": 24,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [],
+          "features": [
+            "Holiday and absence",
+            "Documents and policies",
+            "Performance management"
+          ]
+        },
+        {
+          "name": "Starter (11-20 people)",
+          "monthly": 44,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Regular (21-50 people)",
+          "monthly": 99,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Pro (51-100 people)",
+          "monthly": 175,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Premium (101-150 people)",
+          "monthly": 419,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Plus (151-200 people)",
+          "monthly": 579,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.breathehr.com/en-gb/hr-software/security-reliability",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": "yes",
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "iso27001": "https://www.breathehr.com/en-gb/hr-software/security-reliability",
+          "iso42001": "https://www.breathehr.com/en-gb/hr-software/security-reliability",
+          "cyber_essentials": "https://www.breathehr.com/en-gb/hr-software/security-reliability/security-and-reliability",
+          "pci_dss": "https://www.breathehr.com/en-gb/hr-software/security-reliability/security-and-reliability",
+          "gdpr": "https://www.breathehr.com/en-gb/hr-software/security-reliability"
+        }
+      }
+    },
+    {
+      "id": "charliehr",
+      "name": "CharlieHR",
+      "category": "hr",
+      "pricing_url": "https://www.charliehr.com/pricing",
+      "currency": "GBP",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "7 days",
+      "notes": "Excl. UK VAT.",
+      "plans": [
+        {
+          "name": "Charlie",
+          "monthly": 21,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "For 1-4 team members; headcount-based, up to £754/month for 250+",
+          "limits": [],
+          "features": [
+            "Onboarding",
+            "Time off",
+            "Performance reviews"
+          ]
+        },
+        {
+          "name": "Charlie Recruit add-on",
+          "monthly": 55,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "From £55/month (1-4 team members); needs a Charlie subscription",
+          "limits": [],
+          "features": [
+            "Interview scheduling",
+            "eSignature contracts"
+          ]
+        },
+        {
+          "name": "Charlie Grow",
+          "monthly": 200,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "1-4 team members per pricing table (a page card showed £21; conflicting)",
+          "limits": [],
+          "features": [
+            "Dedicated HR advisor",
+            "AskCharlie AI"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.charliehr.com/hr-online/security/by-design",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": "yes",
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "iso27001": "https://www.charliehr.com/hr-online/security/by-design",
+          "cyber_essentials": "https://www.charliehr.com/hr-online/security/by-design",
+          "gdpr": "https://www.charliehr.com/hr-online/security/by-design"
+        }
+      }
+    },
+    {
+      "id": "rotacloud",
+      "name": "RotaCloud",
+      "category": "scheduling",
+      "pricing_url": "https://rotacloud.com/pricing/",
+      "currency": "GBP",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "30 days",
+      "notes": "Price rises with team size; 500+ employees need a quote. Add-ons: Time & Attendance, SMS notifications.",
+      "plans": [
+        {
+          "name": "Standard",
+          "monthly": 10,
+          "annual_monthly": 8.33,
+          "unit": "flat",
+          "note": "Teams of 1-5 employees; £100/year",
+          "limits": [],
+          "features": [
+            "Rota planning",
+            "Holiday and absence",
+            "Shift swapping"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 15,
+          "annual_monthly": 12.5,
+          "unit": "flat",
+          "note": "Teams of 1-5 employees; £150/year",
+          "limits": [],
+          "features": [
+            "Labour forecasting",
+            "Budget caps",
+            "Enforced 2FA"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://rotacloud.com/security-services/",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "gdpr": "https://rotacloud.com/security-services/"
+        }
+      }
+    },
+    {
+      "id": "deputy",
+      "name": "Deputy (UK)",
+      "category": "scheduling",
+      "pricing_url": "https://www.deputy.com/gb/pricing",
+      "currency": "GBP",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "Yes",
+      "notes": "GBP excl. taxes. The page default appears to be annual (save 10%); monthly-billing price not shown.",
+      "plans": [
+        {
+          "name": "Lite",
+          "monthly": null,
+          "annual_monthly": 3.25,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Rotas",
+            "Timesheets",
+            "Time clocking",
+            "Leave accruals"
+          ]
+        },
+        {
+          "name": "Core",
+          "monthly": null,
+          "annual_monthly": 4.25,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Auto-scheduling",
+            "Demand forecasting",
+            "Biometric clocking"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": null,
+          "annual_monthly": 6.5,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Single Sign-On (SSO)",
+            "Sandbox",
+            "24/7 live chat"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.deputy.com/security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": "yes",
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.deputy.com/security",
+          "iso27001": "https://www.deputy.com/security",
+          "cyber_essentials": "https://www.deputy.com/security",
+          "pci_dss": "https://www.deputy.com/security",
+          "gdpr": "https://www.deputy.com/security"
+        }
+      }
+    },
+    {
+      "id": "capsule-crm",
+      "name": "Capsule CRM",
+      "category": "crm",
+      "pricing_url": "https://capsulecrm.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "14 days, no card",
+      "notes": null,
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "2 users",
+            "250 contacts",
+            "1 pipeline"
+          ],
+          "features": []
+        },
+        {
+          "name": "Starter",
+          "monthly": 22,
+          "annual_monthly": 18,
+          "unit": "per_user",
+          "limits": [
+            "30,000 contacts"
+          ],
+          "features": []
+        },
+        {
+          "name": "Growth",
+          "monthly": 40,
+          "annual_monthly": 36,
+          "unit": "per_user",
+          "limits": [
+            "60,000 contacts"
+          ],
+          "features": [
+            "Multiple pipelines",
+            "Workflow automation"
+          ]
+        },
+        {
+          "name": "Advanced",
+          "monthly": 60,
+          "annual_monthly": 54,
+          "unit": "per_user",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Ultimate",
+          "monthly": 75,
+          "annual_monthly": 72,
+          "unit": "per_user",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://capsulecrm.com/security/",
+        "subprocessors_url": "https://capsulecrm.com/dpa/subprocessors/",
+        "dpa_url": "https://capsulecrm.com/dpa/",
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "no_training",
+        "notes": "SOC 2 / ISO 27001 statements found refer to Capsule's data centres, not Capsule itself.",
+        "evidence": {
+          "gdpr": "https://capsulecrm.com/security/",
+          "ai_training": "https://capsulecrm.com/features/security-and-permissions/",
+          "pci_dss": "https://capsulecrm.com/security/"
+        }
+      }
+    },
+    {
+      "id": "synthesia",
+      "name": "Synthesia",
+      "category": "video-audio",
+      "pricing_url": "https://www.synthesia.io/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Black Friday offers (up to 50% off yearly) were live at check time; regular yearly prices not captured.",
+      "plans": [
+        {
+          "name": "Basic",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "10 min video/month"
+          ],
+          "features": []
+        },
+        {
+          "name": "Starter",
+          "monthly": 19,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "First month $9 promo at time of check",
+          "limits": [
+            "~12 min video/month"
+          ],
+          "features": []
+        },
+        {
+          "name": "Pro",
+          "monthly": 89,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "First month $49 promo at time of check",
+          "limits": [
+            "~60 min video/month"
+          ],
+          "features": []
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": "https://www.synthesia.io/legal/subprocessors",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.synthesia.io/use-case/compliance-training",
+          "iso27001": "https://www.synthesia.io/responsible-ai",
+          "iso42001": "https://www.synthesia.io/use-case/compliance-training",
+          "gdpr": "https://www.synthesia.io/use-case/compliance-training"
+        }
+      }
+    },
+    {
+      "id": "pleo",
+      "name": "Pleo",
+      "category": "finance",
+      "pricing_url": "https://www.pleo.io/en/pricing",
+      "currency": "GBP",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": null,
+      "free_trial": null,
+      "notes": "Expense cards and spend management.",
+      "plans": [
+        {
+          "name": "Start",
+          "monthly": 8,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "note": "Monthly billing only; max 1 admin",
+          "limits": [
+            "1 vendor card"
+          ],
+          "features": []
+        },
+        {
+          "name": "Build",
+          "monthly": null,
+          "annual_monthly": 14,
+          "unit": "per_user",
+          "note": "Billed yearly",
+          "limits": [
+            "15 vendor cards"
+          ],
+          "features": [],
+          "min_seats": 3
+        },
+        {
+          "name": "Optimise",
+          "monthly": null,
+          "annual_monthly": 18,
+          "unit": "per_user",
+          "note": "Billed yearly",
+          "limits": [
+            "50 vendor cards"
+          ],
+          "features": [],
+          "min_seats": 3
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": null,
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {}
+      }
+    },
+    {
+      "id": "salesforce",
+      "name": "Salesforce Sales Cloud",
+      "category": "crm",
+      "pricing_url": "https://www.salesforce.com/sales/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "Yes",
+      "notes": "Official USD and GBP prices from Salesforce's US and UK pages. A higher tier (£440/user/month in the UK) exists; its name and USD price weren't captured.",
+      "plans": [
+        {
+          "name": "Starter Suite",
+          "monthly": 25,
+          "annual_monthly": 25,
+          "unit": "per_user",
+          "note": "Billed monthly or annually",
+          "limits": [],
+          "features": [
+            "Lead and opportunity management",
+            "Email sync"
+          ],
+          "gbp_monthly": 20,
+          "gbp_annual_monthly": 20
+        },
+        {
+          "name": "Pro Suite",
+          "monthly": null,
+          "annual_monthly": 100,
+          "unit": "per_user",
+          "note": "Billed annually",
+          "limits": [],
+          "features": [
+            "Quoting and forecasting",
+            "More automation"
+          ],
+          "gbp_annual_monthly": 80
+        },
+        {
+          "name": "Core",
+          "monthly": null,
+          "annual_monthly": 195,
+          "unit": "per_user",
+          "note": "Billed annually",
+          "limits": [],
+          "features": [
+            "Built-in AI, Slack, Tableau, Agentforce skills"
+          ],
+          "gbp_annual_monthly": 156
+        },
+        {
+          "name": "Advanced",
+          "monthly": null,
+          "annual_monthly": 395,
+          "unit": "per_user",
+          "note": "Billed annually",
+          "limits": [],
+          "features": [
+            "Enhanced security",
+            "Sales agents"
+          ],
+          "gbp_annual_monthly": 316
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://trust.salesforce.com/",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "gdpr": "https://security.salesforce.com/",
+          "soc2": "https://compliance.salesforce.com/en/categories",
+          "iso27001": "https://www.salesforce.com/en-us/wp-content/uploads/sites/4/documents/legal/misc/salesforce-security-privacy-and-architecture.pdf"
+        }
+      }
+    },
+    {
+      "id": "zoho-crm",
+      "name": "Zoho CRM",
+      "category": "crm",
+      "pricing_url": "https://www.zoho.com/crm/zohocrm-pricing.html",
+      "currency": "USD",
+      "source": "secondary",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "Yes",
+      "notes": "Zoho's page loads prices dynamically; figures consistent across several 2026 reports. Figures consistent across several dated 2026 sources.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "3 users"
+          ],
+          "features": []
+        },
+        {
+          "name": "Standard",
+          "monthly": 20,
+          "annual_monthly": 14,
+          "unit": "per_user",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Professional",
+          "monthly": 35,
+          "annual_monthly": 23,
+          "unit": "per_user",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Enterprise",
+          "monthly": 50,
+          "annual_monthly": 40,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Zia AI",
+            "Sandbox"
+          ]
+        },
+        {
+          "name": "Ultimate",
+          "monthly": 65,
+          "annual_monthly": 52,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Advanced BI"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.zoho.com/security.html",
+        "subprocessors_url": "https://www.zoho.com/privacy/sub-processors.html",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": "yes",
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.zoho.com/compliance.html",
+          "iso27001": "https://www.zoho.com/compliance.html",
+          "cyber_essentials": "https://www.zoho.com/compliance.html",
+          "pci_dss": "https://www.zoho.com/security-faq.html",
+          "gdpr": "https://www.zoho.com/compliance.html",
+          "hipaa": "https://www.zoho.com/compliance.html",
+          "eu_data_residency": "https://www.zoho.com/compliance.html"
+        }
+      }
+    },
+    {
+      "id": "freshdesk",
+      "name": "Freshdesk",
+      "category": "support",
+      "pricing_url": "https://www.freshworks.com/freshdesk/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": null,
+      "free_trial": "Yes",
+      "notes": "Annual billing saves 20%. Freddy AI Copilot add-on $29/agent/month.",
+      "plans": [
+        {
+          "name": "Growth",
+          "monthly": null,
+          "annual_monthly": 19,
+          "unit": "per_user",
+          "note": "Per agent, billed annually",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Pro",
+          "monthly": null,
+          "annual_monthly": 55,
+          "unit": "per_user",
+          "note": "Per agent, billed annually",
+          "limits": [],
+          "features": [
+            "Skills-based routing"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": 89,
+          "unit": "per_user",
+          "note": "Per agent, billed annually",
+          "limits": [],
+          "features": [
+            "Sandbox",
+            "Audit logs",
+            "IP whitelisting"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.freshworks.com/security/",
+        "subprocessors_url": "https://www.freshworks.com/privacy/sub-processor/",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": "yes",
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "EU data centre available on appropriate plans.",
+        "evidence": {
+          "gdpr": "https://www.freshworks.com/privacy/",
+          "soc2": "https://trust.freshworks.com/",
+          "iso27001": "https://trust.freshworks.com/",
+          "cyber_essentials": "https://trust.freshworks.com/",
+          "eu_data_residency": "https://www.freshworks.com/gdpr/company/"
+        }
+      }
+    },
+    {
+      "id": "help-scout",
+      "name": "Help Scout",
+      "category": "support",
+      "pricing_url": "https://www.helpscout.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "Yes",
+      "notes": null,
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "1 inbox",
+            "25 contacts/month"
+          ],
+          "features": []
+        },
+        {
+          "name": "Standard",
+          "monthly": 30,
+          "annual_monthly": 25,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "AI inbox assistant",
+            "Workflows"
+          ]
+        },
+        {
+          "name": "Plus",
+          "monthly": 54,
+          "annual_monthly": 45,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "AI drafts",
+            "Salesforce/Jira/HubSpot"
+          ]
+        },
+        {
+          "name": "Pro",
+          "monthly": 90,
+          "annual_monthly": 75,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Dedicated onboarding"
+          ]
+        },
+        {
+          "name": "Envoy AI agent",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "usage",
+          "note": "$0.75 per resolution",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.helpscout.com/company/legal/security/",
+        "subprocessors_url": "https://www.helpscout.com/company/legal/sub-processors/",
+        "dpa_url": "https://www.helpscout.com/company/legal/dpa/",
+        "soc2": "type2",
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.helpscout.com/company/legal/security/",
+          "gdpr": "https://www.helpscout.com/company/legal/privacy/",
+          "hipaa": "https://www.helpscout.com/company/legal/security/"
+        }
+      }
+    },
+    {
+      "id": "klaviyo",
+      "name": "Klaviyo",
+      "category": "marketing",
+      "pricing_url": "https://www.klaviyo.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": null,
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "250 active profiles",
+            "500 emails/month"
+          ],
+          "features": []
+        },
+        {
+          "name": "Email",
+          "monthly": 25,
+          "annual_monthly": null,
+          "unit": "usage",
+          "note": "From $25/month; scales with active profiles. $1 first-month promo at check time",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.klaviyo.com/trust",
+        "subprocessors_url": "https://www.klaviyo.com/legal/subprocessors",
+        "dpa_url": "https://www.klaviyo.com/legal/data-processing-agreement",
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "EU data centre is opt-in for new accounts.",
+        "evidence": {
+          "soc2": "https://trust.klaviyo.com/",
+          "iso27001": "https://www.klaviyo.com/trust",
+          "gdpr": "https://www.klaviyo.com/trust",
+          "eu_data_residency": "https://www.klaviyo.com/legal/subprocessors"
+        }
+      }
+    },
+    {
+      "id": "activecampaign",
+      "name": "ActiveCampaign",
+      "category": "marketing",
+      "pricing_url": "https://www.activecampaign.com/pricing",
+      "currency": "USD",
+      "source": "secondary",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "14 days",
+      "notes": "Prices scale with contacts; page loads prices dynamically. Figures match ActiveCampaign's catalogue as reported July 2026. Figures consistent across several dated 2026 sources.",
+      "plans": [
+        {
+          "name": "Starter",
+          "monthly": 19,
+          "annual_monthly": 15,
+          "unit": "usage",
+          "note": "1,000 contacts",
+          "limits": [
+            "10,000 email sends/month",
+            "1 user"
+          ],
+          "features": []
+        },
+        {
+          "name": "Plus",
+          "monthly": 59,
+          "annual_monthly": 49,
+          "unit": "usage",
+          "note": "1,000 contacts",
+          "limits": [
+            "1 user"
+          ],
+          "features": []
+        },
+        {
+          "name": "Pro",
+          "monthly": 99,
+          "annual_monthly": 79,
+          "unit": "usage",
+          "note": "1,000 contacts",
+          "limits": [
+            "3 users"
+          ],
+          "features": []
+        },
+        {
+          "name": "Enterprise",
+          "monthly": 179,
+          "annual_monthly": 145,
+          "unit": "usage",
+          "note": "1,000 contacts",
+          "limits": [
+            "5 users"
+          ],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.activecampaign.com/security",
+        "subprocessors_url": "https://www.activecampaign.com/legal/subprocessors",
+        "dpa_url": null,
+        "soc2": "yes",
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "Marketing page states a focus on HIPAA compliance; confirm BAA availability with vendor.",
+        "evidence": {
+          "soc2": "https://www.activecampaign.com/security",
+          "gdpr": "https://www.activecampaign.com/security",
+          "hipaa": "https://www.activecampaign.com/security"
+        }
+      }
+    },
+    {
+      "id": "brevo",
+      "name": "Brevo",
+      "category": "marketing",
+      "pricing_url": "https://www.brevo.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": null,
+      "free_trial": null,
+      "notes": null,
+      "plans": [
+        {
+          "name": "Starter",
+          "monthly": 9,
+          "annual_monthly": 8.08,
+          "unit": "flat",
+          "note": "$97/year",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Standard",
+          "monthly": 18,
+          "annual_monthly": 16.17,
+          "unit": "flat",
+          "note": "$194/year",
+          "limits": [],
+          "features": [
+            "Automation",
+            "A/B testing"
+          ]
+        },
+        {
+          "name": "Professional",
+          "monthly": 499,
+          "annual_monthly": 449.08,
+          "unit": "flat",
+          "note": "From; $5,389/year",
+          "limits": [],
+          "features": [
+            "Multi-channel",
+            "AI"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.brevo.com/features/data-security/",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "iso27001": "https://www.brevo.com/features/data-security/",
+          "gdpr": "https://www.brevo.com/features/data-security/"
+        }
+      }
+    },
+    {
+      "id": "mailerlite",
+      "name": "MailerLite",
+      "category": "marketing",
+      "pricing_url": "https://www.mailerlite.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": null,
+      "free_trial": null,
+      "notes": "Plan names changed in 2026. Billing period of starting prices not confirmed.",
+      "plans": [
+        {
+          "name": "Comfort",
+          "monthly": 12,
+          "annual_monthly": null,
+          "unit": "usage",
+          "note": "Starting price; scales with subscribers",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Power",
+          "monthly": 25,
+          "annual_monthly": null,
+          "unit": "usage",
+          "note": "Starting price; scales with subscribers",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.mailerlite.com/trust-page",
+        "subprocessors_url": null,
+        "dpa_url": "https://www.mailerlite.com/legal/data-processing-agreement",
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "ISO 27001 statement found refers to its storage provider.",
+        "evidence": {
+          "pci_dss": "https://www.mailerlite.com/trust-page",
+          "gdpr": "https://www.mailerlite.com/trust-page"
+        }
+      }
+    },
+    {
+      "id": "hootsuite",
+      "name": "Hootsuite",
+      "category": "marketing",
+      "pricing_url": "https://www.hootsuite.com/plans",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "14 days",
+      "notes": "Billed annually.",
+      "plans": [
+        {
+          "name": "Standard",
+          "monthly": null,
+          "annual_monthly": 99,
+          "unit": "per_user",
+          "limits": [
+            "10 social accounts"
+          ],
+          "features": []
+        },
+        {
+          "name": "Professional",
+          "monthly": null,
+          "annual_monthly": 199,
+          "unit": "per_user",
+          "limits": [
+            "Unlimited social accounts"
+          ],
+          "features": []
+        },
+        {
+          "name": "Advanced",
+          "monthly": null,
+          "annual_monthly": 399,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Approvals"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.hootsuite.com/security",
+        "subprocessors_url": "https://www.hootsuite.com/legal/subprocessor-list",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": "yes",
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://trustcenter.hootsuite.com/",
+          "iso27001": "https://trustcenter.hootsuite.com/",
+          "cyber_essentials": "https://trustcenter.hootsuite.com/",
+          "gdpr": "https://www.hootsuite.com/security"
+        }
+      }
+    },
+    {
+      "id": "sprout-social",
+      "name": "Sprout Social",
+      "category": "marketing",
+      "pricing_url": "https://sproutsocial.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "Yes",
+      "notes": "Per seat per month as displayed; billing period not confirmed.",
+      "plans": [
+        {
+          "name": "Standard",
+          "monthly": 199,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Professional",
+          "monthly": 299,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Advanced",
+          "monthly": 399,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "AI Assist"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://sproutsocial.com/security/",
+        "subprocessors_url": "https://sproutsocial.com/legal/subprocessors/",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://sproutsocial.com/trust-center/",
+          "iso27001": "https://sproutsocial.com/security/",
+          "pci_dss": "https://sproutsocial.com/trust-center/",
+          "gdpr": "https://sproutsocial.com/trust-center/",
+          "hipaa": "https://sproutsocial.com/trust-center/"
+        }
+      }
+    },
+    {
+      "id": "later",
+      "name": "Later",
+      "category": "marketing",
+      "pricing_url": "https://later.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "Yes",
+      "notes": "Billed yearly (25% off monthly). Extra social sets $11.25/month, extra users $3.75/month.",
+      "plans": [
+        {
+          "name": "Starter",
+          "monthly": null,
+          "annual_monthly": 18.75,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Growth",
+          "monthly": null,
+          "annual_monthly": 37.5,
+          "unit": "flat",
+          "limits": [],
+          "features": [
+            "Approvals",
+            "Custom roles"
+          ]
+        },
+        {
+          "name": "Scale",
+          "monthly": null,
+          "annual_monthly": 82.5,
+          "unit": "flat",
+          "limits": [],
+          "features": [
+            "2-year analytics",
+            "Priority support"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": null,
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {}
+      }
+    },
+    {
+      "id": "semrush",
+      "name": "Semrush",
+      "category": "marketing",
+      "pricing_url": "https://www.semrush.com/pricing/seo-ai-search/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "Yes",
+      "notes": "Plan names as shown on the page (2026 relaunch). Annual saves up to 17%.",
+      "plans": [
+        {
+          "name": "AI Visibility Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "SEO",
+          "monthly": 139,
+          "annual_monthly": 117.33,
+          "unit": "flat",
+          "note": "For freelancers and small businesses",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Starter SEO + AI Search",
+          "monthly": 199,
+          "annual_monthly": 165.17,
+          "unit": "flat",
+          "note": "For small teams and agencies",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Pro+ SEO + AI Search",
+          "monthly": 299,
+          "annual_monthly": 248.17,
+          "unit": "flat",
+          "note": "Multiple markets/locations",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "gdpr": "https://www.semrush.com/company/legal/privacy-policy/"
+        }
+      }
+    },
+    {
+      "id": "ahrefs",
+      "name": "Ahrefs",
+      "category": "marketing",
+      "pricing_url": "https://ahrefs.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Displayed per month; annual discount not captured.",
+      "plans": [
+        {
+          "name": "Starter",
+          "monthly": 29,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Lite",
+          "monthly": 129,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "1 user"
+          ],
+          "features": []
+        },
+        {
+          "name": "Standard",
+          "monthly": 249,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "1 user; extra users $60/month"
+          ],
+          "features": []
+        },
+        {
+          "name": "Advanced",
+          "monthly": 449,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "1 user; extra users $80/month"
+          ],
+          "features": [
+            "API and MCP access"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": "https://ahrefs.com/legal/data-processing-addendum",
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "gdpr": "https://ahrefs.com/legal/data-processing-addendum"
+        }
+      }
+    },
+    {
+      "id": "typeform",
+      "name": "Typeform",
+      "category": "forms",
+      "pricing_url": "https://www.typeform.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": null,
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "10 responses/month"
+          ],
+          "features": []
+        },
+        {
+          "name": "Basic",
+          "monthly": 39,
+          "annual_monthly": 28,
+          "unit": "flat",
+          "limits": [
+            "100 responses/month",
+            "1 user"
+          ],
+          "features": []
+        },
+        {
+          "name": "Plus",
+          "monthly": 79,
+          "annual_monthly": 56,
+          "unit": "flat",
+          "limits": [
+            "1,000 responses/month",
+            "3 users"
+          ],
+          "features": []
+        },
+        {
+          "name": "Business",
+          "monthly": 129,
+          "annual_monthly": 91,
+          "unit": "flat",
+          "limits": [
+            "10,000 responses/month",
+            "5 users"
+          ],
+          "features": []
+        },
+        {
+          "name": "Talent",
+          "monthly": 169,
+          "annual_monthly": 119,
+          "unit": "flat",
+          "limits": [
+            "3,000 responses/month",
+            "3 users"
+          ],
+          "features": []
+        },
+        {
+          "name": "Growth Flow",
+          "monthly": 379,
+          "annual_monthly": 266,
+          "unit": "flat",
+          "limits": [
+            "10,000 responses/month",
+            "5 users"
+          ],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": null,
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.typeform.com/admin-security",
+          "iso27001": "https://www.typeform.com/admin-security",
+          "hipaa": "https://www.typeform.com/legal/privacy-policy",
+          "eu_data_residency": "https://www.typeform.com/admin-security"
+        }
+      }
+    },
+    {
+      "id": "jotform",
+      "name": "Jotform",
+      "category": "forms",
+      "pricing_url": "https://www.jotform.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": null,
+      "plans": [
+        {
+          "name": "Starter",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Bronze",
+          "monthly": 39,
+          "annual_monthly": 34,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Silver",
+          "monthly": 49,
+          "annual_monthly": 39,
+          "unit": "flat",
+          "limits": [],
+          "features": [
+            "HIPAA-enabled features"
+          ]
+        },
+        {
+          "name": "Gold",
+          "monthly": 129,
+          "annual_monthly": 99,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.jotform.com/security/",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": "yes",
+        "ai_training": null,
+        "notes": "UK public-sector offering with local data residency.",
+        "evidence": {
+          "soc2": "https://www.jotform.com/enterprise/soc-2-compliance/?jtm_source=security&jtm_medium=internal&jtm_campaign=enterprise_promotion&jtm_content=why_soc_2_compliance",
+          "iso27001": "https://www.jotform.com/security/",
+          "pci_dss": "https://www.jotform.com/security/",
+          "gdpr": "https://www.jotform.com/security/",
+          "hipaa": "https://www.jotform.com/security/",
+          "eu_data_residency": "https://www.jotform.com/security/",
+          "uk_data_residency": "https://www.jotform.com/enterprise/security/"
+        }
+      }
+    },
+    {
+      "id": "surveymonkey",
+      "name": "SurveyMonkey",
+      "category": "forms",
+      "pricing_url": "https://www.surveymonkey.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": null,
+      "free_trial": null,
+      "notes": "Team plans start at 3 users. Extra responses $0.15 each. Individual plans not captured.",
+      "plans": [
+        {
+          "name": "Team Advantage",
+          "monthly": null,
+          "annual_monthly": 30,
+          "unit": "per_user",
+          "limits": [],
+          "features": [],
+          "min_seats": 3
+        },
+        {
+          "name": "Team Premier",
+          "monthly": null,
+          "annual_monthly": 92,
+          "unit": "per_user",
+          "limits": [],
+          "features": [],
+          "min_seats": 3
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.surveymonkey.com/mp/legal/security/",
+        "subprocessors_url": "https://www.surveymonkey.com/mp/legal/subprocessor-list/",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "Enterprise plan; BAAs are a paid add-on.",
+        "evidence": {
+          "soc2": "https://www.surveymonkey.com/learn/trust-center/",
+          "iso27001": "https://www.surveymonkey.com/learn/trust-center/",
+          "pci_dss": "https://www.surveymonkey.com/learn/trust-center/",
+          "gdpr": "https://www.surveymonkey.com/learn/trust-center/",
+          "hipaa": "https://www.surveymonkey.com/mp/legal/security/",
+          "eu_data_residency": "https://www.surveymonkey.com/newsroom/surveymonkey-achieves-international-organization-for-standardization-iso-security-recognition-from-the-british-standards-institute/"
+        }
+      }
+    },
+    {
+      "id": "docusign",
+      "name": "DocuSign eSignature",
+      "category": "documents",
+      "pricing_url": "https://ecom.docusign.com/plans-and-pricing/esignature",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "Yes",
+      "notes": "Annual commitment shown; monthly billing costs up to 33% more.",
+      "plans": [
+        {
+          "name": "Personal",
+          "monthly": null,
+          "annual_monthly": 11,
+          "unit": "flat",
+          "note": "$132/year",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Standard",
+          "monthly": null,
+          "annual_monthly": 30,
+          "unit": "per_user",
+          "note": "$360/user/year",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Business Pro",
+          "monthly": null,
+          "annual_monthly": 45,
+          "unit": "per_user",
+          "note": "$540/user/year",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.docusign.com/trust",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.docusign.com/trust/compliance",
+          "iso27001": "https://www.docusign.com/trust/compliance",
+          "pci_dss": "https://www.docusign.com/trust/compliance",
+          "gdpr": "https://www.docusign.com/trust/privacy",
+          "hipaa": "https://www.docusign.com/trust/compliance"
+        }
+      }
+    },
+    {
+      "id": "pandadoc",
+      "name": "PandaDoc",
+      "category": "documents",
+      "pricing_url": "https://www.pandadoc.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "14 days",
+      "notes": null,
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "5 documents/month"
+          ],
+          "features": []
+        },
+        {
+          "name": "Starter",
+          "monthly": 45,
+          "annual_monthly": 25,
+          "unit": "per_user",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Business",
+          "monthly": 65,
+          "annual_monthly": 49,
+          "unit": "per_user",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": null,
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "Lets customers choose where data is stored (regions not captured). Vendor's security pages could not be read automatically; check its trust centre.",
+        "evidence": {
+          "soc2": "https://www.pandadoc.com/security/"
+        }
+      }
+    },
+    {
+      "id": "adobe-creative-cloud",
+      "name": "Adobe Creative Cloud (UK)",
+      "category": "design",
+      "pricing_url": "https://www.adobe.com/uk/creativecloud/plans.html",
+      "currency": "GBP",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": null,
+      "notes": "UK prices INCLUDE VAT (consumer pricing). Regular prices shown; Black Friday discounts run until 27 Nov 2026.",
+      "plans": [
+        {
+          "name": "Creative Cloud Standard",
+          "monthly": null,
+          "annual_monthly": 51.98,
+          "unit": "flat",
+          "note": "Annual plan, paid monthly",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Photoshop",
+          "monthly": null,
+          "annual_monthly": 21.98,
+          "unit": "flat",
+          "note": "Annual plan, billed monthly (regular price)",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Acrobat Standard",
+          "monthly": null,
+          "annual_monthly": 14.99,
+          "unit": "flat",
+          "note": "Annual plan, paid monthly",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Acrobat Pro",
+          "monthly": null,
+          "annual_monthly": 19.97,
+          "unit": "flat",
+          "note": "Annual plan, paid monthly",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Photography (Lightroom + Photoshop)",
+          "monthly": null,
+          "annual_monthly": 19.97,
+          "unit": "flat",
+          "limits": [
+            "1 TB storage"
+          ],
+          "features": []
+        },
+        {
+          "name": "Lightroom",
+          "monthly": null,
+          "annual_monthly": 11.99,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Illustrator",
+          "monthly": null,
+          "annual_monthly": 21.98,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Premiere",
+          "monthly": null,
+          "annual_monthly": 21.98,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "InDesign",
+          "monthly": null,
+          "annual_monthly": 21.98,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "After Effects",
+          "monthly": null,
+          "annual_monthly": 21.98,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Creative Cloud Pro",
+          "monthly": null,
+          "annual_monthly": 66.49,
+          "unit": "flat",
+          "note": "Annual plan, billed monthly (regular price per Adobe UK help; Black Friday offer £28.49 first year until 27 Nov 2026)",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "prices_include_vat": true,
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": null,
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "Vendor's security pages could not be read automatically; check its trust centre.",
+        "evidence": {
+          "soc2": "https://www.adobe.com/trust/compliance/compliance-list.html",
+          "iso27001": "https://www.adobe.com/trust/compliance/compliance-list.html"
+        }
+      }
+    },
+    {
+      "id": "grammarly",
+      "name": "Grammarly",
+      "category": "productivity",
+      "pricing_url": "https://www.grammarly.com/plans",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": null,
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "100 prompts/month"
+          ],
+          "features": []
+        },
+        {
+          "name": "Pro",
+          "monthly": null,
+          "annual_monthly": 12,
+          "unit": "per_user",
+          "note": "Displayed price; billing period not confirmed",
+          "limits": [
+            "2,000 prompts/member/month"
+          ],
+          "features": []
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.grammarly.com/security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "opt_out",
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.grammarly.com/security",
+          "iso27001": "https://www.grammarly.com/security",
+          "iso42001": "https://www.grammarly.com/security",
+          "gdpr": "https://www.grammarly.com/privacy",
+          "hipaa": "https://www.grammarly.com/privacy",
+          "ai_training": "https://www.grammarly.com/trust"
+        }
+      }
+    },
+    {
+      "id": "otter",
+      "name": "Otter.ai",
+      "category": "productivity",
+      "pricing_url": "https://otter.ai/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Promotional discounts were shown at check time.",
+      "plans": [
+        {
+          "name": "Basic",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Pro",
+          "monthly": 16.99,
+          "annual_monthly": 8.33,
+          "unit": "per_user",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Business",
+          "monthly": 30,
+          "annual_monthly": 19.99,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Salesforce, HubSpot, Zapier"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://otter.ai/privacy-security",
+        "subprocessors_url": "https://otter.ai/legal/subprocessors",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": "Otter states its policies are based on the ISO 27001 framework (not a certification claim).",
+        "evidence": {
+          "soc2": "https://otter.ai/privacy-security",
+          "gdpr": "https://otter.ai/privacy-security"
+        }
+      }
+    },
+    {
+      "id": "descript",
+      "name": "Descript",
+      "category": "video-audio",
+      "pricing_url": "https://www.descript.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": null,
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Hobbyist",
+          "monthly": 24,
+          "annual_monthly": 16,
+          "unit": "per_user",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Creator",
+          "monthly": 35,
+          "annual_monthly": 24,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "Voice clones"
+          ]
+        },
+        {
+          "name": "Business",
+          "monthly": 65,
+          "annual_monthly": 50,
+          "unit": "per_user",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.descript.com/security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.descript.com/security",
+          "gdpr": "https://www.descript.com/security"
+        }
+      }
+    },
+    {
+      "id": "smartsheet",
+      "name": "Smartsheet",
+      "category": "project-management",
+      "pricing_url": "https://www.smartsheet.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "Yes",
+      "notes": "Official USD and GBP prices from the vendor page.",
+      "plans": [
+        {
+          "name": "Pro",
+          "monthly": 12,
+          "annual_monthly": 9,
+          "unit": "per_user",
+          "limits": [],
+          "features": [],
+          "gbp_monthly": 10,
+          "gbp_annual_monthly": 7
+        },
+        {
+          "name": "Business",
+          "monthly": 24,
+          "annual_monthly": 19,
+          "unit": "per_user",
+          "limits": [
+            "250 automations/month"
+          ],
+          "features": [],
+          "gbp_monthly": 19,
+          "gbp_annual_monthly": 15
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.smartsheet.com/legal/security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "yes",
+        "iso27001": "yes",
+        "iso42001": "yes",
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.smartsheet.com/trust",
+          "iso27001": "https://www.smartsheet.com/trust",
+          "iso42001": "https://www.smartsheet.com/trust",
+          "gdpr": "https://www.smartsheet.com/trust",
+          "hipaa": "https://www.smartsheet.com/legal/security",
+          "eu_data_residency": "https://www.smartsheet.com/trust"
+        }
+      }
+    },
+    {
+      "id": "wrike",
+      "name": "Wrike",
+      "category": "project-management",
+      "pricing_url": "https://www.wrike.com/price/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": "Yes",
+      "notes": "Displayed per user per month; billing period not confirmed.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Team",
+          "monthly": null,
+          "annual_monthly": 10,
+          "unit": "per_user",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Business",
+          "monthly": null,
+          "annual_monthly": 25,
+          "unit": "per_user",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.wrike.com/security/",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": "no_training",
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.wrike.com/security/privacy/",
+          "iso27001": "https://www.wrike.com/security/privacy/",
+          "gdpr": "https://www.wrike.com/security/privacy/",
+          "hipaa": "https://www.wrike.com/security/terms/",
+          "eu_data_residency": "https://www.wrike.com/security/privacy/",
+          "ai_training": "https://www.wrike.com/security/terms/"
+        }
+      }
+    },
+    {
+      "id": "basecamp",
+      "name": "Basecamp",
+      "category": "project-management",
+      "pricing_url": "https://basecamp.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": "Yes",
+      "notes": "Flat prices, not per user. Pro Unlimited billed annually; billing period of other plans not confirmed.",
+      "plans": [
+        {
+          "name": "Freelancer",
+          "monthly": 29,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "3 projects",
+            "10 GB storage"
+          ],
+          "features": []
+        },
+        {
+          "name": "Pro",
+          "monthly": 79,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "8 projects",
+            "25 GB storage"
+          ],
+          "features": []
+        },
+        {
+          "name": "Pro Plus",
+          "monthly": 99,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "12 projects",
+            "100 GB storage"
+          ],
+          "features": [
+            "Time tracking"
+          ]
+        },
+        {
+          "name": "Pro Unlimited",
+          "monthly": null,
+          "annual_monthly": 199,
+          "unit": "flat",
+          "limits": [
+            "Unlimited projects"
+          ],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://37signals.com/policies/security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "no",
+        "iso27001": "no",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "no",
+        "eu_data_residency": "no",
+        "uk_data_residency": null,
+        "ai_training": "no_training",
+        "notes": "37signals states it has not completed a company-level SOC 2 or ISO 27001 audit, hosts in AWS US-East with no EU hosting, and does not sign BAAs.",
+        "evidence": {
+          "soc2": "https://37signals.com/policies/security",
+          "iso27001": "https://37signals.com/trust",
+          "pci_dss": "https://37signals.com/policies/security",
+          "gdpr": "https://37signals.com/trust",
+          "hipaa": "https://37signals.com/policies/security/caiq/CAIQ_v4.1.html",
+          "eu_data_residency": "https://37signals.com/policies/security/hecvat/HECVAT_4.html",
+          "ai_training": "https://37signals.com/policies/privacy"
+        }
+      }
+    },
+    {
+      "id": "todoist",
+      "name": "Todoist",
+      "category": "productivity",
+      "pricing_url": "https://todoist.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": null,
+      "plans": [
+        {
+          "name": "Beginner",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Pro",
+          "monthly": 7,
+          "annual_monthly": 5,
+          "unit": "flat",
+          "note": "$60/year",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Business",
+          "monthly": null,
+          "annual_monthly": 8,
+          "unit": "per_user",
+          "note": "$96/user/year, plus local tax",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.todoist.com/security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "gdpr": "https://www.todoist.com/security"
+        }
+      }
+    },
+    {
+      "id": "box",
+      "name": "Box",
+      "category": "storage",
+      "pricing_url": "https://www.box.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Billing period of displayed business prices not confirmed (Box usually shows annual rates).",
+      "plans": [
+        {
+          "name": "Individual",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "10 GB"
+          ],
+          "features": []
+        },
+        {
+          "name": "Personal Pro",
+          "monthly": 10,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "100 GB"
+          ],
+          "features": []
+        },
+        {
+          "name": "Business Starter",
+          "monthly": 5,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [
+            "100 GB"
+          ],
+          "features": [],
+          "min_seats": 3
+        },
+        {
+          "name": "Business",
+          "monthly": 15,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [
+            "Unlimited storage"
+          ],
+          "features": [],
+          "min_seats": 3
+        },
+        {
+          "name": "Business Plus",
+          "monthly": 25,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [],
+          "features": [],
+          "min_seats": 3
+        },
+        {
+          "name": "Enterprise",
+          "monthly": 35,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "limits": [],
+          "features": [],
+          "min_seats": 3
+        },
+        {
+          "name": "Enterprise Plus",
+          "monthly": null,
+          "annual_monthly": 50,
+          "unit": "per_user",
+          "limits": [],
+          "features": [],
+          "min_seats": 3
+        },
+        {
+          "name": "Enterprise Advanced",
+          "monthly": null,
+          "annual_monthly": 70,
+          "unit": "per_user",
+          "limits": [],
+          "features": [],
+          "min_seats": 3
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": null,
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": null,
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": "yes",
+        "ai_training": "no_training",
+        "notes": "BAAs for Enterprise-tier customers. UK and EU (Ireland, Germany) storage via the Box Zones add-on.",
+        "evidence": {
+          "ai_training": "https://www.box.com/security",
+          "soc2": "https://www.box.com/trust",
+          "iso27001": "https://www.box.com/trust",
+          "pci_dss": "https://www.box.com/trust",
+          "hipaa": "https://support.box.com/hc/en-us/articles/360044194833-Box-HIPAA-and-HITECH-Overview-and-FAQ",
+          "uk_data_residency": "https://blog.box.com/en/multizones-storage-data-residency-compliance",
+          "eu_data_residency": "https://blog.box.com/en/multizones-storage-data-residency-compliance"
+        }
+      }
+    },
+    {
+      "id": "bitwarden",
+      "name": "Bitwarden",
+      "category": "security",
+      "pricing_url": "https://bitwarden.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Billed annually.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Premium",
+          "monthly": null,
+          "annual_monthly": 1.65,
+          "unit": "flat",
+          "note": "$19.80/year",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Families",
+          "monthly": null,
+          "annual_monthly": 3.99,
+          "unit": "flat",
+          "limits": [
+            "6 users"
+          ],
+          "features": []
+        },
+        {
+          "name": "Teams",
+          "monthly": null,
+          "annual_monthly": 4,
+          "unit": "per_user",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": 6,
+          "unit": "per_user",
+          "limits": [],
+          "features": [
+            "SCIM",
+            "SSO"
+          ]
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://bitwarden.com/solutions/agentic-ai-security/",
+        "subprocessors_url": "https://bitwarden.com/help/subprocessors/",
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://bitwarden.com/compliance/",
+          "iso27001": "https://bitwarden.com/compliance/",
+          "gdpr": "https://bitwarden.com/compliance/",
+          "hipaa": "https://bitwarden.com/compliance/"
+        }
+      }
+    },
+    {
+      "id": "deel",
+      "name": "Deel",
+      "category": "hr",
+      "pricing_url": "https://www.deel.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": null,
+      "free_trial": null,
+      "notes": null,
+      "plans": [
+        {
+          "name": "Contractors",
+          "monthly": 49,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "note": "From $49 per contractor per month",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "US PEO",
+          "monthly": 125,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "note": "From $125 per employee per month",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Employer of Record",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "note": "Price not captured",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.deel.com/security/",
+        "subprocessors_url": null,
+        "dpa_url": "https://www.deel.com/legal/data-processing-addendum/",
+        "soc2": "yes",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.deel.com/security/",
+          "iso27001": "https://www.deel.com/security/",
+          "gdpr": "https://www.deel.com/security/"
+        }
+      }
+    },
+    {
+      "id": "hotjar",
+      "name": "Hotjar (Contentsquare)",
+      "category": "analytics",
+      "pricing_url": "https://contentsquare.com/pricing/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "hotjar.com/pricing now redirects to Contentsquare; prices scale with sessions/responses.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Experience Analytics Growth",
+          "monthly": 49,
+          "annual_monthly": 39,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Voice of Customer (surveys)",
+          "monthly": 99,
+          "annual_monthly": 79,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://contentsquare.com/trust-center/",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": null,
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "gdpr": "https://contentsquare.com/privacy-center/contentsquare-analytics-cookies/"
+        }
+      }
+    },
+    {
+      "id": "posthog",
+      "name": "PostHog",
+      "category": "analytics",
+      "pricing_url": "https://posthog.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": null,
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "note": "Monthly free allowance on each product",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Pay-as-you-go",
+          "monthly": 0,
+          "annual_monthly": null,
+          "unit": "usage",
+          "note": "No base fee; billed per product usage beyond free allowance",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://posthog.com/handbook/company/security",
+        "subprocessors_url": null,
+        "dpa_url": "https://posthog.com/dpa",
+        "soc2": "type2",
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://posthog.com/handbook/company/security",
+          "gdpr": "https://posthog.com/handbook/company/security",
+          "hipaa": "https://posthog.com/docs/privacy/gdpr-compliance",
+          "eu_data_residency": "https://posthog.com/handbook/company/security"
+        }
+      }
+    },
+    {
+      "id": "digitalocean",
+      "name": "DigitalOcean Droplets",
+      "category": "hosting",
+      "pricing_url": "https://www.digitalocean.com/pricing/droplets",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": false,
+      "free_trial": null,
+      "notes": "Per-second billing; monthly caps shown.",
+      "plans": [
+        {
+          "name": "Basic 512 MiB / 1 vCPU",
+          "monthly": 4,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "10 GiB SSD",
+            "500 GiB transfer"
+          ],
+          "features": []
+        },
+        {
+          "name": "Basic 1 GiB / 1 vCPU",
+          "monthly": 6,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "25 GiB SSD"
+          ],
+          "features": []
+        },
+        {
+          "name": "Basic 2 GiB / 1 vCPU",
+          "monthly": 12,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "50 GiB SSD"
+          ],
+          "features": []
+        },
+        {
+          "name": "Basic 4 GiB / 2 vCPU",
+          "monthly": 24,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "80 GiB SSD"
+          ],
+          "features": []
+        },
+        {
+          "name": "Basic 8 GiB / 4 vCPU",
+          "monthly": 48,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "160 GiB SSD"
+          ],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.digitalocean.com/security",
+        "subprocessors_url": null,
+        "dpa_url": "https://www.digitalocean.com/legal/data-processing-agreement",
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": null,
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.digitalocean.com/security",
+          "iso27001": "https://www.digitalocean.com/trust/certification-reports",
+          "pci_dss": "https://www.digitalocean.com/trust/certification-reports",
+          "gdpr": "https://www.digitalocean.com/security",
+          "hipaa": "https://www.digitalocean.com/trust"
+        }
+      }
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare",
+      "category": "hosting",
+      "pricing_url": "https://www.cloudflare.com/plans/",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Website/app services plans. Workers: 100k requests/day free; $0.30 per million beyond on paid.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Pro",
+          "monthly": 25,
+          "annual_monthly": 20,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Business",
+          "monthly": 250,
+          "annual_monthly": 200,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Zero Trust Pay-as-you-go",
+          "monthly": 7,
+          "annual_monthly": null,
+          "unit": "per_user",
+          "note": "Zero Trust is free under 50 users",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.cloudflare.com/trust-hub/compliance-resources/",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "type2",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": "yes",
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "no_training",
+        "notes": null,
+        "evidence": {
+          "soc2": "https://www.cloudflare.com/trust-hub/",
+          "iso27001": "https://www.cloudflare.com/trust-hub/",
+          "pci_dss": "https://www.cloudflare.com/trust-hub/",
+          "gdpr": "https://www.cloudflare.com/trust-hub/compliance-resources/",
+          "ai_training": "https://www.cloudflare.com/trust-hub/responsible-ai/"
+        }
+      }
+    },
+    {
+      "id": "resend",
+      "name": "Resend",
+      "category": "dev-tools",
+      "pricing_url": "https://resend.com/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Add-ons: SSO $150/month, dedicated IP $30/month.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [
+            "3,000 emails/month",
+            "100 emails/day"
+          ],
+          "features": []
+        },
+        {
+          "name": "Pro",
+          "monthly": 20,
+          "annual_monthly": null,
+          "unit": "flat",
+          "note": "Extra emails $0.90/1,000",
+          "limits": [
+            "50,000 emails/month"
+          ],
+          "features": []
+        },
+        {
+          "name": "Scale",
+          "monthly": 90,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "100,000 emails/month"
+          ],
+          "features": []
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://resend.com/security",
+        "subprocessors_url": "https://resend.com/legal/subprocessors",
+        "dpa_url": "https://resend.com/legal/dpa",
+        "soc2": "type2",
+        "iso27001": "no",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "no",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "no_training",
+        "notes": "Resend states it holds SOC 2 Type II, is not ISO 27001 certified, and is not HIPAA compliant (in progress).",
+        "evidence": {
+          "soc2": "https://resend.com/security",
+          "gdpr": "https://resend.com/legal/subprocessors",
+          "hipaa": "https://resend.com/security",
+          "ai_training": "https://resend.com/security",
+          "iso27001": "https://resend.com/security"
+        }
+      }
+    },
+    {
+      "id": "perplexity",
+      "name": "Perplexity",
+      "category": "ai",
+      "pricing_url": "https://www.perplexity.ai/pro",
+      "currency": "USD",
+      "source": "secondary",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Pricing page renders client-side. Enterprise figures from Perplexity's help centre; consumer prices from multiple 2026 reports. Annual consumer discounts vary by promotion. Figures consistent across several dated 2026 sources.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Pro",
+          "monthly": 20,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Max",
+          "monthly": 200,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Enterprise Pro",
+          "monthly": 40,
+          "annual_monthly": 33.33,
+          "unit": "per_user",
+          "note": "$400/seat/year",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Enterprise Max",
+          "monthly": 325,
+          "annual_monthly": 270.83,
+          "unit": "per_user",
+          "note": "$3,250/seat/year",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://www.perplexity.ai/hub/security",
+        "subprocessors_url": "https://www.perplexity.ai/hub/legal/sub-processor-notification-subscription",
+        "dpa_url": "https://www.perplexity.ai/hub/legal/dpa",
+        "soc2": "type2",
+        "iso27001": null,
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": "yes",
+        "eu_data_residency": null,
+        "uk_data_residency": null,
+        "ai_training": "no_training_business",
+        "notes": "No training on Enterprise/API customer content by default.",
+        "evidence": {
+          "soc2": "https://www.perplexity.ai/hub/security",
+          "gdpr": "https://www.perplexity.ai/hub/security",
+          "hipaa": "https://www.perplexity.ai/enterprise",
+          "ai_training": "https://docs.perplexity.ai/docs/resources/privacy-security"
+        }
+      }
+    },
+    {
+      "id": "lovable",
+      "name": "Lovable",
+      "category": "ai",
+      "pricing_url": "https://lovable.dev/pricing",
+      "currency": "USD",
+      "source": "vendor_page",
+      "checked": "2026-11-25",
+      "free_tier": true,
+      "free_trial": null,
+      "notes": "Yearly billing: 2 months free.",
+      "plans": [
+        {
+          "name": "Free",
+          "monthly": 0,
+          "annual_monthly": 0,
+          "unit": "flat",
+          "limits": [],
+          "features": []
+        },
+        {
+          "name": "Pro",
+          "monthly": 25,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "100 monthly credits"
+          ],
+          "features": []
+        },
+        {
+          "name": "Business",
+          "monthly": 50,
+          "annual_monthly": null,
+          "unit": "flat",
+          "limits": [
+            "100 monthly credits"
+          ],
+          "features": []
+        },
+        {
+          "name": "Enterprise",
+          "monthly": null,
+          "annual_monthly": null,
+          "unit": "custom",
+          "limits": [],
+          "features": []
+        }
+      ],
+      "compliance": {
+        "checked": "2026-11-25",
+        "trust_url": "https://lovable.dev/security",
+        "subprocessors_url": null,
+        "dpa_url": null,
+        "soc2": "yes",
+        "iso27001": "yes",
+        "iso42001": null,
+        "cyber_essentials": null,
+        "pci_dss": null,
+        "gdpr": "yes",
+        "hipaa": null,
+        "eu_data_residency": "yes",
+        "uk_data_residency": null,
+        "ai_training": "no_training_business",
+        "notes": "Business and Enterprise data not used for training; Free and Pro can opt out.",
+        "evidence": {
+          "soc2": "https://lovable.dev/security",
+          "iso27001": "https://lovable.dev/security",
+          "gdpr": "https://lovable.dev/security",
+          "eu_data_residency": "https://lovable.dev/security",
+          "ai_training": "https://lovable.dev/privacy"
+        }
+      }
     }
   ]
 }

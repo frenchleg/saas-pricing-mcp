@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.frenchleg/saas-pricing",
   "title": "SaaS Pricing",
-  "description": "Current list prices, plans, limits and SSO/feature tiers for 50 popular SaaS tools, in USD and GBP.",
-  "version": "0.1.0",
+  "description": "Prices, plans and SOC 2/ISO/HIPAA/UK-EU data residency facts for 100 SaaS tools, in USD and GBP.",
+  "version": "0.2.0",
   "repository": {
     "url": "https://github.com/frenchleg/saas-pricing-mcp",
     "source": "github"

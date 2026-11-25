@@ -1,0 +1,37 @@
+name: Weekly pricing page check
+
+on:
+  schedule:
+    - cron: "17 6 * * 1" # Mondays 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/check-pages.mjs
+      - name: Save updated fingerprints
+        run: |
+          git config user.name "pricing-bot"
+          git config user.email "pricing-bot@users.noreply.github.com"
+          git add data/fingerprints.json
+          git diff --cached --quiet || git commit -m "chore: update pricing page fingerprints [skip ci]"
+          git push
+      - name: Open review issue if anything changed or is stale
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          changed=$(node -p "require('./check-summary.json').changed")
+          stale=$(node -p "require('./check-summary.json').stale")
+          if [ "$changed" != "0" ] || [ "$stale" != "0" ]; then
+            gh issue create --title "Pricing review $(date +%F): $changed changed, $stale stale" --body-file report.md --label pricing-review || \
+            gh issue create --title "Pricing review $(date +%F): $changed changed, $stale stale" --body-file report.md
+          fi

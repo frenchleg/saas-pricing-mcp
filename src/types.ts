@@ -18,6 +18,28 @@ export interface Plan {
   max_seats?: number;
 }
 
+export type YesNo = "yes" | "no" | null;
+
+export interface Compliance {
+  checked: string | null;
+  trust_url: string | null;
+  subprocessors_url: string | null;
+  dpa_url: string | null;
+  soc2: "type2" | "yes" | "no" | null;
+  iso27001: YesNo;
+  iso42001: YesNo;
+  cyber_essentials: YesNo;
+  pci_dss: YesNo;
+  gdpr: YesNo;
+  hipaa: YesNo;
+  eu_data_residency: YesNo;
+  uk_data_residency: YesNo;
+  ai_training: "no_training" | "no_training_business" | "opt_out" | null;
+  notes: string | null;
+  evidence: Record<string, string>;
+  needs_review?: string[];
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -26,10 +48,12 @@ export interface Product {
   currency: Currency;
   source: "vendor_page" | "secondary";
   checked: string;
-  free_tier: boolean;
+  free_tier: boolean | null;
   free_trial: string | null;
   notes: string | null;
+  prices_include_vat?: boolean;
   plans: Plan[];
+  compliance?: Compliance;
 }
 
 export interface Dataset {

@@ -1,0 +1,34 @@
+name: Monthly compliance re-scan
+
+on:
+  schedule:
+    - cron: "23 6 2 * *" # 2nd of each month, 06:23 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/scan-trust.mjs
+      - run: node scripts/apply-trust.mjs
+      - name: Open a PR if any compliance fact changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet data/products.json data/trust-scan.json; then echo "No changes"; exit 0; fi
+          branch="compliance-scan-$(date +%F)"
+          git config user.name "pricing-bot"
+          git config user.email "pricing-bot@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data/products.json data/trust-scan.json
+          git commit -m "chore: monthly compliance re-scan $(date +%F)"
+          git push -u origin "$branch"
+          gh pr create --title "Compliance re-scan $(date +%F)" --body "Automated re-scan of vendor security/trust pages. Review the diff of data/products.json (compliance blocks). Anything flagged needs_review will fail validation until you decide it in data/trust-overrides.json."

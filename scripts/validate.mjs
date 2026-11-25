@@ -36,6 +36,19 @@ for (const p of data.products) {
       errors.push(`${pat}: priced plan has no price; use unit 'custom' if unpublished`);
     if (!Array.isArray(pl.limits) || !Array.isArray(pl.features)) errors.push(`${pat}: limits/features must be arrays`);
   }
+  if (p.free_tier !== null && typeof p.free_tier !== "boolean") errors.push(`${at}: free_tier must be true, false or null`);
+  const c = p.compliance;
+  if (c) {
+    const YN = [null, "yes", "no"];
+    for (const k of ["iso27001", "iso42001", "cyber_essentials", "pci_dss", "gdpr", "hipaa", "eu_data_residency", "uk_data_residency"])
+      if (!YN.includes(c[k])) errors.push(`${at}: compliance.${k} must be "yes", "no" or null`);
+    if (![null, "yes", "no", "type2"].includes(c.soc2)) errors.push(`${at}: compliance.soc2 must be "type2", "yes", "no" or null`);
+    if (![null, "no_training", "no_training_business", "opt_out"].includes(c.ai_training)) errors.push(`${at}: bad compliance.ai_training`);
+    for (const [k, u] of Object.entries(c.evidence ?? {})) if (!/^https:\/\//.test(u)) errors.push(`${at}: evidence.${k} must be an https URL`);
+    for (const k of ["soc2", "iso27001", "iso42001", "cyber_essentials", "pci_dss", "hipaa", "eu_data_residency", "uk_data_residency"])
+      if (c[k] && c[k] !== "no" && !c.evidence?.[k]) errors.push(`${at}: compliance.${k} is set but has no evidence URL`);
+    if (c.needs_review?.length) errors.push(`${at}: compliance fields need review: ${c.needs_review.join(", ")} (decide in data/trust-overrides.json, then run scripts/apply-trust.mjs)`);
+  }
 }
 if (errors.length) {
   console.error(`✗ ${errors.length} problem(s) in data/products.json:\n- ` + errors.join("\n- "));
