@@ -66,6 +66,17 @@ Any MCP client that supports remote HTTP servers can connect with the URL above.
 }
 ```
 
+### Run it locally instead
+
+The same server also runs as a local process over stdio, for clients that prefer that:
+
+```bash
+git clone https://github.com/frenchleg/saas-pricing-mcp && cd saas-pricing-mcp
+npm install && npm run build:stdio
+```
+
+Then point your client at `node /path/to/saas-pricing-mcp/dist/stdio.mjs`. Prices are the dataset in the repo, so `git pull` and rebuild to update them.
+
 ## Tools
 
 | Tool | What it does |

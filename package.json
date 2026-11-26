@@ -14,7 +14,8 @@
     "record-history": "node scripts/record-history.mjs",
     "monthly-report": "node scripts/monthly-report.mjs",
     "check-pages": "node scripts/check-pages.mjs",
-    "db:init": "wrangler d1 execute saas-pricing-mcp --remote --file=schema.sql"
+    "db:init": "wrangler d1 execute saas-pricing-mcp --remote --file=schema.sql",
+    "build:stdio": "esbuild src/stdio.ts --bundle --platform=node --format=esm --target=node20 --outfile=dist/stdio.mjs"
   },
   "dependencies": {
     "@cfworker/json-schema": "^4.1.6",
@@ -24,8 +25,12 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20261125.1",
     "typescript": "^7.0.2",
-    "wrangler": "^4.168.0"
+    "wrangler": "^4.168.0",
+    "esbuild": "^0.28.2"
   },
   "type": "module",
-  "private": true
+  "private": true,
+  "bin": {
+    "saas-pricing-mcp": "dist/stdio.mjs"
+  }
 }
