@@ -183,7 +183,7 @@ npx wrangler d1 create saas-pricing-mcp                                      # p
 npx wrangler d1 execute saas-pricing-mcp --remote --file=schema.sql
 npx wrangler dev      # run locally at http://localhost:8787/mcp
 npx wrangler deploy   # deploy to your own Cloudflare account
-node test/smoke.mjs https://<your-worker>.workers.dev/mcp                    # 39 end-to-end checks
+node test/smoke.mjs https://<your-worker>.workers.dev/mcp                    # 40 end-to-end checks
 ```
 
 Put local secrets in `.dev.vars`. That file is listed in `.gitignore`, so it isn't committed.

@@ -88,7 +88,11 @@ async function logFailure(env: Env, request: Request, response: Response, meta: 
   ]);
 }
 
+/** Requests from our own test suite carry this header and are never logged, so they don't skew /stats. */
+const TEST_HEADER = "x-smoke-test";
+
 async function handleMcp(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  if (request.headers.get(TEST_HEADER) === "1") env = { ...env, DB: undefined };
   const meta: RequestMeta = { rpc_method: null, protocol_version: request.headers.get("mcp-protocol-version"), adjusted: [] };
   const response = await handleMcpInner(request, env, ctx, meta);
   // GET -> 405 is normal: standard clients probe for an SSE stream, then fall back to POST. Don't log it.
@@ -197,6 +201,11 @@ export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
+
+    // Uptime checkers and directory crawlers often send HEAD; answer it instead of logging a 405.
+    if (request.method === "HEAD" && ["/", "/mcp", "/mcp/", "/health"].includes(url.pathname)) {
+      return new Response(null, { status: 200, headers: { ...CORS, "Content-Type": url.pathname === "/" ? "text/html; charset=utf-8" : "application/json" } });
+    }
 
     if (url.pathname === "/mcp" || url.pathname === "/mcp/") return withCors(await handleMcp(request, env, ctx));
     if (url.pathname === "/stats") return stats(request, env);

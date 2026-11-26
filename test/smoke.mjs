@@ -6,7 +6,9 @@ import assert from "node:assert/strict";
 
 const endpoint = process.argv[2] ?? "http://127.0.0.1:8787/mcp";
 const client = new Client({ name: "smoke-test", version: "1.0.0" });
-await client.connect(new StreamableHTTPClientTransport(new URL(endpoint)));
+// The x-smoke-test header tells the server not to log this traffic, so tests don't skew /stats.
+const TEST_HEADERS = { "x-smoke-test": "1" };
+await client.connect(new StreamableHTTPClientTransport(new URL(endpoint), { requestInit: { headers: TEST_HEADERS } }));
 
 const call = async (name, args) => {
   const r = await client.callTool({ name, arguments: args });
@@ -114,7 +116,7 @@ ok("recent_changes" in r.body, "get_pricing includes recent_changes");
 // ---- robustness: clients newer than our SDK, or with a partial Accept header, still get served ----
 {
   const raw = async (headers, body) => {
-    const res = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json", ...headers }, body });
+    const res = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json", ...TEST_HEADERS, ...headers }, body });
     return { status: res.status, body: await res.text() };
   };
   const list = JSON.stringify({ jsonrpc: "2.0", id: 9, method: "tools/list" });
@@ -126,6 +128,8 @@ ok("recent_changes" in r.body, "get_pricing includes recent_changes");
   ok(x.status === 200, "missing Accept header is served");
   x = await raw({ Accept: "application/json, text/event-stream" }, "{bad");
   ok(x.status === 400, "malformed JSON still gets a 400 parse error");
+  const head = await fetch(endpoint, { method: "HEAD", headers: TEST_HEADERS });
+  ok(head.status === 200, "HEAD health check gets 200");
 }
 
 await client.close();
