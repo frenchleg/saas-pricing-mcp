@@ -1,5 +1,7 @@
 # SaaS Pricing MCP
 
+[![SaaS Pricing MCP on Glama](https://glama.ai/mcp/servers/frenchleg/saas-pricing-mcp/badges/score.svg)](https://glama.ai/mcp/servers/frenchleg/saas-pricing-mcp)
+
 An [MCP](https://modelcontextprotocol.io) server that gives AI assistants current list prices and security & compliance facts for 100 popular SaaS tools. It covers plans, per-seat costs, limits, key features and free tiers, in USD and GBP. It also records what each vendor states about SOC 2, ISO 27001, UK Cyber Essentials, HIPAA, UK and EU data residency, and whether it trains AI on customer data. And it keeps a dated log of price changes, so an assistant can tell you when a tool raised its prices.
 
 Ask your assistant things like:
