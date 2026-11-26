@@ -181,6 +181,7 @@ Useful scripts:
 - `node scripts/check-pages.mjs` fingerprints every pricing page and reports which ones changed (runs weekly in GitHub Actions).
 - `npm run record-history` compares `data/products.json` with the last snapshot and logs any price changes. It runs on every push to `main`, then commits the updated log back. If the commit message contains "correction" or "fix data", the changes are logged as corrections. To run it by hand: `node scripts/record-history.mjs --kind correction --note "reason"`.
 - `npm run monthly-report` writes a markdown summary of last month's price changes to `reports/YYYY-MM.md` (or pass a month: `node scripts/monthly-report.mjs 2026-12`).
+- The listing in the official [MCP Registry](https://registry.modelcontextprotocol.io) is published from `server.json` by GitHub Actions. Bump `version` in `server.json` and push to `main` to update it.
 - `node scripts/scan-trust.mjs` then `node scripts/apply-trust.mjs` re-scan vendors' trust pages and rebuild the compliance data (runs monthly). Reviewed decisions live in `data/trust-overrides.json`.
 
 ## Contributing
