@@ -1,0 +1,2000 @@
+{
+ "as_of": "2026-11-26",
+ "prices": {
+  "notion": {
+   "name": "Notion",
+   "category": "productivity",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Plus": {
+     "monthly": 10
+    },
+    "Business": {
+     "monthly": 20
+    },
+    "Enterprise": {},
+    "Custom Agents": {}
+   }
+  },
+  "slack": {
+   "name": "Slack",
+   "category": "communication",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "monthly": 8.75,
+     "annual_monthly": 7.25
+    },
+    "Business+": {
+     "monthly": 18,
+     "annual_monthly": 15
+    },
+    "Enterprise+": {}
+   }
+  },
+  "asana": {
+   "name": "Asana",
+   "category": "project-management",
+   "currency": "USD",
+   "plans": {
+    "Personal": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Starter": {
+     "monthly": 13.49,
+     "annual_monthly": 10.99
+    },
+    "Advanced": {
+     "monthly": 30.49,
+     "annual_monthly": 24.99
+    },
+    "Enterprise": {}
+   }
+  },
+  "trello": {
+   "name": "Trello",
+   "category": "project-management",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Standard": {
+     "monthly": 6,
+     "annual_monthly": 5
+    },
+    "Premium": {
+     "monthly": 12.5,
+     "annual_monthly": 10
+    },
+    "Enterprise": {
+     "annual_monthly": 17.5
+    }
+   }
+  },
+  "monday": {
+   "name": "monday.com (Work Management)",
+   "category": "project-management",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Basic": {
+     "annual_monthly": 9
+    },
+    "Standard": {
+     "annual_monthly": 12
+    },
+    "Pro": {
+     "annual_monthly": 19
+    },
+    "Enterprise": {}
+   }
+  },
+  "clickup": {
+   "name": "ClickUp",
+   "category": "project-management",
+   "currency": "USD",
+   "plans": {
+    "Free Forever": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Core": {
+     "annual_monthly": 9
+    },
+    "Business": {
+     "annual_monthly": 17
+    },
+    "Enterprise": {},
+    "Max": {
+     "annual_monthly": 100
+    }
+   }
+  },
+  "linear": {
+   "name": "Linear",
+   "category": "project-management",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Basic": {
+     "annual_monthly": 10
+    },
+    "Business": {
+     "annual_monthly": 16
+    },
+    "Enterprise": {}
+   }
+  },
+  "airtable": {
+   "name": "Airtable",
+   "category": "database",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Team": {
+     "annual_monthly": 20
+    },
+    "Business": {
+     "annual_monthly": 45
+    },
+    "Enterprise Scale": {}
+   }
+  },
+  "miro": {
+   "name": "Miro",
+   "category": "design",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Starter": {
+     "annual_monthly": 8
+    },
+    "Business": {
+     "annual_monthly": 20
+    },
+    "Enterprise": {}
+   }
+  },
+  "zoom": {
+   "name": "Zoom Workplace",
+   "category": "communication",
+   "currency": "USD",
+   "plans": {
+    "Basic": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "monthly": 16.99,
+     "annual_monthly": 14.16
+    },
+    "Business": {
+     "monthly": 21.99,
+     "annual_monthly": 18.33
+    },
+    "Enterprise": {}
+   }
+  },
+  "jira": {
+   "name": "Jira (Cloud)",
+   "category": "project-management",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Standard": {
+     "monthly": 8.48
+    },
+    "Premium": {
+     "monthly": 15.56
+    },
+    "Enterprise": {}
+   }
+  },
+  "confluence": {
+   "name": "Confluence (Cloud)",
+   "category": "productivity",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Standard": {
+     "monthly": 5.78
+    },
+    "Premium": {
+     "monthly": 11.16
+    },
+    "Enterprise": {}
+   }
+  },
+  "calendly": {
+   "name": "Calendly",
+   "category": "scheduling",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Standard": {
+     "monthly": 10
+    },
+    "Teams": {
+     "monthly": 16
+    },
+    "Enterprise": {}
+   }
+  },
+  "loom": {
+   "name": "Loom",
+   "category": "video-audio",
+   "currency": "USD",
+   "plans": {
+    "Starter": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Business": {
+     "monthly": 18
+    },
+    "Business + AI": {
+     "monthly": 24
+    },
+    "Enterprise": {}
+   }
+  },
+  "github": {
+   "name": "GitHub",
+   "category": "dev-tools",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Team": {
+     "monthly": 4
+    },
+    "Enterprise": {
+     "monthly": 21
+    }
+   }
+  },
+  "gitlab": {
+   "name": "GitLab",
+   "category": "dev-tools",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Premium": {
+     "annual_monthly": 29
+    },
+    "Ultimate": {}
+   }
+  },
+  "vercel": {
+   "name": "Vercel",
+   "category": "hosting",
+   "currency": "USD",
+   "plans": {
+    "Hobby": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "monthly": 20
+    },
+    "Enterprise": {}
+   }
+  },
+  "netlify": {
+   "name": "Netlify",
+   "category": "hosting",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Personal": {
+     "monthly": 9
+    },
+    "Pro": {
+     "monthly": 20
+    },
+    "Enterprise": {}
+   }
+  },
+  "supabase": {
+   "name": "Supabase",
+   "category": "database",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "monthly": 25
+    },
+    "Team": {
+     "monthly": 599
+    },
+    "Enterprise": {}
+   }
+  },
+  "render": {
+   "name": "Render",
+   "category": "hosting",
+   "currency": "USD",
+   "plans": {
+    "Hobby": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "monthly": 25
+    },
+    "Scale": {
+     "monthly": 499
+    },
+    "Enterprise": {}
+   }
+  },
+  "railway": {
+   "name": "Railway",
+   "category": "hosting",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Hobby": {
+     "monthly": 5
+    },
+    "Pro": {
+     "monthly": 20
+    },
+    "Enterprise": {}
+   }
+  },
+  "sentry": {
+   "name": "Sentry",
+   "category": "dev-tools",
+   "currency": "USD",
+   "plans": {
+    "Developer": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Team": {
+     "monthly": 29,
+     "annual_monthly": 26
+    },
+    "Business": {
+     "monthly": 89,
+     "annual_monthly": 80
+    },
+    "Enterprise": {}
+   }
+  },
+  "postman": {
+   "name": "Postman",
+   "category": "dev-tools",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Solo": {
+     "annual_monthly": 9
+    },
+    "Team": {
+     "annual_monthly": 19
+    },
+    "Enterprise": {}
+   }
+  },
+  "neon": {
+   "name": "Neon",
+   "category": "database",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Launch": {
+     "monthly": 0
+    },
+    "Scale": {
+     "monthly": 0
+    }
+   }
+  },
+  "figma": {
+   "name": "Figma",
+   "category": "design",
+   "currency": "USD",
+   "plans": {
+    "Starter": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Professional": {
+     "annual_monthly": 16
+    },
+    "Organization": {
+     "annual_monthly": 55
+    },
+    "Enterprise": {
+     "annual_monthly": 90
+    }
+   }
+  },
+  "canva": {
+   "name": "Canva",
+   "category": "design",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "monthly": 18,
+     "annual_monthly": 12
+    },
+    "Business": {
+     "monthly": 25,
+     "annual_monthly": 20.83
+    },
+    "Enterprise": {}
+   }
+  },
+  "framer": {
+   "name": "Framer",
+   "category": "website-builder",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Basic": {
+     "monthly": 10
+    },
+    "Pro": {
+     "monthly": 30
+    },
+    "Enterprise": {}
+   }
+  },
+  "webflow": {
+   "name": "Webflow",
+   "category": "website-builder",
+   "currency": "USD",
+   "plans": {
+    "Starter": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Basic": {
+     "annual_monthly": 15
+    },
+    "Premium": {
+     "annual_monthly": 25
+    }
+   }
+  },
+  "hubspot-marketing": {
+   "name": "HubSpot Marketing Hub",
+   "category": "marketing",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Starter": {
+     "monthly": 20,
+     "annual_monthly": 7
+    },
+    "Professional": {
+     "monthly": 890,
+     "annual_monthly": 800
+    },
+    "Enterprise": {
+     "monthly": 3600
+    }
+   }
+  },
+  "mailchimp": {
+   "name": "Mailchimp",
+   "category": "marketing",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Essentials": {
+     "monthly": 13
+    },
+    "Standard": {
+     "monthly": 20
+    },
+    "Premium": {
+     "monthly": 350
+    }
+   }
+  },
+  "kit": {
+   "name": "Kit (ConvertKit)",
+   "category": "marketing",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Creator": {
+     "monthly": 39
+    },
+    "Pro": {
+     "monthly": 79
+    }
+   }
+  },
+  "buffer": {
+   "name": "Buffer",
+   "category": "marketing",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Essentials": {
+     "monthly": 5,
+     "annual_monthly": 5
+    },
+    "Team": {
+     "monthly": 10,
+     "annual_monthly": 10
+    }
+   }
+  },
+  "intercom": {
+   "name": "Intercom",
+   "category": "support",
+   "currency": "USD",
+   "plans": {
+    "Essential": {
+     "monthly": 29,
+     "annual_monthly": 19
+    },
+    "Advanced": {
+     "annual_monthly": 85
+    },
+    "Expert": {
+     "annual_monthly": 132
+    },
+    "Fin AI Agent": {}
+   }
+  },
+  "zendesk": {
+   "name": "Zendesk",
+   "category": "support",
+   "currency": "USD",
+   "plans": {
+    "Support Team": {
+     "monthly": 25,
+     "annual_monthly": 19
+    },
+    "Suite Team": {
+     "monthly": 69,
+     "annual_monthly": 55
+    },
+    "Suite Professional": {
+     "monthly": 149,
+     "annual_monthly": 115
+    },
+    "Suite Enterprise": {}
+   }
+  },
+  "pipedrive": {
+   "name": "Pipedrive",
+   "category": "crm",
+   "currency": "USD",
+   "plans": {
+    "Lite": {
+     "annual_monthly": 14
+    },
+    "Growth": {
+     "annual_monthly": 39
+    },
+    "Premium": {
+     "annual_monthly": 59
+    },
+    "Ultimate": {
+     "annual_monthly": 79
+    }
+   }
+  },
+  "shopify": {
+   "name": "Shopify",
+   "category": "ecommerce",
+   "currency": "USD",
+   "plans": {
+    "Basic": {
+     "monthly": 39,
+     "annual_monthly": 29
+    },
+    "Grow": {
+     "monthly": 105,
+     "annual_monthly": 79
+    },
+    "Advanced": {
+     "monthly": 399,
+     "annual_monthly": 299
+    },
+    "Plus": {
+     "monthly": 2300
+    }
+   }
+  },
+  "squarespace": {
+   "name": "Squarespace",
+   "category": "website-builder",
+   "currency": "USD",
+   "plans": {
+    "Basic": {
+     "monthly": 25,
+     "annual_monthly": 19
+    },
+    "Core": {
+     "monthly": 39,
+     "annual_monthly": 29
+    },
+    "Plus": {
+     "monthly": 65,
+     "annual_monthly": 49
+    },
+    "Advanced": {
+     "monthly": 139,
+     "annual_monthly": 99
+    }
+   }
+  },
+  "wix": {
+   "name": "Wix",
+   "category": "website-builder",
+   "currency": "USD",
+   "plans": {
+    "Light": {
+     "annual_monthly": 17.77
+    },
+    "Core": {
+     "annual_monthly": 29.77
+    },
+    "Business": {
+     "annual_monthly": 39.77
+    },
+    "Business Elite": {
+     "annual_monthly": 159.77
+    }
+   }
+  },
+  "xero": {
+   "name": "Xero (UK)",
+   "category": "accounting",
+   "currency": "GBP",
+   "plans": {
+    "Ignite": {
+     "monthly": 18
+    },
+    "Grow": {
+     "monthly": 39
+    },
+    "Comprehensive": {
+     "monthly": 55
+    },
+    "Ultimate": {
+     "monthly": 70
+    }
+   }
+  },
+  "google-workspace": {
+   "name": "Google Workspace",
+   "category": "productivity",
+   "currency": "USD",
+   "plans": {
+    "Business Starter": {
+     "monthly": 8.4,
+     "annual_monthly": 7,
+     "gbp_monthly": 7,
+     "gbp_annual_monthly": 5.9
+    },
+    "Business Standard": {
+     "monthly": 16.8,
+     "annual_monthly": 14,
+     "gbp_monthly": 14,
+     "gbp_annual_monthly": 11.8
+    },
+    "Business Plus": {
+     "monthly": 26.4,
+     "annual_monthly": 22,
+     "gbp_monthly": 22,
+     "gbp_annual_monthly": 18.4
+    },
+    "Enterprise": {}
+   }
+  },
+  "microsoft-365-business": {
+   "name": "Microsoft 365 Business (UK)",
+   "category": "productivity",
+   "currency": "GBP",
+   "plans": {
+    "Business Basic": {
+     "annual_monthly": 5.4
+    },
+    "Apps for business": {
+     "annual_monthly": 9.8
+    },
+    "Business Standard (with Copilot)": {
+     "annual_monthly": 18.1
+    },
+    "Business Premium (with Copilot)": {
+     "annual_monthly": 24.6
+    }
+   }
+  },
+  "dropbox": {
+   "name": "Dropbox",
+   "category": "storage",
+   "currency": "USD",
+   "plans": {
+    "Basic": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Plus": {
+     "monthly": 9.99,
+     "annual_monthly": 7.99
+    },
+    "Standard": {
+     "monthly": 15,
+     "annual_monthly": 12
+    },
+    "Advanced": {
+     "monthly": 24,
+     "annual_monthly": 19.2
+    },
+    "Enterprise": {}
+   }
+  },
+  "1password": {
+   "name": "1Password",
+   "category": "security",
+   "currency": "USD",
+   "plans": {
+    "Individual": {
+     "annual_monthly": 3.99
+    },
+    "Families": {
+     "annual_monthly": 5.99
+    },
+    "Teams Starter Pack": {
+     "annual_monthly": 24.95
+    },
+    "Business": {
+     "annual_monthly": 8.99
+    }
+   }
+  },
+  "zapier": {
+   "name": "Zapier",
+   "category": "automation",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Professional": {
+     "monthly": 19.99
+    },
+    "Team": {
+     "monthly": 69
+    },
+    "Enterprise": {}
+   }
+  },
+  "make": {
+   "name": "Make",
+   "category": "automation",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Core": {
+     "monthly": 12,
+     "annual_monthly": 9
+    },
+    "Pro": {
+     "monthly": 21,
+     "annual_monthly": 16
+    },
+    "Teams": {
+     "monthly": 38,
+     "annual_monthly": 29
+    },
+    "Enterprise": {}
+   }
+  },
+  "chatgpt": {
+   "name": "ChatGPT",
+   "category": "ai",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Go": {
+     "monthly": 8
+    },
+    "Plus": {
+     "monthly": 20
+    },
+    "Pro": {
+     "monthly": 100
+    },
+    "Business (Standard seat)": {
+     "monthly": 25,
+     "annual_monthly": 20
+    },
+    "Business (Premium seat)": {
+     "monthly": 125,
+     "annual_monthly": 100
+    },
+    "Enterprise": {}
+   }
+  },
+  "claude": {
+   "name": "Claude",
+   "category": "ai",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "monthly": 20,
+     "annual_monthly": 17
+    },
+    "Max": {
+     "monthly": 100
+    },
+    "Ultra": {
+     "monthly": 200
+    },
+    "Team": {
+     "monthly": 25,
+     "annual_monthly": 20
+    },
+    "Enterprise": {
+     "annual_monthly": 20
+    }
+   }
+  },
+  "cursor": {
+   "name": "Cursor",
+   "category": "ai",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Plus": {
+     "monthly": 8
+    },
+    "Premium": {
+     "monthly": 30
+    },
+    "Super": {
+     "monthly": 100
+    },
+    "Ultra": {
+     "monthly": 200
+    },
+    "Teams": {
+     "monthly": 30
+    },
+    "Enterprise": {}
+   }
+  },
+  "github-copilot": {
+   "name": "GitHub Copilot",
+   "category": "ai",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "monthly": 10
+    },
+    "Pro+": {
+     "monthly": 39
+    },
+    "Max": {
+     "monthly": 100
+    },
+    "Business": {},
+    "Enterprise": {}
+   }
+  },
+  "elevenlabs": {
+   "name": "ElevenLabs",
+   "category": "video-audio",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Starter": {
+     "monthly": 6,
+     "annual_monthly": 5
+    },
+    "Creator": {
+     "monthly": 22,
+     "annual_monthly": 18.33
+    },
+    "Pro": {
+     "monthly": 99,
+     "annual_monthly": 82.5
+    },
+    "Scale": {
+     "monthly": 299,
+     "annual_monthly": 249.17
+    },
+    "Business": {
+     "monthly": 990,
+     "annual_monthly": 825
+    },
+    "Enterprise": {}
+   }
+  },
+  "freeagent": {
+   "name": "FreeAgent",
+   "category": "accounting",
+   "currency": "GBP",
+   "plans": {
+    "Sole trader": {
+     "monthly": 19
+    },
+    "Landlord": {
+     "monthly": 10
+    },
+    "Partnership or LLP": {
+     "monthly": 27
+    },
+    "Limited company": {
+     "monthly": 33
+    }
+   }
+  },
+  "sage-accounting": {
+   "name": "Sage Accounting (UK)",
+   "category": "accounting",
+   "currency": "GBP",
+   "plans": {
+    "Sole Trader": {
+     "monthly": 7
+    },
+    "Start": {
+     "monthly": 20
+    },
+    "Standard": {
+     "monthly": 43
+    },
+    "Plus": {
+     "monthly": 59
+    }
+   }
+  },
+  "quickbooks-uk": {
+   "name": "QuickBooks Online (UK)",
+   "category": "accounting",
+   "currency": "GBP",
+   "plans": {
+    "Sole Trader Plus": {
+     "monthly": 10
+    },
+    "Simple Start": {
+     "monthly": 18
+    },
+    "Essentials": {
+     "monthly": 40
+    },
+    "Plus": {
+     "monthly": 56
+    },
+    "Advanced": {
+     "monthly": 123
+    }
+   }
+  },
+  "dext": {
+   "name": "Dext",
+   "category": "accounting",
+   "currency": "GBP",
+   "plans": {
+    "Business (250 docs, 5 users)": {
+     "annual_monthly": 24.17
+    },
+    "AI Assist add-on": {
+     "monthly": 7.5
+    }
+   }
+  },
+  "tide": {
+   "name": "Tide Business Account",
+   "category": "finance",
+   "currency": "GBP",
+   "plans": {
+    "Lite": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Smart": {
+     "monthly": 12.49
+    },
+    "Pro": {
+     "monthly": 27.49
+    },
+    "Max": {
+     "monthly": 69.99
+    }
+   }
+  },
+  "gocardless": {
+   "name": "GoCardless",
+   "category": "finance",
+   "currency": "GBP",
+   "plans": {
+    "Standard": {},
+    "Advanced": {},
+    "Pro": {},
+    "Custom": {}
+   }
+  },
+  "brighthr": {
+   "name": "BrightHR",
+   "category": "hr",
+   "currency": "GBP",
+   "plans": {
+    "Core HR software": {
+     "monthly": 16.67
+    },
+    "Software, 24/7 HR advice & documents": {
+     "monthly": 21.2
+    },
+    "Software, advice, documents & EAP": {
+     "monthly": 31.3
+    }
+   }
+  },
+  "breathe-hr": {
+   "name": "Breathe HR",
+   "category": "hr",
+   "currency": "GBP",
+   "plans": {
+    "Micro (1-10 people)": {
+     "monthly": 24
+    },
+    "Starter (11-20 people)": {
+     "monthly": 44
+    },
+    "Regular (21-50 people)": {
+     "monthly": 99
+    },
+    "Pro (51-100 people)": {
+     "monthly": 175
+    },
+    "Premium (101-150 people)": {
+     "monthly": 419
+    },
+    "Plus (151-200 people)": {
+     "monthly": 579
+    }
+   }
+  },
+  "charliehr": {
+   "name": "CharlieHR",
+   "category": "hr",
+   "currency": "GBP",
+   "plans": {
+    "Charlie": {
+     "monthly": 21
+    },
+    "Charlie Recruit add-on": {
+     "monthly": 55
+    },
+    "Charlie Grow": {
+     "monthly": 200
+    }
+   }
+  },
+  "rotacloud": {
+   "name": "RotaCloud",
+   "category": "scheduling",
+   "currency": "GBP",
+   "plans": {
+    "Standard": {
+     "monthly": 10,
+     "annual_monthly": 8.33
+    },
+    "Pro": {
+     "monthly": 15,
+     "annual_monthly": 12.5
+    }
+   }
+  },
+  "deputy": {
+   "name": "Deputy (UK)",
+   "category": "scheduling",
+   "currency": "GBP",
+   "plans": {
+    "Lite": {
+     "annual_monthly": 3.25
+    },
+    "Core": {
+     "annual_monthly": 4.25
+    },
+    "Pro": {
+     "annual_monthly": 6.5
+    }
+   }
+  },
+  "capsule-crm": {
+   "name": "Capsule CRM",
+   "category": "crm",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Starter": {
+     "monthly": 22,
+     "annual_monthly": 18
+    },
+    "Growth": {
+     "monthly": 40,
+     "annual_monthly": 36
+    },
+    "Advanced": {
+     "monthly": 60,
+     "annual_monthly": 54
+    },
+    "Ultimate": {
+     "monthly": 75,
+     "annual_monthly": 72
+    }
+   }
+  },
+  "synthesia": {
+   "name": "Synthesia",
+   "category": "video-audio",
+   "currency": "USD",
+   "plans": {
+    "Basic": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Starter": {
+     "monthly": 19
+    },
+    "Pro": {
+     "monthly": 89
+    },
+    "Enterprise": {}
+   }
+  },
+  "pleo": {
+   "name": "Pleo",
+   "category": "finance",
+   "currency": "GBP",
+   "plans": {
+    "Start": {
+     "monthly": 8
+    },
+    "Build": {
+     "annual_monthly": 14
+    },
+    "Optimise": {
+     "annual_monthly": 18
+    }
+   }
+  },
+  "salesforce": {
+   "name": "Salesforce Sales Cloud",
+   "category": "crm",
+   "currency": "USD",
+   "plans": {
+    "Starter Suite": {
+     "monthly": 25,
+     "annual_monthly": 25,
+     "gbp_monthly": 20,
+     "gbp_annual_monthly": 20
+    },
+    "Pro Suite": {
+     "annual_monthly": 100,
+     "gbp_annual_monthly": 80
+    },
+    "Core": {
+     "annual_monthly": 195,
+     "gbp_annual_monthly": 156
+    },
+    "Advanced": {
+     "annual_monthly": 395,
+     "gbp_annual_monthly": 316
+    }
+   }
+  },
+  "zoho-crm": {
+   "name": "Zoho CRM",
+   "category": "crm",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Standard": {
+     "monthly": 20,
+     "annual_monthly": 14
+    },
+    "Professional": {
+     "monthly": 35,
+     "annual_monthly": 23
+    },
+    "Enterprise": {
+     "monthly": 50,
+     "annual_monthly": 40
+    },
+    "Ultimate": {
+     "monthly": 65,
+     "annual_monthly": 52
+    }
+   }
+  },
+  "freshdesk": {
+   "name": "Freshdesk",
+   "category": "support",
+   "currency": "USD",
+   "plans": {
+    "Growth": {
+     "annual_monthly": 19
+    },
+    "Pro": {
+     "annual_monthly": 55
+    },
+    "Enterprise": {
+     "annual_monthly": 89
+    }
+   }
+  },
+  "help-scout": {
+   "name": "Help Scout",
+   "category": "support",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Standard": {
+     "monthly": 30,
+     "annual_monthly": 25
+    },
+    "Plus": {
+     "monthly": 54,
+     "annual_monthly": 45
+    },
+    "Pro": {
+     "monthly": 90,
+     "annual_monthly": 75
+    },
+    "Envoy AI agent": {}
+   }
+  },
+  "klaviyo": {
+   "name": "Klaviyo",
+   "category": "marketing",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Email": {
+     "monthly": 25
+    }
+   }
+  },
+  "activecampaign": {
+   "name": "ActiveCampaign",
+   "category": "marketing",
+   "currency": "USD",
+   "plans": {
+    "Starter": {
+     "monthly": 19,
+     "annual_monthly": 15
+    },
+    "Plus": {
+     "monthly": 59,
+     "annual_monthly": 49
+    },
+    "Pro": {
+     "monthly": 99,
+     "annual_monthly": 79
+    },
+    "Enterprise": {
+     "monthly": 179,
+     "annual_monthly": 145
+    }
+   }
+  },
+  "brevo": {
+   "name": "Brevo",
+   "category": "marketing",
+   "currency": "USD",
+   "plans": {
+    "Starter": {
+     "monthly": 9,
+     "annual_monthly": 8.08
+    },
+    "Standard": {
+     "monthly": 18,
+     "annual_monthly": 16.17
+    },
+    "Professional": {
+     "monthly": 499,
+     "annual_monthly": 449.08
+    }
+   }
+  },
+  "mailerlite": {
+   "name": "MailerLite",
+   "category": "marketing",
+   "currency": "USD",
+   "plans": {
+    "Comfort": {
+     "monthly": 12
+    },
+    "Power": {
+     "monthly": 25
+    }
+   }
+  },
+  "hootsuite": {
+   "name": "Hootsuite",
+   "category": "marketing",
+   "currency": "USD",
+   "plans": {
+    "Standard": {
+     "annual_monthly": 99
+    },
+    "Professional": {
+     "annual_monthly": 199
+    },
+    "Advanced": {
+     "annual_monthly": 399
+    },
+    "Enterprise": {}
+   }
+  },
+  "sprout-social": {
+   "name": "Sprout Social",
+   "category": "marketing",
+   "currency": "USD",
+   "plans": {
+    "Standard": {
+     "monthly": 199
+    },
+    "Professional": {
+     "monthly": 299
+    },
+    "Advanced": {
+     "monthly": 399
+    }
+   }
+  },
+  "later": {
+   "name": "Later",
+   "category": "marketing",
+   "currency": "USD",
+   "plans": {
+    "Starter": {
+     "annual_monthly": 18.75
+    },
+    "Growth": {
+     "annual_monthly": 37.5
+    },
+    "Scale": {
+     "annual_monthly": 82.5
+    }
+   }
+  },
+  "semrush": {
+   "name": "Semrush",
+   "category": "marketing",
+   "currency": "USD",
+   "plans": {
+    "AI Visibility Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "SEO": {
+     "monthly": 139,
+     "annual_monthly": 117.33
+    },
+    "Starter SEO + AI Search": {
+     "monthly": 199,
+     "annual_monthly": 165.17
+    },
+    "Pro+ SEO + AI Search": {
+     "monthly": 299,
+     "annual_monthly": 248.17
+    }
+   }
+  },
+  "ahrefs": {
+   "name": "Ahrefs",
+   "category": "marketing",
+   "currency": "USD",
+   "plans": {
+    "Starter": {
+     "monthly": 29
+    },
+    "Lite": {
+     "monthly": 129
+    },
+    "Standard": {
+     "monthly": 249
+    },
+    "Advanced": {
+     "monthly": 449
+    },
+    "Enterprise": {}
+   }
+  },
+  "typeform": {
+   "name": "Typeform",
+   "category": "forms",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Basic": {
+     "monthly": 39,
+     "annual_monthly": 28
+    },
+    "Plus": {
+     "monthly": 79,
+     "annual_monthly": 56
+    },
+    "Business": {
+     "monthly": 129,
+     "annual_monthly": 91
+    },
+    "Talent": {
+     "monthly": 169,
+     "annual_monthly": 119
+    },
+    "Growth Flow": {
+     "monthly": 379,
+     "annual_monthly": 266
+    }
+   }
+  },
+  "jotform": {
+   "name": "Jotform",
+   "category": "forms",
+   "currency": "USD",
+   "plans": {
+    "Starter": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Bronze": {
+     "monthly": 39,
+     "annual_monthly": 34
+    },
+    "Silver": {
+     "monthly": 49,
+     "annual_monthly": 39
+    },
+    "Gold": {
+     "monthly": 129,
+     "annual_monthly": 99
+    },
+    "Enterprise": {}
+   }
+  },
+  "surveymonkey": {
+   "name": "SurveyMonkey",
+   "category": "forms",
+   "currency": "USD",
+   "plans": {
+    "Team Advantage": {
+     "annual_monthly": 30
+    },
+    "Team Premier": {
+     "annual_monthly": 92
+    }
+   }
+  },
+  "docusign": {
+   "name": "DocuSign eSignature",
+   "category": "documents",
+   "currency": "USD",
+   "plans": {
+    "Personal": {
+     "annual_monthly": 11
+    },
+    "Standard": {
+     "annual_monthly": 30
+    },
+    "Business Pro": {
+     "annual_monthly": 45
+    }
+   }
+  },
+  "pandadoc": {
+   "name": "PandaDoc",
+   "category": "documents",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Starter": {
+     "monthly": 45,
+     "annual_monthly": 25
+    },
+    "Business": {
+     "monthly": 65,
+     "annual_monthly": 49
+    },
+    "Enterprise": {}
+   }
+  },
+  "adobe-creative-cloud": {
+   "name": "Adobe Creative Cloud (UK)",
+   "category": "design",
+   "currency": "GBP",
+   "plans": {
+    "Creative Cloud Standard": {
+     "annual_monthly": 51.98
+    },
+    "Photoshop": {
+     "annual_monthly": 21.98
+    },
+    "Acrobat Standard": {
+     "annual_monthly": 14.99
+    },
+    "Acrobat Pro": {
+     "annual_monthly": 19.97
+    },
+    "Photography (Lightroom + Photoshop)": {
+     "annual_monthly": 19.97
+    },
+    "Lightroom": {
+     "annual_monthly": 11.99
+    },
+    "Illustrator": {
+     "annual_monthly": 21.98
+    },
+    "Premiere": {
+     "annual_monthly": 21.98
+    },
+    "InDesign": {
+     "annual_monthly": 21.98
+    },
+    "After Effects": {
+     "annual_monthly": 21.98
+    },
+    "Creative Cloud Pro": {
+     "annual_monthly": 66.49
+    }
+   }
+  },
+  "grammarly": {
+   "name": "Grammarly",
+   "category": "productivity",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "annual_monthly": 12
+    },
+    "Enterprise": {}
+   }
+  },
+  "otter": {
+   "name": "Otter.ai",
+   "category": "productivity",
+   "currency": "USD",
+   "plans": {
+    "Basic": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "monthly": 16.99,
+     "annual_monthly": 8.33
+    },
+    "Business": {
+     "monthly": 30,
+     "annual_monthly": 19.99
+    },
+    "Enterprise": {}
+   }
+  },
+  "descript": {
+   "name": "Descript",
+   "category": "video-audio",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Hobbyist": {
+     "monthly": 24,
+     "annual_monthly": 16
+    },
+    "Creator": {
+     "monthly": 35,
+     "annual_monthly": 24
+    },
+    "Business": {
+     "monthly": 65,
+     "annual_monthly": 50
+    }
+   }
+  },
+  "smartsheet": {
+   "name": "Smartsheet",
+   "category": "project-management",
+   "currency": "USD",
+   "plans": {
+    "Pro": {
+     "monthly": 12,
+     "annual_monthly": 9,
+     "gbp_monthly": 10,
+     "gbp_annual_monthly": 7
+    },
+    "Business": {
+     "monthly": 24,
+     "annual_monthly": 19,
+     "gbp_monthly": 19,
+     "gbp_annual_monthly": 15
+    },
+    "Enterprise": {}
+   }
+  },
+  "wrike": {
+   "name": "Wrike",
+   "category": "project-management",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Team": {
+     "annual_monthly": 10
+    },
+    "Business": {
+     "annual_monthly": 25
+    },
+    "Enterprise": {}
+   }
+  },
+  "basecamp": {
+   "name": "Basecamp",
+   "category": "project-management",
+   "currency": "USD",
+   "plans": {
+    "Freelancer": {
+     "monthly": 29
+    },
+    "Pro": {
+     "monthly": 79
+    },
+    "Pro Plus": {
+     "monthly": 99
+    },
+    "Pro Unlimited": {
+     "annual_monthly": 199
+    }
+   }
+  },
+  "todoist": {
+   "name": "Todoist",
+   "category": "productivity",
+   "currency": "USD",
+   "plans": {
+    "Beginner": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "monthly": 7,
+     "annual_monthly": 5
+    },
+    "Business": {
+     "annual_monthly": 8
+    }
+   }
+  },
+  "box": {
+   "name": "Box",
+   "category": "storage",
+   "currency": "USD",
+   "plans": {
+    "Individual": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Personal Pro": {
+     "monthly": 10
+    },
+    "Business Starter": {
+     "monthly": 5
+    },
+    "Business": {
+     "monthly": 15
+    },
+    "Business Plus": {
+     "monthly": 25
+    },
+    "Enterprise": {
+     "monthly": 35
+    },
+    "Enterprise Plus": {
+     "annual_monthly": 50
+    },
+    "Enterprise Advanced": {
+     "annual_monthly": 70
+    }
+   }
+  },
+  "bitwarden": {
+   "name": "Bitwarden",
+   "category": "security",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Premium": {
+     "annual_monthly": 1.65
+    },
+    "Families": {
+     "annual_monthly": 3.99
+    },
+    "Teams": {
+     "annual_monthly": 4
+    },
+    "Enterprise": {
+     "annual_monthly": 6
+    }
+   }
+  },
+  "deel": {
+   "name": "Deel",
+   "category": "hr",
+   "currency": "USD",
+   "plans": {
+    "Contractors": {
+     "monthly": 49
+    },
+    "US PEO": {
+     "monthly": 125
+    },
+    "Employer of Record": {}
+   }
+  },
+  "hotjar": {
+   "name": "Hotjar (Contentsquare)",
+   "category": "analytics",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Experience Analytics Growth": {
+     "monthly": 49,
+     "annual_monthly": 39
+    },
+    "Voice of Customer (surveys)": {
+     "monthly": 99,
+     "annual_monthly": 79
+    }
+   }
+  },
+  "posthog": {
+   "name": "PostHog",
+   "category": "analytics",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pay-as-you-go": {
+     "monthly": 0
+    }
+   }
+  },
+  "digitalocean": {
+   "name": "DigitalOcean Droplets",
+   "category": "hosting",
+   "currency": "USD",
+   "plans": {
+    "Basic 512 MiB / 1 vCPU": {
+     "monthly": 4
+    },
+    "Basic 1 GiB / 1 vCPU": {
+     "monthly": 6
+    },
+    "Basic 2 GiB / 1 vCPU": {
+     "monthly": 12
+    },
+    "Basic 4 GiB / 2 vCPU": {
+     "monthly": 24
+    },
+    "Basic 8 GiB / 4 vCPU": {
+     "monthly": 48
+    }
+   }
+  },
+  "cloudflare": {
+   "name": "Cloudflare",
+   "category": "hosting",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "monthly": 25,
+     "annual_monthly": 20
+    },
+    "Business": {
+     "monthly": 250,
+     "annual_monthly": 200
+    },
+    "Enterprise": {},
+    "Zero Trust Pay-as-you-go": {
+     "monthly": 7
+    }
+   }
+  },
+  "resend": {
+   "name": "Resend",
+   "category": "dev-tools",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "monthly": 20
+    },
+    "Scale": {
+     "monthly": 90
+    },
+    "Enterprise": {}
+   }
+  },
+  "perplexity": {
+   "name": "Perplexity",
+   "category": "ai",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "monthly": 20
+    },
+    "Max": {
+     "monthly": 200
+    },
+    "Enterprise Pro": {
+     "monthly": 40,
+     "annual_monthly": 33.33
+    },
+    "Enterprise Max": {
+     "monthly": 325,
+     "annual_monthly": 270.83
+    }
+   }
+  },
+  "lovable": {
+   "name": "Lovable",
+   "category": "ai",
+   "currency": "USD",
+   "plans": {
+    "Free": {
+     "monthly": 0,
+     "annual_monthly": 0
+    },
+    "Pro": {
+     "monthly": 25
+    },
+    "Business": {
+     "monthly": 50
+    },
+    "Enterprise": {}
+   }
+  }
+ }
+}

@@ -3,7 +3,7 @@
   "name": "io.github.frenchleg/saas-pricing",
   "title": "SaaS Pricing",
   "description": "Prices, plans and SOC 2/ISO/HIPAA/UK-EU data residency facts for 100 SaaS tools, in USD and GBP.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "repository": {
     "url": "https://github.com/frenchleg/saas-pricing-mcp",
     "source": "github"

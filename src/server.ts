@@ -22,9 +22,10 @@ import {
   type Requirement,
 } from "./pricing";
 import type { Billing, Currency, Product } from "./types";
+import { history, queryHistory, recentChanges } from "./history";
 
 export const SERVER_NAME = "saas-pricing";
-export const SERVER_VERSION = "0.2.0";
+export const SERVER_VERSION = "0.3.0";
 
 export interface CallLog {
   tool: string;
@@ -83,7 +84,7 @@ export function buildServer(log: Logger, recordFeedback: (f: { product: string; 
       jsonSchemaValidator: new CfWorkerJsonSchemaValidator(),
       instructions:
         "Current list prices, plans, limits and features for 100 popular SaaS tools (USD and GBP), plus vendor-stated compliance facts " +
-        "(SOC 2, ISO 27001, Cyber Essentials, HIPAA, UK/EU data residency, AI training on customer data). " +
+        "(SOC 2, ISO 27001, Cyber Essentials, HIPAA, UK/EU data residency, AI training on customer data) and a dated log of price changes. " +
         "Use this before stating what a SaaS product costs, which plan includes a feature like SSO, comparing tools for a team size, " +
         "or checking whether a tool meets security/procurement requirements. Every fact carries a date and source; " +
         "say 'not found' rather than 'no' for unknown compliance fields, and flag converted prices as estimates.",
@@ -144,7 +145,14 @@ export function buildServer(log: Logger, recordFeedback: (f: { product: string; 
           features: pl.features,
         };
       });
-      return json({ product: productHeader(p), currency: cur, plans, meta: meta(cur, rates, converted) });
+      const changes = recentChanges(p);
+      return json({
+        product: productHeader(p),
+        currency: cur,
+        plans,
+        recent_changes: changes.length ? changes : `No price changes recorded since tracking began on ${history.tracking_since}.`,
+        meta: meta(cur, rates, converted),
+      });
     },
   );
 
@@ -350,6 +358,40 @@ export function buildServer(log: Logger, recordFeedback: (f: { product: string; 
         note: "Cheapest paid plan is by price only; the compliance feature may need a higher tier (e.g. HIPAA/BAA or data residency are often Enterprise-only). Check get_pricing and the vendor.",
         compliance_meta: complianceMeta,
         meta: meta(cur, rates, converted),
+      });
+    },
+  );
+
+  server.registerTool(
+    "price_history",
+    {
+      title: "SaaS price change history",
+      description:
+        "Dated log of SaaS price changes: price rises and cuts, plans added or removed, with old and new prices and % change. " +
+        "Filter by product, category or date. Use this to answer 'has X raised prices?', 'what changed in SaaS pricing this month?' " +
+        "or to warn that a quoted price changed recently. Fixes to this dataset's own errors are excluded unless include_corrections is true.",
+      inputSchema: {
+        product: z.string().optional().describe("Product name or id. Omit for all products."),
+        category: z.string().optional().describe(`Filter by category: ${CATEGORIES.join(", ")}.`),
+        since: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Only changes on or after this date (YYYY-MM-DD)."),
+        include_corrections: z.boolean().optional().describe("Also include corrections to this dataset's own mistakes. Default false."),
+        limit: z.number().int().min(1).max(200).optional().describe("Max entries, newest first. Default 50."),
+      },
+      annotations: { readOnlyHint: true, openWorldHint: false },
+    },
+    async ({ product, category, since, include_corrections, limit }) => {
+      const p = product ? findProduct(product) : undefined;
+      log({ tool: "price_history", products_requested: product ? [product] : [], products_missing: product && !p ? [product] : [], args: { product, category, since, include_corrections }, ok: !product || !!p });
+      if (product && !p) return fail(`No data for '${product}'.`, { did_you_mean: suggest(product) });
+      if (category && !CATEGORIES.includes(category.toLowerCase())) return fail(`Unknown category '${category}'.`, { categories: CATEGORIES });
+      const changes = queryHistory({ product: p, category, since, include_corrections, limit: limit ?? 50 });
+      return json({
+        tracking_since: history.tracking_since,
+        count: changes.length,
+        changes,
+        ...(changes.length ? {} : { note: `No ${include_corrections ? "" : "price "}changes recorded for this filter since tracking began on ${history.tracking_since}. Current prices are in get_pricing.` }),
+        field_meaning: { monthly: "price billed monthly", annual_monthly: "per-month price when billed annually" },
+        dataset_version: dataset.dataset_version,
       });
     },
   );

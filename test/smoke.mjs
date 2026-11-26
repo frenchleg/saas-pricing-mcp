@@ -17,7 +17,7 @@ let passed = 0;
 const ok = (cond, msg) => { assert.ok(cond, msg); passed++; console.log("  ✓", msg); };
 
 const { tools } = await client.listTools();
-ok(tools.length === 7, `lists 7 tools (${tools.map((t) => t.name).join(", ")})`);
+ok(tools.length === 8, `lists 8 tools (${tools.map((t) => t.name).join(", ")})`);
 
 let r = await call("list_products", {});
 ok(r.body.count === 100, "list_products returns 100 products");
@@ -101,6 +101,15 @@ const all = [...r.body.meets_all, ...r.body.possible_matches_unknown_fields].map
 ok(!all.includes("basecamp") && !all.includes("resend") && r.body.meets_all.length >= 30, `HIPAA: ${r.body.meets_all.length} tools, explicit 'no' vendors excluded`);
 r = await call("find_compliant_tools", { requirements: ["cyber_essentials"], max_price: 30, currency: "GBP" });
 ok(r.body.meets_all.every((m) => m.cheapest_paid_plan.price_per_month <= 30), `Cyber Essentials under £30: ${r.body.meets_all.map((m) => m.product_id).join(", ")}`);
+
+r = await call("price_history", {});
+ok(!r.isError && /^\d{4}-\d{2}-\d{2}$/.test(r.body.tracking_since) && Array.isArray(r.body.changes), `price_history works (tracking since ${r.body.tracking_since}, ${r.body.count} changes)`);
+r = await call("price_history", { product: "notion", since: "2026-01-01" });
+ok(!r.isError && r.body.changes.every((c) => c.product === "notion"), "price_history filters by product");
+r = await call("price_history", { product: "nonexistent-tool-xyz" });
+ok(r.isError, "price_history rejects unknown product");
+r = await call("get_pricing", { product: "slack" });
+ok("recent_changes" in r.body, "get_pricing includes recent_changes");
 
 // ---- robustness: clients newer than our SDK, or with a partial Accept header, still get served ----
 {

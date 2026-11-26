@@ -2,7 +2,7 @@ import type { Product } from "./types";
 
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c] as string);
 
-export function landingPage(origin: string, products: Product[], categories: string[], version: string): string {
+export function landingPage(origin: string, products: Product[], categories: string[], version: string, trackingSince: string): string {
   const endpoint = `${origin}/mcp`;
   const byCat = categories
     .map((c) => `<li><b>${esc(c)}</b>: ${products.filter((p) => p.category === c).map((p) => esc(p.name)).join(", ")}</li>`)
@@ -26,6 +26,7 @@ export function landingPage(origin: string, products: Product[], categories: str
 <li><code>search_plans</code>: cheapest plans with a feature (SSO, SCIM, audit log, HIPAA…) or under a budget</li>
 <li><code>get_compliance</code>: a product's certifications, data residency, AI-training stance, trust centre and sub-processor links, with evidence</li>
 <li><code>find_compliant_tools</code>: tools meeting all your security requirements, cheapest first (e.g. SOC 2 Type II + EU data residency)</li>
+<li><code>price_history</code>: dated log of price rises, cuts and plan changes, tracked since ${esc(trackingSince)}</li>
 <li><code>list_products</code>: coverage and starting prices</li>
 <li><code>report_outdated</code>: flag a wrong price or request a product</li>
 </ul>

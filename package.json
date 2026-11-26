@@ -1,6 +1,6 @@
 {
   "name": "saas-pricing-mcp",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Remote MCP server: current SaaS pricing (USD and GBP) for AI agents",
   "directories": {
     "test": "test"
@@ -10,7 +10,9 @@
     "deploy": "wrangler deploy",
     "validate": "node scripts/validate.mjs",
     "typecheck": "tsc -p .",
-    "test": "node test/smoke.mjs",
+    "test": "node test/history.test.mjs && node test/smoke.mjs",
+    "record-history": "node scripts/record-history.mjs",
+    "monthly-report": "node scripts/monthly-report.mjs",
     "check-pages": "node scripts/check-pages.mjs",
     "db:init": "wrangler d1 execute saas-pricing-mcp --remote --file=schema.sql"
   },

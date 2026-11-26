@@ -1,3 +1,4 @@
+import { history } from "./history";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { LATEST_PROTOCOL_VERSION, SUPPORTED_PROTOCOL_VERSIONS } from "@modelcontextprotocol/sdk/types.js";
 import { buildServer, SERVER_NAME, SERVER_VERSION, type CallLog } from "./server";
@@ -201,7 +202,7 @@ export default {
     if (url.pathname === "/stats") return stats(request, env);
     if (url.pathname === "/health") return Response.json({ ok: true, name: SERVER_NAME, version: SERVER_VERSION, dataset_version: dataset.dataset_version, products: products.length });
     if (url.pathname === "/" && request.method === "GET") {
-      return new Response(landingPage(url.origin, products, CATEGORIES, dataset.dataset_version), { headers: { "Content-Type": "text/html; charset=utf-8" } });
+      return new Response(landingPage(url.origin, products, CATEGORIES, dataset.dataset_version, history.tracking_since), { headers: { "Content-Type": "text/html; charset=utf-8" } });
     }
     return new Response("Not found", { status: 404 });
   },

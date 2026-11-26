@@ -1,6 +1,6 @@
 # SaaS Pricing MCP
 
-An [MCP](https://modelcontextprotocol.io) server that gives AI assistants current list prices and security & compliance facts for 100 popular SaaS tools. It covers plans, per-seat costs, limits, key features and free tiers, in USD and GBP. It also records what each vendor states about SOC 2, ISO 27001, UK Cyber Essentials, HIPAA, UK and EU data residency, and whether it trains AI on customer data.
+An [MCP](https://modelcontextprotocol.io) server that gives AI assistants current list prices and security & compliance facts for 100 popular SaaS tools. It covers plans, per-seat costs, limits, key features and free tiers, in USD and GBP. It also records what each vendor states about SOC 2, ISO 27001, UK Cyber Essentials, HIPAA, UK and EU data residency, and whether it trains AI on customer data. And it keeps a dated log of price changes, so an assistant can tell you when a tool raised its prices.
 
 Ask your assistant things like:
 
@@ -9,6 +9,7 @@ Ask your assistant things like:
 - "Compare Slack, Microsoft 365 and Google Workspace for 40 seats in GBP."
 - "Which CRMs are SOC 2 Type II with EU data residency, cheapest first?"
 - "Is Xero Cyber Essentials certified? Does Zoom train AI on our meetings?"
+- "Has Slack raised its prices recently? Which SaaS tools changed pricing this month?"
 
 Every price includes its source URL and a `last_checked` date, and every compliance fact links to the vendor page it came from, so answers can be checked.
 
@@ -73,6 +74,7 @@ Any MCP client that supports remote HTTP servers can connect with the URL above.
 | `compare_products` | Compares 2–8 products for a given number of seats, with monthly and annual totals and seat minimums included, plus a one-line compliance summary for each. |
 | `get_compliance` | Gives one product's security and compliance facts: SOC 2 (and whether Type II), ISO 27001, ISO 42001, UK Cyber Essentials, PCI DSS, GDPR, HIPAA/BAA, UK and EU data residency, AI training on customer data, and links to its trust centre, sub-processor list and DPA. Each fact has an evidence URL. |
 | `find_compliant_tools` | Finds products that meet all the requirements you give (for example `soc2_type2` + `eu_data_residency` + `no_ai_training`), optionally within a category and price cap. Results are sorted by cheapest paid plan, with near-misses listed where a fact is unknown. |
+| `price_history` | Gives the dated log of price changes: rises, cuts, plans added or removed, with old and new prices and the % change. You can filter by `product`, `category` or `since` (a date). Fixes to this dataset's own mistakes are left out unless you set `include_corrections`. `get_pricing` also shows each product's latest changes. |
 | `report_outdated` | Flags a wrong or outdated price or compliance fact, or requests a product that isn't covered. The maintainer reviews each report. |
 
 ### Common parameters
@@ -129,6 +131,15 @@ A few products list prices that load in ways the checker can't read (Jira, Quick
 
 Always confirm with the vendor before buying. If something is wrong, use the `report_outdated` tool or [open an issue](../../issues).
 
+### Price history
+
+Every change to a price in `data/products.json` is recorded automatically in `data/price-history.json`, with the date, the old and new price, and the % change. Tracking started on 26 November 2026, so there's no history from before then.
+
+The log keeps two kinds of entry apart:
+
+- **`change`**: the vendor changed its price or plans.
+- **`correction`**: this dataset had a price wrong and it was fixed. Corrections aren't price changes, so `price_history` hides them unless you ask for them.
+
 ### Compliance facts
 
 Compliance data comes from each vendor's own security, trust and legal pages:
@@ -159,7 +170,7 @@ npx wrangler d1 create saas-pricing-mcp                                      # p
 npx wrangler d1 execute saas-pricing-mcp --remote --file=schema.sql
 npx wrangler dev      # run locally at http://localhost:8787/mcp
 npx wrangler deploy   # deploy to your own Cloudflare account
-node test/smoke.mjs https://<your-worker>.workers.dev/mcp                    # 31 end-to-end checks
+node test/smoke.mjs https://<your-worker>.workers.dev/mcp                    # 39 end-to-end checks
 ```
 
 Put local secrets in `.dev.vars`. That file is listed in `.gitignore`, so it isn't committed.
@@ -168,11 +179,13 @@ Useful scripts:
 
 - `npm run validate` checks `data/products.json`, including that every compliance fact has an evidence link.
 - `node scripts/check-pages.mjs` fingerprints every pricing page and reports which ones changed (runs weekly in GitHub Actions).
+- `npm run record-history` compares `data/products.json` with the last snapshot and logs any price changes. It runs on every push to `main`, then commits the updated log back. If the commit message contains "correction" or "fix data", the changes are logged as corrections. To run it by hand: `node scripts/record-history.mjs --kind correction --note "reason"`.
+- `npm run monthly-report` writes a markdown summary of last month's price changes to `reports/YYYY-MM.md` (or pass a month: `node scripts/monthly-report.mjs 2026-12`).
 - `node scripts/scan-trust.mjs` then `node scripts/apply-trust.mjs` re-scan vendors' trust pages and rebuild the compliance data (runs monthly). Reviewed decisions live in `data/trust-overrides.json`.
 
 ## Contributing
 
-Pricing corrections, compliance corrections, new products and bug fixes are welcome. When you update a price, include the vendor's pricing page URL in your pull request. For a compliance fact, include the vendor page that states it, and add your decision to `data/trust-overrides.json` so the monthly re-scan doesn't overwrite it.
+Pricing corrections, compliance corrections, new products and bug fixes are welcome. When you update a price, include the vendor's pricing page URL in your pull request. If you're fixing a price that was wrong in this dataset (rather than one the vendor changed), put "correction" in the commit message so it's logged as a correction, not a price change. For a compliance fact, include the vendor page that states it, and add your decision to `data/trust-overrides.json` so the monthly re-scan doesn't overwrite it.
 
 ## License
 
