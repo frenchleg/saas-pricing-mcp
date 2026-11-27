@@ -132,5 +132,16 @@ ok("recent_changes" in r.body, "get_pricing includes recent_changes");
   ok(head.status === 200, "HEAD health check gets 200");
 }
 
+// ---- usage dashboard: the page loads for browsers, but the data needs the key ----
+{
+  const base = endpoint.replace(/\/mcp\/?$/, "");
+  const page = await fetch(base + "/stats", { headers: { Accept: "text/html" } });
+  const csp = page.headers.get("content-security-policy") ?? "";
+  const html = await page.text();
+  ok(page.status === 200 && /text\/html/.test(page.headers.get("content-type") ?? "") && csp.includes("script-src 'nonce-") && html.includes("SaaS Pricing MCP usage"), "stats dashboard page loads with a strict content security policy");
+  const noKey = await fetch(base + "/stats?format=json", { headers: { Accept: "text/html" } });
+  ok(noKey.status === 401, "stats data is refused without the key");
+}
+
 await client.close();
 console.log(`\n${passed} checks passed`);

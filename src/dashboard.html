@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<title>Usage · SaaS Pricing MCP</title>
+<style nonce="__NONCE__">
+:root {
+  color-scheme: light;
+  --page: #f9f9f9; --surface: #ffffff; --ink: #191919; --ink-2: #666666;
+  --grid: #e7e7e7; --axis: #c2c2c2; --border: rgba(11, 11, 11, 0.10);
+  --series: #257de0; --series-wash: rgba(37, 125, 224, 0.10); --chip: #f1f1f1;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page: #0b0b0b; --surface: #191919; --ink: #efefef; --ink-2: #9c9c9c;
+    --grid: #303030; --axis: #474747; --border: rgba(255, 255, 255, 0.10);
+    --series: #338ced; --series-wash: rgba(51, 140, 237, 0.16); --chip: #262626;
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 1080px; margin: 0 auto; padding: 24px 20px 48px; }
+[hidden] { display: none !important; }
+.top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; margin-bottom: 14px; }
+h1 { font-size: 20px; margin: 0; font-weight: 600; }
+.sub { color: var(--ink-2); font-size: 13px; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 14px; }
+.seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.seg button { border: 0; background: transparent; color: var(--ink); padding: 6px 12px; font: inherit; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--border); }
+.seg button[aria-pressed="true"] { background: var(--chip); font-weight: 600; }
+.btn { border: 1px solid var(--border); background: var(--surface); color: var(--ink); padding: 6px 12px; border-radius: 8px; font: inherit; cursor: pointer; }
+.btn.primary { background: var(--series); border-color: var(--series); color: #ffffff; font-weight: 600; }
+.linkbtn { border: 0; background: transparent; color: var(--ink-2); text-decoration: underline; padding: 6px 2px; font: inherit; cursor: pointer; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 12px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; position: relative; min-width: 0; }
+.tile .label { color: var(--ink-2); font-size: 13px; }
+.tile .value { font-size: 28px; font-weight: 600; margin-top: 2px; }
+.tile .note { color: var(--ink-2); font-size: 12px; margin-top: 2px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 12px; margin-bottom: 12px; }
+h2 { font-size: 15px; margin: 0 0 2px; font-weight: 600; }
+.desc { color: var(--ink-2); font-size: 12.5px; margin: 0 0 12px; }
+svg { display: block; overflow: visible; }
+svg text { fill: var(--ink-2); font-size: 11px; font-variant-numeric: tabular-nums; }
+.gridline { stroke: var(--grid); stroke-width: 1; }
+.axis { stroke: var(--axis); stroke-width: 1; }
+.bar { fill: var(--series); }
+.bar.on { fill-opacity: 0.75; }
+.hit { fill: transparent; outline: none; }
+.hit:focus-visible { stroke: var(--ink-2); stroke-width: 1; }
+.tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 9px; box-shadow: var(--shadow); font-size: 12px; white-space: nowrap; z-index: 2; }
+.tip strong { display: block; font-size: 13px; color: var(--ink); }
+.tip span { color: var(--ink-2); }
+.hbar { display: grid; grid-template-columns: minmax(110px, 38%) 1fr; gap: 10px; align-items: center; margin: 7px 0; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; }
+.hbar .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hbar .track { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.hbar .fill { height: 14px; background: var(--series); border-radius: 0 4px 4px 0; min-width: 3px; flex: 0 0 auto; }
+.hbar .num { font-variant-numeric: tabular-nums; font-size: 12.5px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; color: var(--ink-2); font-weight: 500; padding: 6px 8px; border-bottom: 1px solid var(--grid); }
+td { padding: 6px 8px; border-bottom: 1px solid var(--grid); vertical-align: top; overflow-wrap: anywhere; }
+tr:last-child td { border-bottom: 0; }
+.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 999px; background: var(--chip); color: var(--ink-2); font-size: 12px; white-space: nowrap; border: 1px solid transparent; }
+.chip.app { color: var(--ink); border-color: var(--series); background: var(--series-wash); }
+.trunc { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.scroll { overflow-x: auto; }
+details { margin-top: 10px; }
+summary { cursor: pointer; color: var(--ink-2); font-size: 12.5px; }
+details table { margin-top: 6px; }
+.empty { color: var(--ink-2); padding: 10px 0 4px; margin: 0; }
+.foot { color: var(--ink-2); font-size: 12px; margin-top: 18px; }
+#dash { transition: opacity 0.15s; }
+#dash.loading { opacity: 0.55; }
+#login { max-width: 440px; margin: 10vh auto 0; }
+#login label { display: block; font-weight: 600; margin-top: 12px; }
+#login input[type="password"] { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); font: inherit; margin: 6px 0 10px; }
+#login .remember { display: flex; gap: 8px; align-items: center; color: var(--ink-2); font-size: 13px; margin-bottom: 14px; }
+.msg { margin: 10px 0 0; font-size: 13px; }
+.msg::before { content: "\26A0\FE0E  "; }
+@media (max-width: 560px) { .tile .value { font-size: 24px; } main { padding: 16px 12px 40px; } }
+</style>
+</head>
+<body>
+<main>
+  <section id="login" class="card" hidden>
+    <h1>Usage stats</h1>
+    <p class="desc">SaaS Pricing MCP. Enter your stats key to see who is using the server.</p>
+    <form id="login-form" autocomplete="off">
+      <label for="key-input">Stats key</label>
+      <input id="key-input" type="password" spellcheck="false" required>
+      <div class="remember"><input id="remember" type="checkbox" checked><label for="remember">Remember on this device</label></div>
+      <button class="btn primary" type="submit">Show stats</button>
+    </form>
+    <p id="login-msg" class="msg" hidden></p>
+  </section>
+
+  <section id="dash" hidden>
+    <div class="top">
+      <div>
+        <h1>SaaS Pricing MCP usage</h1>
+        <div class="sub" id="updated"></div>
+      </div>
+      <button class="linkbtn" id="forget" type="button">Forget key on this device</button>
+    </div>
+    <div class="filters" role="group" aria-label="Time range">
+      <div class="seg" id="range">
+        <button type="button" data-days="7">Last 7 days</button>
+        <button type="button" data-days="30">Last 30 days</button>
+        <button type="button" data-days="90">Last 90 days</button>
+      </div>
+      <button class="btn" id="refresh" type="button">Refresh</button>
+    </div>
+    <p id="dash-msg" class="msg" hidden></p>
+    <div id="content"></div>
+    <p class="foot">Test traffic from the project's own checks is never logged. Times are shown in your local time zone; daily totals use UTC days. Your key is kept in this browser only.</p>
+  </section>
+</main>
+<script nonce="__NONCE__">
+(function () {
+  "use strict";
+  var KEY_STORE = "saas-pricing-mcp:stats-key";
+  var state = { key: null, days: 30, loaded: false };
+  var memoryKey = null;
+  var $ = function (id) { return document.getElementById(id); };
+
+  function save(v) { memoryKey = v; try { if (v == null) localStorage.removeItem(KEY_STORE); else localStorage.setItem(KEY_STORE, v); } catch (e) { /* storage unavailable: memory only */ } }
+  function load() { try { return localStorage.getItem(KEY_STORE) || memoryKey; } catch (e) { return memoryKey; } }
+
+  // All text from the server goes in with textContent: client names, user agents and
+  // feedback are written by whoever calls the server, so they are never parsed as HTML.
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = String(text); return e; }
+  function svg(tag, attrs) { var e = document.createElementNS("http://www.w3.org/2000/svg", tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+  var nf = new Intl.NumberFormat("en-GB");
+  function fmt(n) { return nf.format(n || 0); }
+  function plural(n, one, many) { return fmt(n) + " " + (n === 1 ? one : many); }
+  function fmtDay(iso) { var d = new Date(iso + "T00:00:00Z"); return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" }); }
+  function fmtTime(iso) { var d = new Date(iso); if (isNaN(d.getTime())) return String(iso); return d.toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }); }
+  var CRAWLER = /(probe|prober|crawl|spider|bot\b|health|check|monitor|catalog|registry|index|observer|verif|scan|uptime|glama|mcpbeat|inspector|ping|validator)/i;
+  function looksLikeCrawler(name) { return CRAWLER.test(name || ""); }
+
+  function showLogin(message) {
+    $("dash").hidden = true; $("login").hidden = false;
+    var m = $("login-msg"); m.hidden = !message; m.textContent = message || "";
+    $("key-input").value = ""; $("key-input").focus();
+  }
+  function showDashMessage(message) { var m = $("dash-msg"); m.hidden = !message; m.textContent = message || ""; }
+
+  function fetchData() {
+    var dash = $("dash");
+    $("login").hidden = true; dash.hidden = false;
+    if (!state.loaded) $("content").replaceChildren(el("p", "empty", "Loading…"));
+    dash.classList.add("loading");
+    showDashMessage("");
+    fetch("/stats?format=json&days=" + state.days, { headers: { Authorization: "Bearer " + state.key }, cache: "no-store" })
+      .then(function (r) {
+        if (r.status === 401) { save(null); state.key = null; state.loaded = false; showLogin("That key didn't work. Check it and try again."); return null; }
+        if (!r.ok) throw new Error("the server answered " + r.status);
+        return r.json();
+      })
+      .then(function (d) { if (d) { render(d); state.loaded = true; } })
+      .catch(function (e) { showDashMessage("Couldn't load the stats (" + e.message + "). Try Refresh."); })
+      .then(function () { dash.classList.remove("loading"); });
+  }
+
+  // ---------- pieces ----------
+  function card(title, desc) {
+    var c = el("div", "card");
+    c.appendChild(el("h2", null, title));
+    if (desc) c.appendChild(el("p", "desc", desc));
+    return c;
+  }
+  function tile(label, value, note) {
+    var t = el("div", "card tile");
+    t.appendChild(el("div", "label", label));
+    t.appendChild(el("div", "value", fmt(value)));
+    if (note) t.appendChild(el("div", "note", note));
+    return t;
+  }
+  function table(headers, rows, numericCols) {
+    var t = el("table"), thead = el("thead"), tr = el("tr");
+    headers.forEach(function (h, i) { tr.appendChild(el("th", numericCols && numericCols.indexOf(i) >= 0 ? "n" : null, h)); });
+    thead.appendChild(tr); t.appendChild(thead);
+    var tb = el("tbody");
+    rows.forEach(function (r) {
+      var row = el("tr");
+      r.forEach(function (cell, i) {
+        var td = el("td", numericCols && numericCols.indexOf(i) >= 0 ? "n" : null);
+        if (cell instanceof Node) td.appendChild(cell); else td.textContent = cell == null ? "" : String(cell);
+        row.appendChild(td);
+      });
+      tb.appendChild(row);
+    });
+    t.appendChild(tb);
+    var wrap = el("div", "scroll"); wrap.appendChild(t);
+    return wrap;
+  }
+  function daily(rows, field, days) {
+    var map = {};
+    (rows || []).forEach(function (r) { map[r.day] = r[field]; });
+    var now = new Date(), end = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()), out = [];
+    for (var i = days - 1; i >= 0; i--) { var day = new Date(end - i * 86400000).toISOString().slice(0, 10); out.push({ day: day, v: map[day] || 0 }); }
+    return out;
+  }
+  function niceTicks(max) {
+    var raw = max / 4, mag = Math.pow(10, Math.floor(Math.log10(raw))), step = mag * 10;
+    [1, 2, 5, 10].some(function (m) { if (m * mag >= raw) { step = m * mag; return true; } return false; });
+    step = Math.max(1, step);
+    var out = [0];
+    while (out[out.length - 1] < max) out.push(out[out.length - 1] + step);
+    return out;
+  }
+  function roundTop(x, y, w, h, r) {
+    return "M" + x + "," + (y + h) + "V" + (y + r) + "Q" + x + "," + y + " " + (x + r) + "," + y + "H" + (x + w - r) + "Q" + (x + w) + "," + y + " " + (x + w) + "," + (y + r) + "V" + (y + h) + "Z";
+  }
+
+  // Single-series column chart: one hue, thin bars rounded at the top only, hairline grid,
+  // a hover/focus tooltip per day, and a table view underneath.
+  function columnChart(host, data, one, many) {
+    var max = data.reduce(function (m, d) { return Math.max(m, d.v); }, 0);
+    var total = data.reduce(function (s, d) { return s + d.v; }, 0);
+    if (!max) { host.appendChild(el("p", "empty", "None in this period yet.")); return; }
+    // Drawn at the card's real width (1 unit = 1px) so axis text stays readable on any screen.
+    var W = Math.max(260, Math.floor(host.getBoundingClientRect().width - 34)), H = 210, L = 40, R = 8, T = 10, B = 26, plotH = H - T - B;
+    var ticks = niceTicks(max), top = ticks[ticks.length - 1];
+    var s = svg("svg", { viewBox: "0 0 " + W + " " + H, width: "100%", role: "img", "aria-label": plural(total, one, many) + " in total, at most " + fmt(max) + " in a day" });
+    ticks.forEach(function (t) {
+      var y = T + plotH * (1 - t / top);
+      s.appendChild(svg("line", { x1: L, x2: W - R, y1: y, y2: y, "class": t === 0 ? "axis" : "gridline" }));
+      var tx = svg("text", { x: L - 8, y: y + 4, "text-anchor": "end" }); tx.textContent = fmt(t); s.appendChild(tx);
+    });
+    var slot = (W - L - R) / data.length, bw = Math.max(1.5, Math.min(24, slot - 2));
+    var wrap = el("div"); wrap.style.position = "relative";
+    var tip = el("div", "tip"); tip.hidden = true;
+    data.forEach(function (d, i) {
+      var x = L + i * slot + (slot - bw) / 2, h = plotH * (d.v / top), y = T + plotH - h, bar = null;
+      if (d.v > 0) { bar = svg("path", { d: roundTop(x, y, bw, h, Math.min(4, bw / 2, h)), "class": "bar" }); s.appendChild(bar); }
+      var hit = svg("rect", { x: L + i * slot, y: T, width: slot, height: plotH, "class": "hit", tabindex: "0", "aria-label": fmtDay(d.day) + ": " + plural(d.v, one, many) });
+      var on = function () {
+        if (bar) bar.classList.add("on");
+        tip.replaceChildren(el("strong", null, plural(d.v, one, many)), el("span", null, fmtDay(d.day)));
+        tip.hidden = false;
+        // Sit just above the bar (or the baseline on an empty day), kept inside the chart.
+        var wb = wrap.getBoundingClientRect(), hb = hit.getBoundingClientRect();
+        var barTop = bar ? bar.getBoundingClientRect().top : hb.bottom;
+        var centre = hb.left - wb.left + hb.width / 2;
+        var left = centre - tip.offsetWidth / 2, top = barTop - wb.top - tip.offsetHeight - 6;
+        if (top < 0) {
+          // No room above a tall bar: sit beside it instead, on the side with more space.
+          top = Math.max(0, barTop - wb.top);
+          left = centre > wb.width / 2 ? centre - hb.width / 2 - tip.offsetWidth - 4 : centre + hb.width / 2 + 4;
+        }
+        tip.style.left = Math.max(0, Math.min(wb.width - tip.offsetWidth, left)) + "px";
+        tip.style.top = top + "px";
+      };
+      var off = function () { if (bar) bar.classList.remove("on"); tip.hidden = true; };
+      hit.addEventListener("pointerenter", on); hit.addEventListener("focus", on);
+      hit.addEventListener("pointerleave", off); hit.addEventListener("blur", off);
+      s.appendChild(hit);
+    });
+    [0, Math.floor((data.length - 1) / 2), data.length - 1].filter(function (v, i, a) { return a.indexOf(v) === i; }).forEach(function (i, n, arr) {
+      var anchor = n === 0 ? "start" : n === arr.length - 1 ? "end" : "middle";
+      var x = n === 0 ? L : n === arr.length - 1 ? W - R : L + (i + 0.5) * slot;
+      var tx = svg("text", { x: x, y: H - 6, "text-anchor": anchor }); tx.textContent = fmtDay(data[i].day); s.appendChild(tx);
+    });
+    wrap.appendChild(s); wrap.appendChild(tip); host.appendChild(wrap);
+    var det = el("details"); det.appendChild(el("summary", null, "Show as a table"));
+    var rows = data.filter(function (d) { return d.v > 0; }).reverse().map(function (d) { return [fmtDay(d.day), fmt(d.v)]; });
+    det.appendChild(table(["Day (UTC)", many.charAt(0).toUpperCase() + many.slice(1)], rows, [1]));
+    host.appendChild(det);
+  }
+
+  function barList(host, rows, nameKey, valueKey) {
+    if (!rows || !rows.length) { host.appendChild(el("p", "empty", "None in this period yet.")); return; }
+    var max = rows.reduce(function (m, r) { return Math.max(m, r[valueKey]); }, 0) || 1;
+    rows.forEach(function (r) {
+      var row = el("div", "hbar"), track = el("div", "track"), fill = el("div", "fill");
+      var name = el("div", "name mono", r[nameKey]); name.title = String(r[nameKey]);
+      fill.style.width = "calc((100% - 56px) * " + (r[valueKey] / max).toFixed(4) + ")";
+      track.appendChild(fill); track.appendChild(el("span", "num", fmt(r[valueKey])));
+      row.appendChild(name); row.appendChild(track); host.appendChild(row);
+    });
+  }
+
+  // ---------- page ----------
+  function render(d) {
+    var days = d.days || state.days, totals = d.totals || {};
+    var clients = d.sessions_by_client || [];
+    var crawlerSessions = clients.filter(function (c) { return looksLikeCrawler(c.client); }).reduce(function (s, c) { return s + c.sessions; }, 0);
+    var topSessions = clients.reduce(function (s, c) { return s + c.sessions; }, 0);
+    var appClients = clients.filter(function (c) { return !looksLikeCrawler(c.client); }).length;
+    var notCovered = (d.requested_but_not_covered || []).reduce(function (s, r) { return s + r.requests; }, 0);
+    var failedTotal = totals.failed || 0;
+
+    $("updated").textContent = "Last " + days + " days · updated " + new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+    Array.prototype.forEach.call($("range").children, function (b) { b.setAttribute("aria-pressed", String(Number(b.dataset.days) === days)); });
+
+    var c = $("content"), frag = document.createDocumentFragment();
+
+    var tiles = el("div", "tiles");
+    tiles.appendChild(tile("Tool calls", totals.calls, "questions agents actually asked"));
+    tiles.appendChild(tile("Connections", totals.sessions, topSessions ? Math.round(100 * crawlerSessions / topSessions) + "% look like directory crawlers" : "no connections yet"));
+    tiles.appendChild(tile("Apps or agents", appClients, "clients that don't look like crawlers"));
+    tiles.appendChild(tile("Asked for, not covered", notCovered, notCovered ? "requests for tools you don't cover" : "no gaps reported"));
+    frag.appendChild(tiles);
+
+    var charts = el("div", "grid2"), chartJobs = [];
+    var c1 = card("Tool calls per day", "Each one is an agent asking for prices, comparisons or compliance facts.");
+    chartJobs.push(function () { columnChart(c1, daily(d.calls_by_day, "calls", days), "call", "calls"); });
+    var c2 = card("Connections per day", "Clients connecting and reading the tool list, crawlers included.");
+    chartJobs.push(function () { columnChart(c2, daily(d.sessions_by_day, "sessions", days), "connection", "connections"); });
+    charts.appendChild(c1); charts.appendChild(c2); frag.appendChild(charts);
+
+    var row2 = el("div", "grid2");
+    var c3 = card("Calls by tool", "Which tools agents use.");
+    barList(c3, d.calls_by_tool, "tool", "calls");
+    var c4 = card("Who's connecting", "Top 20 clients by connections. The type is a guess from the name each client sends.");
+    if (clients.length) {
+      c4.appendChild(table(["Client", "Looks like", "Connections"], clients.map(function (cl) {
+        var crawler = looksLikeCrawler(cl.client);
+        return [el("span", "mono", cl.client), el("span", crawler ? "chip" : "chip app", crawler ? "Directory or crawler" : "App or agent"), fmt(cl.sessions)];
+      }), [2]));
+    } else c4.appendChild(el("p", "empty", "No connections in this period yet."));
+    row2.appendChild(c3); row2.appendChild(c4); frag.appendChild(row2);
+
+    var row3 = el("div", "grid2");
+    var c5 = card("Most requested products", "Products named in tool calls.");
+    if ((d.most_requested_products || []).length) c5.appendChild(table(["Product", "Requests"], d.most_requested_products.map(function (p) { return [p.product, fmt(p.requests)]; }), [1]));
+    else c5.appendChild(el("p", "empty", "No products requested in this period yet."));
+    var c6 = card("Asked for, not covered", "Tools agents wanted that aren't in the dataset yet. Add the top ones first.");
+    if ((d.requested_but_not_covered || []).length) c6.appendChild(table(["Product", "Requests"], d.requested_but_not_covered.map(function (p) { return [p.product, fmt(p.requests)]; }), [1]));
+    else c6.appendChild(el("p", "empty", "Nothing yet. When an agent asks for a tool you don't cover, it appears here."));
+    row3.appendChild(c5); row3.appendChild(c6); frag.appendChild(row3);
+
+    var c7 = card("Reports from agents", "Wrong or outdated prices and product requests sent with report_outdated.");
+    if ((d.recent_feedback || []).length) {
+      c7.appendChild(table(["When", "Product", "Details", "Suggested price"], d.recent_feedback.map(function (f) {
+        return [fmtTime(f.ts), f.plan ? f.product + " · " + f.plan : f.product, f.details, f.suggested_price || ""];
+      })));
+    } else c7.appendChild(el("p", "empty", "No reports in this period."));
+    c7.style.marginBottom = "12px"; frag.appendChild(c7);
+
+    var f = d.failed_requests || {};
+    var c8 = card("Failed requests", failedTotal ? plural(failedTotal, "request", "requests") + " the server rejected. A few from probes are normal." : "Requests the server rejected.");
+    if ((f.by_reason || []).length) {
+      c8.appendChild(table(["Status", "Reason", "Count"], f.by_reason.map(function (r) { return [String(r.status), r.message, fmt(r.count)]; }), [2]));
+      var det = el("details"); det.appendChild(el("summary", null, "Show the most recent"));
+      det.appendChild(table(["When", "Method", "Status", "Reason", "From", "Country"], (f.recent || []).map(function (r) {
+        var ua = el("div", "trunc", r.user_agent || "(none)"); ua.title = String(r.user_agent || "");
+        return [fmtTime(r.ts), r.method, String(r.status), r.message, ua, r.country || ""];
+      })));
+      c8.appendChild(det);
+    } else c8.appendChild(el("p", "empty", "None logged in this period."));
+    frag.appendChild(c8);
+
+    c.replaceChildren(frag);
+    // Charts are drawn once their cards are on the page, so they can measure their width.
+    chartJobs.forEach(function (job) { job(); });
+    state.lastData = d; state.lastWidth = c.getBoundingClientRect().width;
+  }
+
+  var resizeTimer = null;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (state.lastData && !$("dash").hidden && Math.abs($("content").getBoundingClientRect().width - state.lastWidth) > 2) render(state.lastData);
+    }, 150);
+  });
+
+  // ---------- wiring ----------
+  $("login-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var k = $("key-input").value.trim();
+    if (!k) return;
+    state.key = k;
+    if ($("remember").checked) save(k); else memoryKey = k;
+    fetchData();
+  });
+  $("forget").addEventListener("click", function () { save(null); memoryKey = null; state.key = null; state.loaded = false; showLogin(""); });
+  $("refresh").addEventListener("click", function () { if (state.key) fetchData(); });
+  Array.prototype.forEach.call($("range").children, function (b) {
+    b.addEventListener("click", function () { state.days = Number(b.dataset.days); if (state.key) fetchData(); });
+  });
+
+  // A key in the address (from the Terminal shortcut or an old bookmark) is saved, then
+  // removed from the address bar so it doesn't linger in history or get shared by accident.
+  var params = new URLSearchParams(location.search);
+  var d = Number(params.get("days"));
+  if ([7, 30, 90].indexOf(d) >= 0) state.days = d;
+  var urlKey = params.get("key");
+  if (urlKey) {
+    save(urlKey); state.key = urlKey;
+    params.delete("key");
+    var rest = params.toString();
+    history.replaceState(null, "", location.pathname + (rest ? "?" + rest : ""));
+  } else {
+    state.key = load();
+  }
+  if (state.key) fetchData(); else showLogin("");
+})();
+</script>
+</body>
+</html>

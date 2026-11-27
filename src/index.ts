@@ -1,3 +1,4 @@
+import dashboardHtml from "./dashboard.html";
 import { history } from "./history";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { LATEST_PROTOCOL_VERSION, SUPPORTED_PROTOCOL_VERSIONS } from "@modelcontextprotocol/sdk/types.js";
@@ -160,15 +161,33 @@ async function handleMcpInner(request: Request, env: Env, ctx: ExecutionContext,
   return response;
 }
 
+/** The browser dashboard. It holds no data itself: its script asks for the key, then fetches /stats?format=json with it. */
+function dashboardResponse(): Response {
+  const nonce = crypto.randomUUID().replace(/-/g, "");
+  return new Response(dashboardHtml.split("__NONCE__").join(nonce), {
+    headers: {
+      "Content-Type": "text/html; charset=utf-8",
+      // Only this page's own script and styles may run, and it may only talk to this server.
+      "Content-Security-Policy": `default-src 'none'; script-src 'nonce-${nonce}'; style-src 'nonce-${nonce}'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'`,
+      "Cache-Control": "no-store",
+      "Referrer-Policy": "no-referrer",
+      "X-Content-Type-Options": "nosniff",
+      "X-Robots-Tag": "noindex",
+    },
+  });
+}
+
 async function stats(request: Request, env: Env): Promise<Response> {
   const auth = request.headers.get("authorization") ?? "";
   const key = new URL(request.url).searchParams.get("key");
-  if (!env.STATS_KEY || (auth !== `Bearer ${env.STATS_KEY}` && key !== env.STATS_KEY)) return new Response("Unauthorized", { status: 401 });
+  if (!env.STATS_KEY || (auth !== `Bearer ${env.STATS_KEY}` && key !== env.STATS_KEY)) return new Response("Unauthorized", { status: 401, headers: { "Cache-Control": "no-store" } });
   if (!env.DB) return Response.json({ error: "No D1 database bound" }, { status: 500 });
   const days = Math.min(Number(new URL(request.url).searchParams.get("days") ?? 7) || 7, 365);
   const since = new Date(Date.now() - days * 86400_000).toISOString();
   const q = async (sql: string) => (await env.DB!.prepare(sql).bind(since).all()).results;
-  const [byTool, byClient, byDay, topProducts, missing, feedback] = await Promise.all([
+  const [totalsRows, sessionsByDay, byTool, byClient, byDay, topProducts, missing, feedback] = await Promise.all([
+    q("SELECT (SELECT COUNT(*) FROM calls WHERE ts >= ?1) AS calls, (SELECT COUNT(*) FROM sessions WHERE ts >= ?1) AS sessions, (SELECT COUNT(DISTINCT COALESCE(client_name, '(unknown)')) FROM sessions WHERE ts >= ?1) AS clients"),
+    q("SELECT substr(ts, 1, 10) AS day, COUNT(*) AS sessions FROM sessions WHERE ts >= ? GROUP BY day ORDER BY day"),
     q("SELECT tool, COUNT(*) AS calls FROM calls WHERE ts >= ? GROUP BY tool ORDER BY calls DESC"),
     q("SELECT COALESCE(client_name, '(unknown)') AS client, COUNT(*) AS sessions FROM sessions WHERE ts >= ? GROUP BY client ORDER BY sessions DESC LIMIT 20"),
     q("SELECT substr(ts, 1, 10) AS day, COUNT(*) AS calls FROM calls WHERE ts >= ? GROUP BY day ORDER BY day"),
@@ -184,6 +203,7 @@ async function stats(request: Request, env: Env): Promise<Response> {
   ]);
   // failed requests (table is created lazily on the first failure)
   let failed: Record<string, unknown> = { note: "no failed requests logged yet" };
+  let failedTotal = 0;
   try {
     const [byReason, byAgent, recent] = await Promise.all([
       q("SELECT status, message, COUNT(*) AS count FROM errors WHERE ts >= ? GROUP BY status, message ORDER BY count DESC LIMIT 20"),
@@ -191,10 +211,12 @@ async function stats(request: Request, env: Env): Promise<Response> {
       q("SELECT ts, method, status, message, rpc_method, protocol_version, user_agent, country FROM errors WHERE ts >= ? ORDER BY ts DESC LIMIT 25"),
     ]);
     failed = { by_reason: byReason, by_user_agent: byAgent, recent };
+    failedTotal = (byReason as { count: number }[]).reduce((sum, r) => sum + Number(r.count), 0);
   } catch {
     /* errors table not created yet */
   }
-  return Response.json({ days, calls_by_tool: byTool, sessions_by_client: byClient, calls_by_day: byDay, most_requested_products: topProducts, requested_but_not_covered: missing, recent_feedback: feedback, failed_requests: failed });
+  const totals = { ...(totalsRows[0] as Record<string, number>), failed: failedTotal };
+  return Response.json({ days, generated_at: new Date().toISOString(), totals, sessions_by_day: sessionsByDay, calls_by_tool: byTool, sessions_by_client: byClient, calls_by_day: byDay, most_requested_products: topProducts, requested_but_not_covered: missing, recent_feedback: feedback, failed_requests: failed }, { headers: { "Cache-Control": "no-store" } });
 }
 
 export default {
@@ -208,7 +230,11 @@ export default {
     }
 
     if (url.pathname === "/mcp" || url.pathname === "/mcp/") return withCors(await handleMcp(request, env, ctx));
-    if (url.pathname === "/stats") return stats(request, env);
+    if (url.pathname === "/stats") {
+      // Browsers get the dashboard page; scripts (curl, the page itself via ?format=json) get the JSON.
+      const wantsPage = request.method === "GET" && (request.headers.get("accept") ?? "").includes("text/html") && url.searchParams.get("format") !== "json";
+      return wantsPage ? dashboardResponse() : stats(request, env);
+    }
     if (url.pathname === "/health") return Response.json({ ok: true, name: SERVER_NAME, version: SERVER_VERSION, dataset_version: dataset.dataset_version, products: products.length });
     if (url.pathname === "/" && request.method === "GET") {
       return new Response(landingPage(url.origin, products, CATEGORIES, dataset.dataset_version, history.tracking_since), { headers: { "Content-Type": "text/html; charset=utf-8" } });
