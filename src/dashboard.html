@@ -25,7 +25,26 @@
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--page); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
-main { max-width: 1080px; margin: 0 auto; padding: 24px 20px 48px; }
+main { margin: 0 auto; padding: 20px 24px 40px; }
+/* The board: a 24-column grid with short 8px rows, so panels can be any width and height and
+   pack together without gaps. Each panel spans whole columns and rows; its card fills it. */
+#content.board { display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); grid-auto-rows: 8px; grid-auto-flow: row dense; column-gap: 12px; }
+.board > .board-msg { grid-column: 1 / -1; grid-row: span 6; }
+.panel { position: relative; min-width: 0; margin-bottom: 12px; }
+.panel > .card { height: 100%; overflow: auto; overscroll-behavior: contain; }
+.panel.measuring { align-self: start; }
+.panel.measuring > .card { height: auto; overflow: visible; }
+.panel-handle { position: absolute; top: 6px; right: 6px; width: 26px; height: 26px; border: 1px solid transparent; border-radius: 6px; background: transparent; color: var(--ink-2); font: 16px/1 system-ui, sans-serif; cursor: grab; opacity: 0; transition: opacity 0.12s; touch-action: none; z-index: 3; }
+.panel-grip { position: absolute; right: 2px; bottom: 2px; width: 16px; height: 16px; cursor: nwse-resize; opacity: 0; transition: opacity 0.12s; touch-action: none; z-index: 3;
+  background: linear-gradient(135deg, transparent 0 55%, var(--axis) 55% 62%, transparent 62% 72%, var(--axis) 72% 79%, transparent 79%); border-bottom-right-radius: 12px; }
+.panel:hover > .panel-handle, .panel:hover > .panel-grip, .panel-handle:focus-visible, .panel-handle:focus-visible ~ .panel-grip, .panel.dragging > *, .panel.resizing > * { opacity: 1; }
+.panel-handle:hover, .panel-handle:focus-visible { background: var(--chip); border-color: var(--border); }
+.panel.dragging > .card { outline: 2px dashed var(--series); outline-offset: -2px; opacity: 0.7; }
+.panel.resizing > .card { outline: 2px solid var(--series); outline-offset: -2px; }
+.size-badge { position: absolute; right: 22px; bottom: 6px; background: var(--series); color: #ffffff; border-radius: 6px; padding: 1px 7px; font-size: 12px; font-variant-numeric: tabular-nums; z-index: 4; pointer-events: none; }
+body.is-dragging, body.is-dragging * { cursor: grabbing !important; user-select: none; }
+body.is-resizing, body.is-resizing * { cursor: nwse-resize !important; user-select: none; }
+.tile { display: flex; flex-direction: column; justify-content: center; }
 [hidden] { display: none !important; }
 .top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; margin-bottom: 14px; }
 h1 { font-size: 20px; margin: 0; font-weight: 600; }
@@ -93,7 +112,7 @@ details table { margin-top: 6px; }
 .seglegend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; font-size: 12.5px; color: var(--ink-2); }
 .segkey { display: inline-flex; align-items: center; gap: 6px; }
 .sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
-.live { margin-bottom: 12px; transition: box-shadow 0.2s; }
+.live { display: flex; flex-direction: column; }
 .live-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 8px 16px; margin-bottom: 8px; }
 .live .label { color: var(--ink-2); font-size: 13px; }
 .live-rate { font-size: 44px; font-weight: 600; line-height: 1.1; margin-top: 2px; }
@@ -101,7 +120,8 @@ details table { margin-top: 6px; }
 .live .note { color: var(--ink-2); font-size: 12.5px; margin-top: 2px; }
 .level { font-size: 13px; font-weight: 600; padding: 4px 12px; color: #ffffff; border: 0; }
 .live-chart { position: relative; height: 230px; }
-.live-chart canvas { width: 100%; height: 230px; display: block; touch-action: none; }
+.live-chart canvas { width: 100%; height: 100%; display: block; touch-action: none; }
+.panel.sized .live-chart { height: auto; flex: 1 1 auto; min-height: 90px; }
 .heat-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 12px; color: var(--ink-2); margin-top: 6px; }
 .heat-scale { flex: 0 1 220px; width: 220px; height: 6px; border-radius: 3px; background: linear-gradient(90deg, #257de0, #0aac23 35%, #fbb315 70%, #b4161b); }
 .ctl { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-2); font-size: 13px; }
@@ -124,6 +144,9 @@ details table { margin-top: 6px; }
 .msg { margin: 10px 0 0; font-size: 13px; }
 .msg::before { content: "\26A0\FE0E  "; }
 @media (max-width: 560px) { .tile .value { font-size: 24px; } main { padding: 16px 12px 40px; } }
+/* Narrow screens: every panel takes the full width; you can still reorder them. */
+@media (max-width: 800px) { .board > .panel { grid-column: 1 / -1 !important; } .panel-grip { display: none; } .panel-handle { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .pulse-dot { animation: none; } }
 </style>
 </head>
 <body>
@@ -169,6 +192,7 @@ details table { margin-top: 6px; }
         <button type="button" data-days="90">Last 90 days</button>
       </div>
       <button class="btn" id="refresh" type="button">Refresh</button>
+      <button class="btn" id="reset-layout" type="button" title="Put every panel back to its default place and size">Reset layout</button>
     </div>
     <p id="dash-msg" class="msg" hidden></p>
     <section class="card live" id="live">
@@ -183,8 +207,8 @@ details table { margin-top: 6px; }
       <div class="live-chart" id="live-chart"><canvas id="live-canvas" role="img" aria-label="Requests per minute"></canvas><div class="tip" id="live-tip" hidden></div></div>
       <div class="heat-legend"><span>Quiet</span><i class="heat-scale"></i><span>Highest ever</span><span id="live-peak"></span></div>
     </section>
-    <div id="content"></div>
-    <p class="foot">Test traffic from the project's own checks is never logged, and the live count leaves out this dashboard's own requests. Times are shown in your local time zone; daily totals use UTC days. Your key is kept in this browser only.</p>
+    <div id="content" class="board"></div>
+    <p class="foot">Arrange the panels however you like: drag ⠿ (top right of each panel) to move one, and drag its bottom-right corner to resize it. Double-click the corner to fit the content again. With the keyboard, focus ⠿ and use the arrow keys to move, or Shift and the arrow keys to resize. Your layout is saved in this browser. Test traffic from the project's own checks is never logged, and the live count leaves out this dashboard's own requests. Times are shown in your local time zone; daily totals use UTC days. Your key is kept in this browser only.</p>
   </section>
 </main>
 <script type="application/json" id="geo-data">__GEO__</script>
@@ -211,6 +235,45 @@ details table { margin-top: 6px; }
   var CRAWLER = /(probe|prober|crawl|spider|(?<!chat)bot\b|health|check|monitor|catalog|registry|index|observer|verif|scan|uptime|glama|mcpbeat|inspector|ping|validator|watch)/i; // keep in step with src/crawlers.ts
   function looksLikeCrawler(name) { return CRAWLER.test(name || ""); }
 
+  // Theme colours are read once (and again if the system switches light/dark), not every frame.
+  var colors = {};
+  function readColors() {
+    var css = getComputedStyle(document.documentElement);
+    ["--ink-2", "--axis", "--grid", "--surface", "--globe-sea", "--border", "--series"].forEach(function (n) { colors[n] = css.getPropertyValue(n).trim(); });
+  }
+  readColors();
+  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  // ---------- one animation loop for the whole page ----------
+  // The live chart and the globe share a single requestAnimationFrame loop, capped at 30 frames a
+  // second. Each runs only while it is on screen and the tab is visible; when nothing needs
+  // drawing the loop stops completely, so an idle or background dashboard uses no CPU.
+  var anim = { jobs: [], raf: 0, last: 0 };
+  var FRAME_MS = 1000 / 30;
+  var seen = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { anim.jobs.forEach(function (j) { if (j.el === en.target) j.visible = en.isIntersecting; }); });
+    wake();
+  });
+  function animate(job) { job.visible = false; anim.jobs.push(job); seen.observe(job.el); }
+  function stopAnimation(job) { seen.unobserve(job.el); anim.jobs = anim.jobs.filter(function (j) { return j !== job; }); }
+  function wake() { if (!anim.raf && !document.hidden && anim.jobs.some(function (j) { return j.visible; })) anim.raf = requestAnimationFrame(loop); }
+  function loop(t) {
+    anim.raf = 0;
+    var gap = reducedMotion.matches ? 500 : FRAME_MS;   // reduced motion: 2 quiet updates a second
+    if (t - anim.last >= gap - 2) {
+      anim.last = t;
+      anim.jobs.slice().forEach(function (j) {
+        if (!j.el.isConnected) { stopAnimation(j); return; }   // its panel was re-rendered: let it go
+        if (j.visible) j.frame(t);
+      });
+    }
+    wake();
+  }
+
+  // The live card stays the same element across re-renders, so its parts are looked up once.
+  var liveCard = $("live"), liveCanvas = $("live-canvas"), liveTip = $("live-tip");
+  var liveRate = $("live-rate"), liveChip = $("live-chip"), liveSub = $("live-sub"), livePeak = $("live-peak");
+
   function showLogin(message) {
     $("dash").hidden = true; $("login").hidden = false;
     var m = $("login-msg"); m.hidden = !message; m.textContent = message || "";
@@ -221,7 +284,7 @@ details table { margin-top: 6px; }
   function fetchData() {
     var dash = $("dash");
     $("login").hidden = true; dash.hidden = false;
-    if (!state.loaded) $("content").replaceChildren(el("p", "empty", "Loading…"));
+    if (!state.loaded) $("content").replaceChildren(el("p", "empty board-msg", "Loading…"));
     dash.classList.add("loading");
     showDashMessage("");
     fetch("/stats?format=json&days=" + state.days, { headers: { Authorization: "Bearer " + state.key }, cache: "no-store" })
@@ -298,12 +361,20 @@ details table { margin-top: 6px; }
   // Single-series column chart: one hue, thin bars rounded at the top only, hairline grid,
   // a hover/focus tooltip per day, and a table view underneath.
   function columnChart(host, data, one, many, peakEver) {
+    // Drawn into its own box so a resize can redraw it in place (keeping the table open if it was).
+    var box = host.querySelector(".chart-box");
+    if (!box) { box = el("div", "chart-box"); host.appendChild(box); }
+    var prevTable = box.querySelector("details"), tableOpen = !!(prevTable && prevTable.open);
+    box.replaceChildren();
     var max = data.reduce(function (m, d) { return Math.max(m, d.v); }, 0);
     var heatTop = Math.max(max, peakEver || 0) || 1;
     var total = data.reduce(function (s, d) { return s + d.v; }, 0);
-    if (!max) { host.appendChild(el("p", "empty", "None in this period yet.")); return; }
-    // Drawn at the card's real width (1 unit = 1px) so axis text stays readable on any screen.
-    var W = Math.max(260, Math.floor(host.getBoundingClientRect().width - 34)), H = 210, L = 40, R = 8, T = 10, B = 26, plotH = H - T - B;
+    if (!max) { box.appendChild(el("p", "empty", "None in this period yet.")); return; }
+    // Drawn at the card's real size (1 unit = 1px) so axis text stays readable on any screen.
+    // In a panel you've resized, the chart grows to fill the height, leaving room for the table link.
+    var H = 210;
+    if (host.closest(".panel.sized")) H = Math.max(110, Math.floor(host.clientHeight - box.offsetTop - 16 - 30));
+    var W = Math.max(200, Math.floor(host.getBoundingClientRect().width - 34)), L = 40, R = 8, T = 10, B = 26, plotH = H - T - B;
     var ticks = niceTicks(max), top = ticks[ticks.length - 1];
     var s = svg("svg", { viewBox: "0 0 " + W + " " + H, width: "100%", role: "img", "aria-label": plural(total, one, many) + " in total, at most " + fmt(max) + " in a day" });
     ticks.forEach(function (t) {
@@ -345,11 +416,11 @@ details table { margin-top: 6px; }
       var x = n === 0 ? L : n === arr.length - 1 ? W - R : L + (i + 0.5) * slot;
       var tx = svg("text", { x: x, y: H - 6, "text-anchor": anchor }); tx.textContent = fmtDay(data[i].day); s.appendChild(tx);
     });
-    wrap.appendChild(s); wrap.appendChild(tip); host.appendChild(wrap);
-    var det = el("details"); det.appendChild(el("summary", null, "Show as a table"));
+    wrap.appendChild(s); wrap.appendChild(tip); box.appendChild(wrap);
+    var det = el("details"); det.appendChild(el("summary", null, "Show as a table")); det.open = tableOpen;
     var rows = data.filter(function (d) { return d.v > 0; }).reverse().map(function (d) { return [fmtDay(d.day), fmt(d.v)]; });
     det.appendChild(table(["Day (UTC)", many.charAt(0).toUpperCase() + many.slice(1)], rows, [1]));
-    host.appendChild(det);
+    box.appendChild(det);
   }
 
   function barList(host, rows, nameKey, valueKey) {
@@ -391,62 +462,79 @@ details table { margin-top: 6px; }
 
   // Rotating dotted globe (orthographic projection on a canvas). Land dots come from Natural
   // Earth data inlined in the page; each country with traffic gets a bubble sized by its share.
-  var GEO = (function () { try { return JSON.parse(document.getElementById("geo-data").textContent); } catch (e) { return { dots: [], centres: {} }; } })();
-  var globeAnim = null;
-  function globe(countries) {
-    if (globeAnim) cancelAnimationFrame(globeAnim);
-    var size = 300, dpr = window.devicePixelRatio || 1, R = size / 2 - 6;
-    var cv = el("canvas", "globe"); cv.width = size * dpr; cv.height = size * dpr;
+  var rad = Math.PI / 180;
+  var GEO = (function () {
+    var node = document.getElementById("geo-data"), g;
+    try { g = JSON.parse(node.textContent); } catch (e) { g = { dots: [], centres: {} }; }
+    // The trig for every land dot is done once, into one compact typed array (sin/cos of latitude
+    // and longitude), so drawing a frame needs only multiplications. The raw JSON and the per-dot
+    // arrays are then dropped, and so is the page's copy of the JSON text.
+    var n = g.dots.length, trig = new Float32Array(n * 4);
+    for (var i = 0; i < n; i++) {
+      var phi = g.dots[i][0] * rad, lam = g.dots[i][1] * rad;
+      trig[i * 4] = Math.sin(phi); trig[i * 4 + 1] = Math.cos(phi); trig[i * 4 + 2] = Math.sin(lam); trig[i * 4 + 3] = Math.cos(lam);
+    }
+    node.textContent = "";
+    return { n: n, trig: trig, centres: g.centres || {} };
+  })();
+  var ALPHA_STEPS = 6;   // dots are drawn in 6 shades by depth: 6 fills a frame instead of one per dot
+  function globe(countries, size) {
+    var dpr = window.devicePixelRatio || 1, R = size / 2 - 6, c = size / 2;
+    var cv = el("canvas", "globe");
     cv.style.width = size + "px"; cv.style.height = size + "px";
     cv.setAttribute("role", "img");
-    cv.setAttribute("aria-label", "Globe of request locations. Top: " + countries.slice(0, 3).map(function (c) { return c.code + " " + fmt(c.v); }).join(", "));
-    var ctx = cv.getContext("2d"); ctx.scale(dpr, dpr);
-    var css = getComputedStyle(document.documentElement);
-    var col = { dot: css.getPropertyValue("--ink-2").trim(), sea: css.getPropertyValue("--globe-sea").trim(), rim: css.getPropertyValue("--border").trim(), hit: css.getPropertyValue("--series").trim() };
-    var max = countries.reduce(function (m, c) { return Math.max(m, c.v); }, 1);
-    var pts = countries.filter(function (c) { return GEO.centres[c.code]; }).map(function (c) { return { ll: GEO.centres[c.code], r: 3 + 13 * Math.sqrt(c.v / max), f: c.v / max }; });
-    var rad = Math.PI / 180, tilt = 22 * rad;   // view centred on 22°N, where most traffic is
-    var top = pts[0] ? pts[0].ll : [30, 0];
-    var rot = -top[1];                                 // start facing the busiest country
-    var still = false, now = 0;
+    cv.setAttribute("aria-label", "Globe of request locations. Top: " + countries.slice(0, 3).map(function (k) { return k.code + " " + fmt(k.v); }).join(", "));
+    var ctx = cv.getContext("2d");
+    var max = countries.reduce(function (m, k) { return Math.max(m, k.v); }, 1);
+    var pts = countries.filter(function (k) { return GEO.centres[k.code]; }).map(function (k) {
+      var ll = GEO.centres[k.code], phi = ll[0] * rad, lam = ll[1] * rad;
+      return { sp: Math.sin(phi), cp: Math.cos(phi), sl: Math.sin(lam), cl: Math.cos(lam), r: 3 + 13 * Math.sqrt(k.v / max), color: heat(k.v / max) };
+    });
+    var tilt = 22 * rad, sT = Math.sin(tilt), cT = Math.cos(tilt);   // view centred on 22°N, where most traffic is
+    var top = countries.filter(function (k) { return GEO.centres[k.code]; })[0];
+    var rot = top ? -GEO.centres[top.code][1] : 0;                   // start facing the busiest country
     var dragging = false, lastX = 0, last = 0;
-    function project(lat, lon) {
-      var phi = lat * rad, lam = (lon + rot) * rad;
-      var cosc = Math.sin(tilt) * Math.sin(phi) + Math.cos(tilt) * Math.cos(phi) * Math.cos(lam);
-      return { x: size / 2 + R * Math.cos(phi) * Math.sin(lam), y: size / 2 - R * (Math.cos(tilt) * Math.sin(phi) - Math.sin(tilt) * Math.cos(phi) * Math.cos(lam)), z: cosc };
-    }
-    function draw() {
+    var paths = new Array(ALPHA_STEPS);
+    function draw(now) {
+      var px = Math.round(size * dpr);
+      if (cv.width !== px) { cv.width = px; cv.height = px; }        // (re)allocated here, e.g. after the janitor freed it
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, size, size);
-      ctx.beginPath(); ctx.arc(size / 2, size / 2, R, 0, 2 * Math.PI); ctx.fillStyle = col.sea; ctx.fill();
-      ctx.lineWidth = 1; ctx.strokeStyle = col.rim; ctx.stroke();
-      ctx.fillStyle = col.dot;
-      for (var i = 0; i < GEO.dots.length; i++) {
-        var p = project(GEO.dots[i][0], GEO.dots[i][1]);
-        if (p.z <= 0) continue;
-        ctx.globalAlpha = 0.3 + 0.6 * p.z;
-        ctx.fillRect(p.x - 1.1, p.y - 1.1, 2.2, 2.2);
+      ctx.globalAlpha = 1;
+      ctx.beginPath(); ctx.arc(c, c, R, 0, 2 * Math.PI); ctx.fillStyle = colors["--globe-sea"]; ctx.fill();
+      ctx.lineWidth = 1; ctx.strokeStyle = colors["--border"]; ctx.stroke();
+      var sr = Math.sin(rot * rad), cr = Math.cos(rot * rad), t = GEO.trig, i, k;
+      for (k = 0; k < ALPHA_STEPS; k++) paths[k] = new Path2D();
+      for (i = 0; i < GEO.n; i++) {
+        var sp = t[i * 4], cp = t[i * 4 + 1], sl = t[i * 4 + 2] * cr + t[i * 4 + 3] * sr, cl = t[i * 4 + 3] * cr - t[i * 4 + 2] * sr;
+        var z = sT * sp + cT * cp * cl;
+        if (z <= 0) continue;
+        paths[Math.min(ALPHA_STEPS - 1, (z * ALPHA_STEPS) | 0)].rect(c + R * cp * sl - 1.1, c - R * (cT * sp - sT * cp * cl) - 1.1, 2.2, 2.2);
       }
+      ctx.fillStyle = colors["--ink-2"];
+      for (k = 0; k < ALPHA_STEPS; k++) { ctx.globalAlpha = 0.3 + 0.6 * (k + 0.5) / ALPHA_STEPS; ctx.fill(paths[k]); }
+      var pulse = pulseAt(now || 0);
       for (var j = pts.length - 1; j >= 0; j--) {
-        var q = project(pts[j].ll[0], pts[j].ll[1]);
-        if (q.z <= 0.05) continue;
-        var pulse = pulseAt(now);
-        ctx.globalAlpha = (0.28 + 0.2 * pulse) * q.z + 0.1; ctx.fillStyle = heat(pts[j].f);
-        ctx.beginPath(); ctx.arc(q.x, q.y, pts[j].r * (0.6 + 0.4 * q.z) * (1 + 0.25 * pulse), 0, 2 * Math.PI); ctx.fill();
-        ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(q.x, q.y, 2.5, 0, 2 * Math.PI); ctx.fill();
-        ctx.fillStyle = col.dot;
+        var p = pts[j], psl = p.sl * cr + p.cl * sr, pcl = p.cl * cr - p.sl * sr;
+        var q = sT * p.sp + cT * p.cp * pcl;
+        if (q <= 0.05) continue;
+        var x = c + R * p.cp * psl, y = c - R * (cT * p.sp - sT * p.cp * pcl);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = (0.28 + 0.2 * pulse) * q + 0.1;
+        ctx.beginPath(); ctx.arc(x, y, p.r * (0.6 + 0.4 * q) * (1 + 0.25 * pulse), 0, 2 * Math.PI); ctx.fill();
+        ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(x, y, 2.5, 0, 2 * Math.PI); ctx.fill();
       }
       ctx.globalAlpha = 1;
     }
-    function tick(t) {
-      if (!document.body.contains(cv)) return;     // card was re-rendered
-      if (!dragging && !still && last) rot += (t - last) * 0.006;
-      last = t; now = t; draw(); globeAnim = requestAnimationFrame(tick);
-    }
+    animate({ el: cv, frame: function (t) {
+      if (!dragging && !reducedMotion.matches && last) rot += Math.min(t - last, 100) * 0.006;   // no jump after a pause
+      last = t; draw(t);
+    } });
     cv.addEventListener("pointerdown", function (e) { dragging = true; lastX = e.clientX; cv.setPointerCapture(e.pointerId); });
-    cv.addEventListener("pointermove", function (e) { if (!dragging) return; rot += (e.clientX - lastX) * 0.5; lastX = e.clientX; if (still) draw(); });
+    cv.addEventListener("pointermove", function (e) { if (!dragging) return; rot += (e.clientX - lastX) * 0.5; lastX = e.clientX; if (reducedMotion.matches) draw(last); });
     cv.addEventListener("pointerup", function () { dragging = false; });
     cv.addEventListener("pointercancel", function () { dragging = false; });
-    draw(); globeAnim = requestAnimationFrame(tick);
+    draw(0);
     return cv;
   }
 
@@ -489,9 +577,11 @@ details table { margin-top: 6px; }
     $("updated").textContent = "Last " + days + " days · updated " + new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
     Array.prototype.forEach.call($("range").children, function (b) { b.setAttribute("aria-pressed", String(Number(b.dataset.days) === days)); });
 
-    var c = $("content"), frag = document.createDocumentFragment();
+    // Every section is a panel: [id, card, redraw?]. Ids stay stable so your layout sticks.
+    var items = [];
+    var add = function (id, node, redraw) { items.push({ id: id, node: node, redraw: redraw }); return node; };
+    add("live", liveCard);
 
-    var tiles = el("div", "tiles");
     // Each pulsing tile compares today with that measure's busiest day ever.
     var pk = d.peaks || {}, todayKey = new Date().toISOString().slice(0, 10);
     var todayOf = function (rows, field) { var r = (rows || []).filter(function (x) { return x.day === todayKey; })[0]; return r ? r[field] : 0; };
@@ -499,16 +589,13 @@ details table { margin-top: 6px; }
     var lvl = function (v, top) { return top ? v / top : 0; };
     var cmp = function (v, top, unit) { return fmt(v) + " " + unit + " today; busiest day ever " + fmt(top); };
     var callsToday = todayOf(d.calls_by_day, "calls"), sessToday = todayOf(d.sessions_by_day, "sessions");
-    tiles.appendChild(tile("Tool calls", totals.calls, "questions agents actually asked", lvl(callsToday, pk.calls_per_day), cmp(callsToday, pk.calls_per_day || 0, "calls")));
-    tiles.appendChild(tile("Connections", totals.sessions, topSessions ? Math.round(100 * crawlerSessions / topSessions) + "% look like directory crawlers" : "no connections yet", lvl(sessToday, pk.sessions_per_day), cmp(sessToday, pk.sessions_per_day || 0, "connections")));
-    tiles.appendChild(tile("Apps or agents", appClients, "clients that don't look like crawlers"));
-    tiles.appendChild(tile("Asked for, not covered", notCovered, notCovered ? "requests for tools you don't cover" : "no gaps reported"));
-    frag.appendChild(tiles);
-    var chartJobs = [];
+    add("t-calls", tile("Tool calls", totals.calls, "questions agents actually asked", lvl(callsToday, pk.calls_per_day), cmp(callsToday, pk.calls_per_day || 0, "calls")));
+    add("t-sessions", tile("Connections", totals.sessions, topSessions ? Math.round(100 * crawlerSessions / topSessions) + "% look like directory crawlers" : "no connections yet", lvl(sessToday, pk.sessions_per_day), cmp(sessToday, pk.sessions_per_day || 0, "connections")));
+    add("t-apps", tile("Apps or agents", appClients, "clients that don't look like crawlers"));
+    add("t-gaps", tile("Asked for, not covered", notCovered, notCovered ? "requests for tools you don't cover" : "no gaps reported"));
 
     // ---- Cloudflare's own numbers for the Worker ----
     var cf = d.cloudflare || { configured: false };
-    frag.appendChild(el("h3", "section-title", "Server health, from Cloudflare"));
     if (!cf.configured) {
       var setup = card("Connect Cloudflare metrics", "Shows every request the server handled, its error rate, CPU time and which Cloudflare data centres answered. It needs a read-only token, set once:");
       var ol = el("ol", "steps");
@@ -516,31 +603,28 @@ details table { margin-top: 6px; }
        "Give it one permission: Account, Account Analytics, Read. Create it and copy the token.",
        "In Terminal, in your project folder, run: npx wrangler secret put CF_API_TOKEN and paste the token when asked.",
        "Run: npx wrangler whoami to see your Account ID, then: npx wrangler secret put CF_ACCOUNT_ID and paste it."].forEach(function (t) { ol.appendChild(el("li", null, t)); });
-      setup.appendChild(ol); setup.style.marginBottom = "12px"; frag.appendChild(setup);
+      setup.appendChild(ol); add("cf-setup", setup);
     } else if (cf.error) {
       var bad = card("Couldn't load Cloudflare metrics", null);
-      bad.appendChild(el("p", "msg", cf.error)); bad.style.marginBottom = "12px"; frag.appendChild(bad);
+      bad.appendChild(el("p", "msg", cf.error)); add("cf-error", bad);
     } else {
       var span = cf.days + " days" + (cf.capped ? " (Cloudflare's limit)" : "");
-      var cfTiles = el("div", "tiles");
       var reqTop = Math.max(maxOf(cf.by_day, "requests"), pk.requests_per_day || 0), reqToday = todayOf(cf.by_day, "requests");
-      cfTiles.appendChild(tile("Requests", cf.requests, "every request, last " + span, lvl(reqToday, reqTop), cmp(reqToday, reqTop, "requests")));
+      add("cf-requests", tile("Requests", cf.requests, "every request, last " + span, lvl(reqToday, reqTop), cmp(reqToday, reqTop, "requests")));
       var rateOf = function (x) { return x && x.requests ? x.errors / x.requests : 0; };
       var worstRate = (cf.by_day || []).reduce(function (m, x) { return Math.max(m, rateOf(x)); }, 0);
       var todayRate = rateOf((cf.by_day || []).filter(function (x) { return x.day === todayKey; })[0]);
       var er = tile("Error rate", 0, plural(cf.errors, "error", "errors"), lvl(todayRate, worstRate), "today's error rate vs the worst day on record");
       er.querySelector(".value").textContent = cf.error_rate + "%";
-      cfTiles.appendChild(er);
+      add("cf-errors", er);
       var cpu = tile("CPU time per request", 0, cf.cpu_ms_p99 != null ? "99% of requests under " + cf.cpu_ms_p99 + " ms" : "");
       cpu.querySelector(".value").textContent = cf.cpu_ms_p50 != null ? cf.cpu_ms_p50 + " ms" : "–";
       cpu.querySelector(".label").textContent = "Typical CPU time";
-      cfTiles.appendChild(cpu);
-      cfTiles.appendChild(tile("Outside calls", cf.subrequests, "fetches the server made, e.g. exchange rates"));
-      frag.appendChild(cfTiles);
+      add("cf-cpu", cpu);
+      add("cf-outside", tile("Outside calls", cf.subrequests, "fetches the server made, e.g. exchange rates"));
 
-      var cfRow = el("div", "grid2");
       var r1 = card("Requests per day", "All requests Cloudflare counted for the server, crawlers and health checks included.");
-      chartJobs.push(function () { columnChart(r1, daily(cf.by_day, "requests", Math.min(days, cf.days)), "request", "requests", reqTop); });
+      add("cf-per-day", r1, function () { columnChart(r1, daily(cf.by_day, "requests", Math.min(days, cf.days)), "request", "requests", reqTop); });
       var r2 = card("How requests ended", "Outcomes as Cloudflare reports them" + (cf.by_colo && cf.by_colo.length ? ", and the data centres that answered." : "."));
       var LABEL = { success: "Succeeded", clientDisconnected: "Client hung up", scriptThrewException: "Code error", exceededResources: "Hit a resource limit", internalError: "Cloudflare error", exceededCpu: "Hit the CPU limit", exceededMemory: "Hit the memory limit" };
       if ((cf.by_status || []).length) r2.appendChild(table(["Outcome", "Requests"], cf.by_status.map(function (s) { return [LABEL[s.status] || s.status, fmt(s.requests)]; }), [1]));
@@ -550,7 +634,7 @@ details table { margin-top: 6px; }
         colo.appendChild(table(["Data centre", "Requests"], cf.by_colo.map(function (c) { return [c.colo, fmt(c.requests)]; }), [1]));
         r2.appendChild(colo);
       }
-      cfRow.appendChild(r1); cfRow.appendChild(r2); frag.appendChild(cfRow);
+      add("cf-outcomes", r2);
     }
 
     // ---- where requests come from: Cloudflare's counts (all requests) when available, else the server's own logs ----
@@ -569,8 +653,8 @@ details table { margin-top: 6px; }
     countries.sort(function (a, b) { return b.v - a.v; });
     var cc = card("Where requests come from", source + " Crawlers run in data centres, so their country is where their servers are. Drag the globe to turn it.");
     if (countries.length) {
-      var geoBox = el("div", "geo"), list = el("div", "geo-list");
-      geoBox.appendChild(globe(countries));
+      var geoBox = el("div", "geo"), list = el("div", "geo-list"), globeSlot = el("div");
+      geoBox.appendChild(globeSlot);
       var maxC = countries[0].v || 1;
       countries.slice(0, 12).forEach(function (r) {
         var row = el("div", "geo-row"), bar = el("div", "geo-track"), fill = el("div", "geo-fill");
@@ -579,38 +663,36 @@ details table { margin-top: 6px; }
         list.appendChild(row);
       });
       geoBox.appendChild(list); cc.appendChild(geoBox);
-    } else cc.appendChild(el("p", "empty", "No traffic in this period yet."));
-    cc.style.marginBottom = "12px";
-    frag.appendChild(cc);
+      // The globe fits its panel: up to half the width, and the height too once you've resized it.
+      add("geo", cc, function () {
+        var w = cc.clientWidth - 32, size = Math.min(w, Math.max(200, w * 0.5));
+        // Resized: as big as the height allows, keeping at least 300px beside it for the country list.
+        if (cc.closest(".panel.sized")) size = Math.min(Math.max(w * 0.5, w - 300), cc.clientHeight - geoBox.offsetTop - 20);
+        globeSlot.replaceChildren(globe(countries, Math.round(Math.max(160, Math.min(560, size)))));
+      });
+    } else { cc.appendChild(el("p", "empty", "No traffic in this period yet.")); add("geo", cc); }
 
     // ---- Cloudflare HTTP breakdowns: status codes, paths, client IPs, device types ----
     if (cf.configured && !cf.error) {
       if (cf.status_codes && cf.status_codes.length) {
         var sc = card("Status codes", "HTTP responses by class. 4xx are mostly crawlers sending requests the server can't use.");
-        sc.appendChild(statusBar(cf.status_codes)); sc.style.marginBottom = "12px"; frag.appendChild(sc);
+        sc.appendChild(statusBar(cf.status_codes)); add("cf-status", sc);
       }
-      var row3c = el("div", "grid3"), any = false;
-      [["Top paths", "Pages and endpoints requested.", cf.top_paths, "path"],
-       ["Top client IPs", "Busiest addresses, from Cloudflare's analytics. Not stored by this server.", cf.top_ips, "ip"],
-       ["Requests by device type", "As Cloudflare classifies them. Agents and crawlers count as desktop.", cf.device_types, "device"]].forEach(function (s) {
-        if (!s[2]) return;
-        any = true;
-        var k = card(s[0], s[1]); barList(k, s[2], s[3], "requests"); row3c.appendChild(k);
+      [["cf-paths", "Top paths", "Pages and endpoints requested.", cf.top_paths, "path"],
+       ["cf-ips", "Top client IPs", "Busiest addresses, from Cloudflare's analytics. Not stored by this server.", cf.top_ips, "ip"],
+       ["cf-devices", "Requests by device type", "As Cloudflare classifies them. Agents and crawlers count as desktop.", cf.device_types, "device"]].forEach(function (s) {
+        if (!s[3]) return;
+        var k = card(s[1], s[2]); barList(k, s[3], s[4], "requests"); add(s[0], k);
       });
-      if (any) frag.appendChild(row3c);
     }
 
-    frag.appendChild(el("h3", "section-title", "Agent usage"));
-    var charts = el("div", "grid2");
     var c1 = card("Tool calls per day", "Each one is an agent asking for prices, comparisons or compliance facts.");
-    chartJobs.push(function () { columnChart(c1, daily(d.calls_by_day, "calls", days), "call", "calls", pk.calls_per_day); });
+    add("calls-day", c1, function () { columnChart(c1, daily(d.calls_by_day, "calls", days), "call", "calls", pk.calls_per_day); });
     var c2 = card("Connections per day", "Clients connecting and reading the tool list, crawlers included.");
-    chartJobs.push(function () { columnChart(c2, daily(d.sessions_by_day, "sessions", days), "connection", "connections", pk.sessions_per_day); });
-    charts.appendChild(c1); charts.appendChild(c2); frag.appendChild(charts);
+    add("sessions-day", c2, function () { columnChart(c2, daily(d.sessions_by_day, "sessions", days), "connection", "connections", pk.sessions_per_day); });
 
-    var row2 = el("div", "grid2");
     var c3 = card("Calls by tool", "Which tools agents use.");
-    barList(c3, d.calls_by_tool, "tool", "calls");
+    barList(c3, d.calls_by_tool, "tool", "calls"); add("by-tool", c3);
     var c4 = card("Who's connecting", "Top 20 clients by connections. The type is a guess from the name each client sends.");
     if (clients.length) {
       c4.appendChild(table(["Client", "Looks like", "Connections"], clients.map(function (cl) {
@@ -618,16 +700,16 @@ details table { margin-top: 6px; }
         return [el("span", "mono", cl.client), el("span", crawler ? "chip" : "chip app", crawler ? "Directory or crawler" : "App or agent"), fmt(cl.sessions)];
       }), [2]));
     } else c4.appendChild(el("p", "empty", "No connections in this period yet."));
-    row2.appendChild(c3); row2.appendChild(c4); frag.appendChild(row2);
+    add("clients", c4);
 
-    var row3 = el("div", "grid2");
     var c5 = card("Most requested products", "Products named in tool calls.");
     if ((d.most_requested_products || []).length) c5.appendChild(table(["Product", "Requests"], d.most_requested_products.map(function (p) { return [p.product, fmt(p.requests)]; }), [1]));
     else c5.appendChild(el("p", "empty", "No products requested in this period yet."));
+    add("products", c5);
     var c6 = card("Asked for, not covered", "Tools agents wanted that aren't in the dataset yet. Add the top ones first.");
     if ((d.requested_but_not_covered || []).length) c6.appendChild(table(["Product", "Requests"], d.requested_but_not_covered.map(function (p) { return [p.product, fmt(p.requests)]; }), [1]));
     else c6.appendChild(el("p", "empty", "Nothing yet. When an agent asks for a tool you don't cover, it appears here."));
-    row3.appendChild(c5); row3.appendChild(c6); frag.appendChild(row3);
+    add("not-covered", c6);
 
     var c7 = card("Reports from agents", "Wrong or outdated prices and product requests sent with report_outdated.");
     if ((d.recent_feedback || []).length) {
@@ -635,7 +717,7 @@ details table { margin-top: 6px; }
         return [fmtTime(f.ts), f.plan ? f.product + " · " + f.plan : f.product, f.details, f.suggested_price || ""];
       })));
     } else c7.appendChild(el("p", "empty", "No reports in this period."));
-    c7.style.marginBottom = "12px"; frag.appendChild(c7);
+    add("reports", c7);
 
     var f = d.failed_requests || {};
     var c8 = card("Failed requests", failedTotal ? plural(failedTotal, "request", "requests") + " the server rejected. A few from probes are normal." : "Requests the server rejected.");
@@ -648,27 +730,221 @@ details table { margin-top: 6px; }
       })));
       c8.appendChild(det);
     } else c8.appendChild(el("p", "empty", "None logged in this period."));
-    frag.appendChild(c8);
+    add("failed", c8);
 
-    c.replaceChildren(frag);
-    // Charts are drawn once their cards are on the page, so they can measure their width.
-    chartJobs.forEach(function (job) { job(); });
-    state.lastData = d; state.lastWidth = c.getBoundingClientRect().width;
+    mountBoard(items);
+    state.lastData = d;
   }
 
-  var resizeTimer = null;
-  window.addEventListener("resize", function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () {
-      if (state.lastData && !$("dash").hidden && Math.abs($("content").getBoundingClientRect().width - state.lastWidth) > 2) render(state.lastData);
-    }, 150);
+  // ---------- the board: panels you can move and resize ----------
+  // Layout is { order: [ids], sizes: { id: { w, h } } } in this browser's storage. w is columns out
+  // of 24; h is 8px rows, or absent to fit the content. Panels missing from a saved layout (new
+  // ones, or Cloudflare panels once connected) keep their default place at the end.
+  var LAYOUT_STORE = "saas-pricing-mcp:layout:v1";
+  var COLS = 24, ROW = 8, GAP = 12, MIN_W = 3, MIN_H = 8, MAX_H = 240;
+  var DEFAULT_W = {
+    live: 16, "t-calls": 4, "t-sessions": 4, "t-apps": 4, "t-gaps": 4,
+    "cf-requests": 6, "cf-errors": 6, "cf-cpu": 6, "cf-outside": 6, "cf-per-day": 14, "cf-outcomes": 10,
+    geo: 10, "calls-day": 7, "sessions-day": 7,
+    "by-tool": 6, clients: 10, products: 4, "not-covered": 4,
+    "cf-status": 24, "cf-paths": 8, "cf-ips": 8, "cf-devices": 8,
+    reports: 14, failed: 10, "cf-setup": 24, "cf-error": 24
+  };
+  var DEFAULT_ORDER = Object.keys(DEFAULT_W);
+  var TILE_IDS = ["t-calls", "t-sessions", "t-apps", "t-gaps"];
+  var layout = (function () {
+    try { var l = JSON.parse(localStorage.getItem(LAYOUT_STORE)); if (l && Array.isArray(l.order) && l.sizes) return l; } catch (e) { /* none saved */ }
+    return { order: [], sizes: {} };
+  })();
+  function saveLayout() { try { localStorage.setItem(LAYOUT_STORE, JSON.stringify(layout)); } catch (e) { /* kept for this visit only */ } }
+  function sizeOf(id) { var s = layout.sizes[id] || {}; return { w: Math.min(COLS, s.w || DEFAULT_W[id] || 8), h: s.h || 0 }; }
+  function setSize(id, w, h) { layout.sizes[id] = h ? { w: w, h: h } : { w: w }; saveLayout(); }
+  function rank(id) { var i = layout.order.indexOf(id); return i >= 0 ? i : 1000 + DEFAULT_ORDER.indexOf(id); }
+  function rowsFor(px) { return Math.max(MIN_H, Math.ceil((px + GAP) / ROW)); }
+
+  var board = $("content");
+  var redraws = {}, lastBox = new WeakMap();
+
+  function wrapPanel(item) {
+    var p = el("div", "panel"); p.dataset.id = item.id;
+    var titleEl = item.node.querySelector("h2, .label");
+    var name = titleEl ? titleEl.textContent.trim() : item.id;
+    var handle = el("button", "panel-handle", "⠿"); handle.type = "button";
+    handle.title = "Drag to move. Arrow keys move it; Shift and the arrow keys resize it.";
+    handle.setAttribute("aria-label", "Move or resize the " + name + " panel");
+    var grip = el("div", "panel-grip"); grip.title = "Drag to resize. Double-click to fit the content.";
+    p.appendChild(item.node); p.appendChild(handle); p.appendChild(grip);
+    return p;
+  }
+
+  function mountBoard(items) {
+    resizeWatch.disconnect(); redraws = {}; lastBox = new WeakMap();
+    items.sort(function (a, b) { return rank(a.id) - rank(b.id); });
+    var frag = document.createDocumentFragment();
+    items.forEach(function (it) {
+      var p = wrapPanel(it), s = sizeOf(it.id);
+      p.style.gridColumn = "span " + s.w;
+      if (s.h) { p.style.gridRow = "span " + s.h; p.classList.add("sized"); }
+      if (it.redraw) redraws[it.id] = it.redraw;
+      frag.appendChild(p);
+    });
+    board.replaceChildren(frag);
+    // Charts draw once their panels are on the page, so they can measure themselves.
+    Object.keys(redraws).forEach(function (id) { redraws[id](); });
+    fitHeights();
+    board.querySelectorAll(":scope > .panel").forEach(function (p) { resizeWatch.observe(p); });
+  }
+
+  // Panels you haven't given a height are measured (all at once, so the page lays out only once)
+  // and given just enough rows for their content. The four summary tiles stretch to sit two-high
+  // beside the live chart when they fit there.
+  function fitHeights() {
+    var auto = [];
+    board.querySelectorAll(":scope > .panel").forEach(function (p) {
+      var s = sizeOf(p.dataset.id);
+      p.style.gridColumn = "span " + s.w;
+      if (s.h) { p.style.gridRow = "span " + s.h; p.classList.add("sized"); }
+      else { p.classList.remove("sized"); p.classList.add("measuring"); auto.push(p); }
+    });
+    var rows = auto.map(function (p) { return rowsFor(p.offsetHeight); });
+    var byId = {}; auto.forEach(function (p, i) { byId[p.dataset.id] = i; });
+    var tileW = Math.max.apply(null, TILE_IDS.map(function (id) { return sizeOf(id).w; }));
+    var livePanel = byId.live != null ? auto[byId.live] : null;
+    // Only when they really sit beside it: not on narrow screens, where every panel is full width.
+    if (livePanel && sizeOf("live").w + 2 * tileW <= COLS && livePanel.offsetWidth < board.clientWidth * 0.9) {
+      var half = Math.floor(rows[byId.live] / 2);
+      TILE_IDS.forEach(function (id) { if (byId[id] != null) rows[byId[id]] = Math.max(rows[byId[id]], half); });
+    }
+    auto.forEach(function (p, i) { p.classList.remove("measuring"); p.style.gridRow = "span " + rows[i]; });
+  }
+
+  // Redraw a chart only when its panel actually changes size (width, or height for a panel you've
+  // sized), batched into one pass per frame, then re-fit the content-sized panels.
+  var pendingResize = new Set(), resizeRaf = 0;
+  var resizeWatch = new ResizeObserver(function (entries) {
+    entries.forEach(function (en) {
+      var p = en.target, box = { w: Math.round(en.contentRect.width), h: Math.round(en.contentRect.height) }, prev = lastBox.get(p);
+      lastBox.set(p, box);
+      if (!prev || drag) return;
+      if (Math.abs(prev.w - box.w) > 2 || (p.classList.contains("sized") && Math.abs(prev.h - box.h) > 2)) pendingResize.add(p);
+    });
+    if (pendingResize.size && !resizeRaf) resizeRaf = requestAnimationFrame(flushResize);
   });
+  function flushResize() {
+    resizeRaf = 0;
+    var widthChanged = false;
+    pendingResize.forEach(function (p) {
+      if (!p.isConnected) return;
+      var fn = redraws[p.dataset.id]; if (fn) fn();
+      widthChanged = true;
+    });
+    pendingResize.clear();
+    if (widthChanged) fitHeights();
+  }
+
+  // Moving and resizing. One set of listeners on the board handles every panel, including ones
+  // added by later refreshes, so nothing has to be attached or cleaned up per panel.
+  var drag = null;
+  board.addEventListener("pointerdown", function (e) {
+    var h = e.target.closest && e.target.closest(".panel-handle, .panel-grip");
+    if (!h || e.button !== 0) return;
+    e.preventDefault();
+    var p = h.parentNode, s = sizeOf(p.dataset.id);
+    h.setPointerCapture(e.pointerId);
+    drag = { p: p, mode: h.classList.contains("panel-grip") ? "resize" : "move", x0: e.clientX, y0: e.clientY, x: e.clientX, y: e.clientY,
+             w: s.w, h: s.h || rowsFor(p.offsetHeight), raf: 0, badge: null, target: null, after: null };
+    p.classList.add(drag.mode === "move" ? "dragging" : "resizing");
+    document.body.classList.add(drag.mode === "move" ? "is-dragging" : "is-resizing");
+    if (drag.mode === "resize") { drag.badge = el("div", "size-badge"); p.appendChild(drag.badge); stepDrag(); }
+  });
+  board.addEventListener("pointermove", function (e) {
+    if (!drag) return;
+    drag.x = e.clientX; drag.y = e.clientY;
+    if (!drag.raf) drag.raf = requestAnimationFrame(stepDrag);   // at most one layout change per frame
+  });
+  function stepDrag() {
+    if (!drag) return;
+    drag.raf = 0;
+    var p = drag.p;
+    if (drag.mode === "resize") {
+      var colW = (board.clientWidth - (COLS - 1) * GAP) / COLS;
+      var w = Math.max(MIN_W, Math.min(COLS, drag.w + Math.round((drag.x - drag.x0) / (colW + GAP))));
+      var h = Math.max(MIN_H, Math.min(MAX_H, drag.h + Math.round((drag.y - drag.y0) / ROW)));
+      p.style.gridColumn = "span " + w; p.style.gridRow = "span " + h; p.classList.add("sized");
+      drag.nw = w; drag.nh = h;
+      drag.badge.textContent = w + " × " + Math.round(h * ROW - GAP) + "px";
+      return;
+    }
+    // Move: find the panel under the pointer and slot in before or after it.
+    var panels = board.querySelectorAll(":scope > .panel"), target = null, r = null;
+    for (var i = 0; i < panels.length; i++) {
+      if (panels[i] === p) continue;
+      var b = panels[i].getBoundingClientRect();
+      if (drag.x >= b.left && drag.x <= b.right && drag.y >= b.top && drag.y <= b.bottom) { target = panels[i]; r = b; break; }
+    }
+    if (!target) return;
+    var after = drag.x > r.left + r.width / 2;
+    if (target === drag.target && after === drag.after) return;       // no change: don't thrash the layout
+    drag.target = target; drag.after = after;
+    board.insertBefore(p, after ? target.nextSibling : target);
+  }
+  function endDrag() {
+    if (!drag) return;
+    var p = drag.p, id = p.dataset.id;
+    if (drag.raf) cancelAnimationFrame(drag.raf);
+    p.classList.remove("dragging", "resizing");
+    document.body.classList.remove("is-dragging", "is-resizing");
+    if (drag.badge) drag.badge.remove();
+    var mode = drag.mode, nw = drag.nw, nh = drag.nh;
+    drag = null;
+    if (mode === "move") saveOrder();
+    else if (nw) { setSize(id, nw, nh); if (redraws[id]) redraws[id](); fitHeights(); }
+  }
+  board.addEventListener("pointerup", endDrag);
+  board.addEventListener("pointercancel", endDrag);
+  board.addEventListener("lostpointercapture", endDrag);
+  board.addEventListener("dblclick", function (e) {
+    var g = e.target.closest && e.target.closest(".panel-grip"); if (!g) return;
+    var id = g.parentNode.dataset.id;
+    setSize(id, sizeOf(id).w, 0); fitHeights(); if (redraws[id]) redraws[id](); fitHeights();
+  });
+  board.addEventListener("keydown", function (e) {
+    var h = e.target.closest && e.target.closest(".panel-handle");
+    if (!h || ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].indexOf(e.key) < 0) return;
+    e.preventDefault();
+    var p = h.parentNode, id = p.dataset.id, back = e.key === "ArrowLeft" || e.key === "ArrowUp";
+    if (e.shiftKey) {
+      var s = sizeOf(id), rows = s.h || rowsFor(p.offsetHeight);
+      if (e.key === "ArrowLeft") s.w = Math.max(MIN_W, s.w - 1);
+      if (e.key === "ArrowRight") s.w = Math.min(COLS, s.w + 1);
+      if (e.key === "ArrowUp") s.h = Math.max(MIN_H, rows - 3);
+      if (e.key === "ArrowDown") s.h = Math.min(MAX_H, rows + 3);
+      setSize(id, s.w, s.h); fitHeights(); if (redraws[id]) redraws[id]();
+    } else {
+      var sib = back ? p.previousElementSibling : p.nextElementSibling;
+      if (!sib) return;
+      board.insertBefore(p, back ? sib : sib.nextSibling); saveOrder(); h.focus();
+    }
+  });
+  function saveOrder() {
+    layout.order = Array.prototype.map.call(board.querySelectorAll(":scope > .panel"), function (p) { return p.dataset.id; });
+    saveLayout();
+  }
+  $("reset-layout").addEventListener("click", function () {
+    layout = { order: [], sizes: {} };
+    try { localStorage.removeItem(LAYOUT_STORE); } catch (e) { /* nothing saved */ }
+    if (state.lastData) render(state.lastData);
+  });
+  // Light/dark switch: re-read the colours and redraw.
+  var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  var onScheme = function () { readColors(); if (state.lastData) render(state.lastData); };
+  if (darkQuery.addEventListener) darkQuery.addEventListener("change", onScheme); else darkQuery.addListener(onScheme);
 
   // ---------- live heartbeat ----------
   var REFRESH_STORE = "saas-pricing-mcp:refresh-every", WINDOW_STORE = "saas-pricing-mcp:live-window";
   function pref(k, dflt) { try { var v = localStorage.getItem(k); return v === null || !isFinite(Number(v)) ? dflt : Number(v); } catch (e) { return dflt; } }
   function setPref(k, v) { try { localStorage.setItem(k, String(v)); } catch (e) { /* memory only */ } }
-  var live = { rows: {}, peak: null, minutes: pref(WINDOW_STORE, 60), every: pref(REFRESH_STORE, 10), f: 0, hoverX: null, started: false, busy: false, timer: null, statsTimer: null, clock: null, anim: null };
+  var live = { rows: {}, peak: null, minutes: pref(WINDOW_STORE, 60), every: pref(REFRESH_STORE, 10), f: 0, hoverX: null, started: false, busy: false, timer: null, statsTimer: null, clock: null, series: null, tipIdx: -1 };
   var WINDOW_LABEL = { 30: "30 minutes", 60: "hour", 360: "6 hours", 1440: "24 hours" };
   function minuteKey(ms) { return new Date(ms).toISOString().slice(0, 16); }
   function minuteLabel(k) { return new Date(k + ":00Z").toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }); }
@@ -688,12 +964,16 @@ details table { margin-top: 6px; }
         if (!d) return;
         if (full) live.rows = {};
         (d.per_minute || []).forEach(function (r) { live.rows[r.minute] = r; });
-        var cutoff = minuteKey(Date.now() - (live.minutes + 1) * 60000);
-        Object.keys(live.rows).forEach(function (k) { if (k < cutoff) delete live.rows[k]; });
+        trimLive();
         live.peak = d.peak; updateLiveNumbers();
       })
       .catch(function () { /* keep the last frame; the next update will retry */ })
       .then(function () { live.busy = false; });
+  }
+  // Drop minutes that have scrolled out of the live window.
+  function trimLive() {
+    var cutoff = minuteKey(Date.now() - (live.minutes + 1) * 60000);
+    Object.keys(live.rows).forEach(function (k) { if (k < cutoff) delete live.rows[k]; });
   }
   function liveSeries() {
     var out = [], now = Date.now();
@@ -701,30 +981,31 @@ details table { margin-top: 6px; }
     return out;
   }
   function updateLiveNumbers() {
-    var s = liveSeries(), n = s.length, now = new Date();
+    var s = live.series = liveSeries(), n = s.length, now = new Date();
+    live.tipIdx = -1;   // new numbers: refresh the tooltip on the next frame
     var rate = Math.round(s[n - 1].v + (n > 1 ? s[n - 2].v : 0) * (1 - now.getUTCSeconds() / 60)); // about the last 60 seconds
     var peak = live.peak && live.peak.requests ? live.peak.requests : 0;
     live.f = peak ? rate / peak : 0;
     beatState.bpm = bpmFor(live.f);
-    $("live-rate").textContent = fmt(rate);
-    var chip = $("live-chip");
+    liveRate.textContent = fmt(rate);
+    var chip = liveChip;
     chip.textContent = levelName(live.f) + (peak ? " · " + Math.round(100 * live.f) + "% of the busiest minute" : "");
     chip.style.background = heat(live.f); chip.style.color = inkOn(live.f);
     var total = s.reduce(function (a, x) { return a + x.v; }, 0), errs = s.reduce(function (a, x) { return a + x.e; }, 0);
-    $("live-sub").textContent = plural(total, "request", "requests") + " in the last " + WINDOW_LABEL[live.minutes] + (errs ? " · " + plural(errs, "error", "errors") : "") + " · heartbeat " + Math.round(beatState.bpm) + " bpm";
-    $("live-peak").textContent = peak ? " · Busiest minute ever: " + fmt(peak) + " requests at " + fmtTime(live.peak.minute + ":00Z") : " · No traffic recorded yet";
+    liveSub.textContent = plural(total, "request", "requests") + " in the last " + WINDOW_LABEL[live.minutes] + (errs ? " · " + plural(errs, "error", "errors") : "") + " · heartbeat " + Math.round(beatState.bpm) + " bpm";
+    livePeak.textContent = peak ? " · Busiest minute ever: " + fmt(peak) + " requests at " + fmtTime(live.peak.minute + ":00Z") : " · No traffic recorded yet";
   }
 
+  var liveCtx = liveCanvas.getContext("2d");
   function drawLive(t) {
-    live.anim = requestAnimationFrame(drawLive);
-    if ($("dash").hidden || document.hidden) return;
-    var cv = $("live-canvas"), ctx = cv.getContext("2d"), card = $("live"), tip = $("live-tip");
+    if (!live.series) return;
+    var cv = liveCanvas, ctx = liveCtx, card = liveCard, tip = liveTip;
     var W = cv.clientWidth, H = cv.clientHeight, dpr = window.devicePixelRatio || 1;
     if (!W) return;
     if (cv.width !== Math.round(W * dpr) || cv.height !== Math.round(H * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
-    var css = getComputedStyle(document.documentElement), v = function (n) { return css.getPropertyValue(n).trim(); };
-    var s = liveSeries(), n = s.length, L = 40, R = 16, T = 14, B = 24, pw = W - L - R, ph = H - T - B;
+    var v = function (n) { return colors[n]; };
+    var s = live.series, n = s.length, L = 40, R = 16, T = 14, B = 24, pw = W - L - R, ph = H - T - B;
     var max = Math.max(1, s.reduce(function (m, d) { return Math.max(m, d.v); }, 0)), ticks = niceTicks(max), top = ticks[ticks.length - 1];
     var X = function (i) { return L + (n === 1 ? pw : pw * i / (n - 1)); }, Y = function (val) { return T + ph * (1 - val / top); };
     var f = live.f, color = heat(f), pulse = pulseAt(t), period = beatPeriod(), phase = (t % period) / period;
@@ -752,22 +1033,40 @@ details table { margin-top: 6px; }
     if (travel < 1) {
       var wx = W - R - travel * pw, wg = ctx.createLinearGradient(wx - 80, 0, wx + 80, 0);
       wg.addColorStop(0, heat(f, 0)); wg.addColorStop(0.5, heat(f, 0.95 * (1 - travel * 0.6))); wg.addColorStop(1, heat(f, 0));
-      ctx.save(); ctx.shadowColor = color; ctx.shadowBlur = 14; path(); ctx.strokeStyle = wg; ctx.lineWidth = 4.5; ctx.stroke(); ctx.restore();
+      // Only the stretch of line inside the wave is stroked, and the glow is a wide faint stroke
+      // rather than a canvas blur (shadowBlur is by far the most expensive thing a canvas can do).
+      var i0 = Math.max(0, Math.floor((wx - 80 - L) / pw * (n - 1))), i1 = Math.min(n - 1, Math.ceil((wx + 80 - L) / pw * (n - 1)));
+      if (i1 > i0) {
+        ctx.beginPath(); ctx.moveTo(X(i0), Y(s[i0].v));
+        for (var wi = i0 + 1; wi <= i1; wi++) ctx.lineTo(X(wi), Y(s[wi].v));
+        ctx.strokeStyle = wg;
+        ctx.globalAlpha = 0.3; ctx.lineWidth = 12; ctx.stroke();
+        ctx.globalAlpha = 1; ctx.lineWidth = 4.5; ctx.stroke();
+      }
     }
     // the live point: a beating dot with an expanding ring
     var lx = X(n - 1), ly = Y(s[n - 1].v);
     ctx.beginPath(); ctx.arc(lx, ly, 6 + 26 * phase, 0, 2 * Math.PI); ctx.strokeStyle = heat(f, 0.55 * (1 - phase)); ctx.lineWidth = 2; ctx.stroke();
     ctx.beginPath(); ctx.arc(lx, ly, 4 + 3.5 * pulse, 0, 2 * Math.PI); ctx.fillStyle = color; ctx.fill();
     ctx.lineWidth = 2; ctx.strokeStyle = v("--surface"); ctx.stroke();
-    card.style.boxShadow = "0 0 0 1px " + heat(f, 0.2 + 0.5 * pulse) + ", 0 0 " + Math.round(8 + 26 * pulse) + "px " + heat(f, 0.12 + 0.3 * pulse);
+    // The card's glow is restyled only when it visibly changes (12 steps per beat), not every frame.
+    var glow = Math.round(pulse * 12) + "|" + color;
+    if (glow !== live.glow) {
+      live.glow = glow;
+      var gp = Math.round(pulse * 12) / 12;
+      card.style.boxShadow = "0 0 0 1px " + heat(f, 0.2 + 0.5 * gp) + ", 0 0 " + Math.round(8 + 26 * gp) + "px " + heat(f, 0.12 + 0.3 * gp);
+    }
 
     // crosshair + tooltip: snaps to the nearest minute
     if (live.hoverX != null) {
       var idx = Math.max(0, Math.min(n - 1, Math.round((live.hoverX - L) / pw * (n - 1)))), hx = X(idx), hy = Y(s[idx].v);
       ctx.strokeStyle = v("--ink-2"); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(Math.round(hx) + 0.5, T); ctx.lineTo(Math.round(hx) + 0.5, T + ph); ctx.stroke();
       ctx.beginPath(); ctx.arc(hx, hy, 4.5, 0, 2 * Math.PI); ctx.fillStyle = color; ctx.fill(); ctx.strokeStyle = v("--surface"); ctx.lineWidth = 2; ctx.stroke();
-      tip.replaceChildren(el("strong", null, plural(s[idx].v, "request", "requests") + (s[idx].e ? " · " + plural(s[idx].e, "error", "errors") : "")), el("span", null, minuteLabel(s[idx].k)));
-      tip.hidden = false;
+      if (idx !== live.tipIdx) {
+        live.tipIdx = idx;
+        tip.replaceChildren(el("strong", null, plural(s[idx].v, "request", "requests") + (s[idx].e ? " · " + plural(s[idx].e, "error", "errors") : "")), el("span", null, minuteLabel(s[idx].k)));
+        tip.hidden = false;
+      }
       tip.style.left = Math.max(0, Math.min(W - tip.offsetWidth, hx - tip.offsetWidth / 2)) + "px";
       tip.style.top = Math.max(0, hy - tip.offsetHeight - 10) + "px";
     }
@@ -790,16 +1089,31 @@ details table { margin-top: 6px; }
     if (live.started) return;
     live.started = true;
     markLiveControls(); pollLive(true); startTimers();
-    if (!live.anim) live.anim = requestAnimationFrame(drawLive);
   }
-  var lc = $("live-canvas");
+  animate({ el: liveCanvas, frame: drawLive });
+  var lc = liveCanvas;
   lc.addEventListener("pointermove", function (e) { live.hoverX = e.clientX - lc.getBoundingClientRect().left; });
-  lc.addEventListener("pointerleave", function () { live.hoverX = null; $("live-tip").hidden = true; });
+  lc.addEventListener("pointerleave", function () { live.hoverX = null; live.tipIdx = -1; liveTip.hidden = true; });
   Array.prototype.forEach.call($("live-window").children, function (b) {
     b.addEventListener("click", function () { live.minutes = Number(b.dataset.min); setPref(WINDOW_STORE, live.minutes); markLiveControls(); pollLive(true); });
   });
   $("refresh-every").addEventListener("change", function () { live.every = Number(this.value); setPref(REFRESH_STORE, live.every); startTimers(); });
-  document.addEventListener("visibilitychange", function () { if (!document.hidden && live.started) pollLive(false); });
+  // ---------- cleanup ----------
+  // Background tab: the animation loop has already stopped. After two minutes hidden, the canvases'
+  // pixel buffers are freed too (several MB on a high-density screen); they're redrawn on return.
+  // A janitor also runs every minute to drop live data that has aged out of the window.
+  var hiddenSince = 0;
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) { hiddenSince = Date.now(); return; }
+    hiddenSince = 0; wake();
+    if (live.started) pollLive(false);
+  });
+  setInterval(function janitor() {
+    trimLive();
+    if (hiddenSince && Date.now() - hiddenSince > 120000) {
+      document.querySelectorAll("canvas").forEach(function (cv) { if (cv.width) { cv.width = 0; cv.height = 0; } });
+    }
+  }, 60000);
 
   // ---------- wiring ----------
   $("login-form").addEventListener("submit", function (e) {
@@ -810,7 +1124,12 @@ details table { margin-top: 6px; }
     if ($("remember").checked) save(k); else memoryKey = k;
     fetchData();
   });
-  $("forget").addEventListener("click", function () { stopTimers(); live.started = false; save(null); memoryKey = null; state.key = null; state.loaded = false; showLogin(""); });
+  $("forget").addEventListener("click", function () {
+    stopTimers(); live.started = false; save(null); memoryKey = null; state.key = null; state.loaded = false;
+    // Let go of everything drawn for this key: panels, charts, cached data.
+    resizeWatch.disconnect(); board.replaceChildren(); redraws = {}; state.lastData = null; live.rows = {}; live.series = null; live.peak = null;
+    showLogin("");
+  });
   $("refresh").addEventListener("click", function () { if (state.key) { fetchData(); pollLive(true); } });
   Array.prototype.forEach.call($("range").children, function (b) {
     b.addEventListener("click", function () { state.days = Number(b.dataset.days); if (state.key) fetchData(); });
