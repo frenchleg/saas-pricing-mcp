@@ -93,6 +93,24 @@ details table { margin-top: 6px; }
 .seglegend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; font-size: 12.5px; color: var(--ink-2); }
 .segkey { display: inline-flex; align-items: center; gap: 6px; }
 .sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+.live { margin-bottom: 12px; transition: box-shadow 0.2s; }
+.live-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 8px 16px; margin-bottom: 8px; }
+.live .label { color: var(--ink-2); font-size: 13px; }
+.live-rate { font-size: 44px; font-weight: 600; line-height: 1.1; margin-top: 2px; }
+.live-rate .unit { font-size: 15px; font-weight: 500; color: var(--ink-2); }
+.live .note { color: var(--ink-2); font-size: 12.5px; margin-top: 2px; }
+.level { font-size: 13px; font-weight: 600; padding: 4px 12px; color: #ffffff; border: 0; }
+.live-chart { position: relative; height: 230px; }
+.live-chart canvas { width: 100%; height: 230px; display: block; touch-action: none; }
+.heat-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 12px; color: var(--ink-2); margin-top: 6px; }
+.heat-scale { flex: 0 1 220px; width: 220px; height: 6px; border-radius: 3px; background: linear-gradient(90deg, #257de0, #0aac23 35%, #fbb315 70%, #b4161b); }
+.ctl { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-2); font-size: 13px; }
+.ctl select { border: 1px solid var(--border); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 5px 8px; font: inherit; }
+.ctl-label { color: var(--ink-2); font-size: 12.5px; margin-right: -2px; }
+.tile.heat { border-top-width: 3px; }
+.tile .label { display: flex; align-items: center; gap: 8px; }
+.pulse-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex: 0 0 auto; animation: beat 1.4s ease-out infinite; }
+@keyframes beat { 0% { transform: scale(1); opacity: 1; } 12% { transform: scale(1.7); } 24% { transform: scale(1); } 36% { transform: scale(1.4); } 50%, 100% { transform: scale(1); opacity: 0.85; } }
 .section-title { font-size: 13px; font-weight: 600; color: var(--ink-2); margin: 20px 0 8px; }
 .steps { margin: 0; padding-left: 20px; color: var(--ink); font-size: 13px; }
 .steps li { margin: 4px 0; }
@@ -130,7 +148,21 @@ details table { margin-top: 6px; }
       </div>
       <button class="linkbtn" id="forget" type="button">Forget key on this device</button>
     </div>
-    <div class="filters" role="group" aria-label="Time range">
+    <div class="filters" role="group" aria-label="Dashboard controls">
+      <span class="ctl-label">Live</span>
+      <div class="seg" id="live-window">
+        <button type="button" data-min="30">30 min</button>
+        <button type="button" data-min="60">1 hour</button>
+        <button type="button" data-min="360">6 hours</button>
+        <button type="button" data-min="1440">24 hours</button>
+      </div>
+      <label class="ctl">Update every
+        <select id="refresh-every">
+          <option value="0">Off</option><option value="5">5 seconds</option><option value="10">10 seconds</option>
+          <option value="30">30 seconds</option><option value="60">1 minute</option><option value="300">5 minutes</option>
+        </select>
+      </label>
+      <span class="ctl-label">History</span>
       <div class="seg" id="range">
         <button type="button" data-days="7">Last 7 days</button>
         <button type="button" data-days="30">Last 30 days</button>
@@ -139,8 +171,20 @@ details table { margin-top: 6px; }
       <button class="btn" id="refresh" type="button">Refresh</button>
     </div>
     <p id="dash-msg" class="msg" hidden></p>
+    <section class="card live" id="live">
+      <div class="live-head">
+        <div>
+          <div class="label">Live traffic · every request, per minute</div>
+          <div class="live-rate"><span id="live-rate">–</span><span class="unit"> requests/min</span></div>
+          <div class="note" id="live-sub"></div>
+        </div>
+        <span class="chip level" id="live-chip">–</span>
+      </div>
+      <div class="live-chart" id="live-chart"><canvas id="live-canvas" role="img" aria-label="Requests per minute"></canvas><div class="tip" id="live-tip" hidden></div></div>
+      <div class="heat-legend"><span>Quiet</span><i class="heat-scale"></i><span>Highest ever</span><span id="live-peak"></span></div>
+    </section>
     <div id="content"></div>
-    <p class="foot">Test traffic from the project's own checks is never logged. Times are shown in your local time zone; daily totals use UTC days. Your key is kept in this browser only.</p>
+    <p class="foot">Test traffic from the project's own checks is never logged, and the live count leaves out this dashboard's own requests. Times are shown in your local time zone; daily totals use UTC days. Your key is kept in this browser only.</p>
   </section>
 </main>
 <script type="application/json" id="geo-data">__GEO__</script>
@@ -186,7 +230,7 @@ details table { margin-top: 6px; }
         if (!r.ok) throw new Error("the server answered " + r.status);
         return r.json();
       })
-      .then(function (d) { if (d) { render(d); state.loaded = true; } })
+      .then(function (d) { if (d) { render(d); state.loaded = true; startLive(); } })
       .catch(function (e) { showDashMessage("Couldn't load the stats (" + e.message + "). Try Refresh."); })
       .then(function () { dash.classList.remove("loading"); });
   }
@@ -198,9 +242,18 @@ details table { margin-top: 6px; }
     if (desc) c.appendChild(el("p", "desc", desc));
     return c;
   }
-  function tile(label, value, note) {
+  function tile(label, value, note, level, levelNote) {
     var t = el("div", "card tile");
-    t.appendChild(el("div", "label", label));
+    var lab = el("div", "label");
+    if (level != null) {
+      t.classList.add("heat"); t.style.borderTopColor = heat(level);
+      var dot = el("span", "pulse-dot"); dot.style.background = heat(level);
+      dot.style.animationDuration = (60 / bpmFor(level)).toFixed(2) + "s";
+      dot.title = levelName(level) + (levelNote ? ": " + levelNote : "");
+      lab.appendChild(dot);
+    }
+    lab.appendChild(document.createTextNode(label));
+    t.appendChild(lab);
     t.appendChild(el("div", "value", fmt(value)));
     if (note) t.appendChild(el("div", "note", note));
     return t;
@@ -244,8 +297,9 @@ details table { margin-top: 6px; }
 
   // Single-series column chart: one hue, thin bars rounded at the top only, hairline grid,
   // a hover/focus tooltip per day, and a table view underneath.
-  function columnChart(host, data, one, many) {
+  function columnChart(host, data, one, many, peakEver) {
     var max = data.reduce(function (m, d) { return Math.max(m, d.v); }, 0);
+    var heatTop = Math.max(max, peakEver || 0) || 1;
     var total = data.reduce(function (s, d) { return s + d.v; }, 0);
     if (!max) { host.appendChild(el("p", "empty", "None in this period yet.")); return; }
     // Drawn at the card's real width (1 unit = 1px) so axis text stays readable on any screen.
@@ -262,7 +316,7 @@ details table { margin-top: 6px; }
     var tip = el("div", "tip"); tip.hidden = true;
     data.forEach(function (d, i) {
       var x = L + i * slot + (slot - bw) / 2, h = plotH * (d.v / top), y = T + plotH - h, bar = null;
-      if (d.v > 0) { bar = svg("path", { d: roundTop(x, y, bw, h, Math.min(4, bw / 2, h)), "class": "bar" }); s.appendChild(bar); }
+      if (d.v > 0) { bar = svg("path", { d: roundTop(x, y, bw, h, Math.min(4, bw / 2, h)), "class": "bar" }); bar.style.fill = heat(d.v / heatTop); s.appendChild(bar); }
       var hit = svg("rect", { x: L + i * slot, y: T, width: slot, height: plotH, "class": "hit", tabindex: "0", "aria-label": fmtDay(d.day) + ": " + plural(d.v, one, many) });
       var on = function () {
         if (bar) bar.classList.add("on");
@@ -305,9 +359,34 @@ details table { margin-top: 6px; }
       var row = el("div", "hbar"), track = el("div", "track"), fill = el("div", "fill");
       var name = el("div", "name mono", r[nameKey]); name.title = String(r[nameKey]);
       fill.style.width = "calc((100% - 56px) * " + (r[valueKey] / max).toFixed(4) + ")";
+      fill.style.background = heat(r[valueKey] / max);
       track.appendChild(fill); track.appendChild(el("span", "num", fmt(r[valueKey])));
       row.appendChild(name); row.appendChild(track); host.appendChild(row);
     });
+  }
+
+  // Heat scale: blue (quiet) -> green -> amber -> deep red (the highest ever for that measure).
+  // Shown with a number or label alongside, so colour is never the only way to read a value.
+  var STOPS = [[0, [37, 125, 224]], [0.35, [10, 172, 35]], [0.7, [251, 179, 21]], [1, [180, 22, 27]]];
+  function heatRGB(f) {
+    f = Math.max(0, Math.min(1, f || 0));
+    for (var i = 1; i < STOPS.length; i++) if (f <= STOPS[i][0]) {
+      var a = STOPS[i - 1], b = STOPS[i], t = (f - a[0]) / (b[0] - a[0]);
+      return [0, 1, 2].map(function (k) { return Math.round(a[1][k] + (b[1][k] - a[1][k]) * t); });
+    }
+    return STOPS[STOPS.length - 1][1];
+  }
+  function heat(f, alpha) { var c = heatRGB(f); return alpha == null ? "rgb(" + c + ")" : "rgba(" + c + "," + alpha + ")"; }
+  function inkOn(f) { var c = heatRGB(f); return (0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]) > 150 ? "#0b0b0b" : "#ffffff"; }
+  function levelName(f) { return f < 0.25 ? "Quiet" : f < 0.5 ? "Steady" : f < 0.8 ? "Busy" : "Peak"; }
+  function bpmFor(f) { return 42 + 138 * Math.max(0, Math.min(1, f || 0)); }
+  // One shared heartbeat: a strong beat then a softer one ("lub-dub"), faster as live traffic rises.
+  var beatState = { bpm: 48 };
+  function beatPeriod() { return 60000 / beatState.bpm; }
+  function pulseAt(t) {
+    var ph = (t % beatPeriod()) / beatPeriod();
+    var g = function (c, w) { return Math.exp(-Math.pow((ph - c) / w, 2)); };
+    return Math.min(1, g(0.04, 0.05) + 0.6 * g(0.2, 0.05));
   }
 
   // Rotating dotted globe (orthographic projection on a canvas). Land dots come from Natural
@@ -325,11 +404,11 @@ details table { margin-top: 6px; }
     var css = getComputedStyle(document.documentElement);
     var col = { dot: css.getPropertyValue("--ink-2").trim(), sea: css.getPropertyValue("--globe-sea").trim(), rim: css.getPropertyValue("--border").trim(), hit: css.getPropertyValue("--series").trim() };
     var max = countries.reduce(function (m, c) { return Math.max(m, c.v); }, 1);
-    var pts = countries.filter(function (c) { return GEO.centres[c.code]; }).map(function (c) { return { ll: GEO.centres[c.code], r: 3 + 13 * Math.sqrt(c.v / max) }; });
+    var pts = countries.filter(function (c) { return GEO.centres[c.code]; }).map(function (c) { return { ll: GEO.centres[c.code], r: 3 + 13 * Math.sqrt(c.v / max), f: c.v / max }; });
     var rad = Math.PI / 180, tilt = 22 * rad;   // view centred on 22°N, where most traffic is
     var top = pts[0] ? pts[0].ll : [30, 0];
     var rot = -top[1];                                 // start facing the busiest country
-    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var still = false, now = 0;
     var dragging = false, lastX = 0, last = 0;
     function project(lat, lon) {
       var phi = lat * rad, lam = (lon + rot) * rad;
@@ -350,8 +429,9 @@ details table { margin-top: 6px; }
       for (var j = pts.length - 1; j >= 0; j--) {
         var q = project(pts[j].ll[0], pts[j].ll[1]);
         if (q.z <= 0.05) continue;
-        ctx.globalAlpha = 0.28 * q.z + 0.1; ctx.fillStyle = col.hit;
-        ctx.beginPath(); ctx.arc(q.x, q.y, pts[j].r * (0.6 + 0.4 * q.z), 0, 2 * Math.PI); ctx.fill();
+        var pulse = pulseAt(now);
+        ctx.globalAlpha = (0.28 + 0.2 * pulse) * q.z + 0.1; ctx.fillStyle = heat(pts[j].f);
+        ctx.beginPath(); ctx.arc(q.x, q.y, pts[j].r * (0.6 + 0.4 * q.z) * (1 + 0.25 * pulse), 0, 2 * Math.PI); ctx.fill();
         ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(q.x, q.y, 2.5, 0, 2 * Math.PI); ctx.fill();
         ctx.fillStyle = col.dot;
       }
@@ -360,7 +440,7 @@ details table { margin-top: 6px; }
     function tick(t) {
       if (!document.body.contains(cv)) return;     // card was re-rendered
       if (!dragging && !still && last) rot += (t - last) * 0.006;
-      last = t; draw(); globeAnim = requestAnimationFrame(tick);
+      last = t; now = t; draw(); globeAnim = requestAnimationFrame(tick);
     }
     cv.addEventListener("pointerdown", function (e) { dragging = true; lastX = e.clientX; cv.setPointerCapture(e.pointerId); });
     cv.addEventListener("pointermove", function (e) { if (!dragging) return; rot += (e.clientX - lastX) * 0.5; lastX = e.clientX; if (still) draw(); });
@@ -410,8 +490,15 @@ details table { margin-top: 6px; }
     var c = $("content"), frag = document.createDocumentFragment();
 
     var tiles = el("div", "tiles");
-    tiles.appendChild(tile("Tool calls", totals.calls, "questions agents actually asked"));
-    tiles.appendChild(tile("Connections", totals.sessions, topSessions ? Math.round(100 * crawlerSessions / topSessions) + "% look like directory crawlers" : "no connections yet"));
+    // Each pulsing tile compares today with that measure's busiest day ever.
+    var pk = d.peaks || {}, todayKey = new Date().toISOString().slice(0, 10);
+    var todayOf = function (rows, field) { var r = (rows || []).filter(function (x) { return x.day === todayKey; })[0]; return r ? r[field] : 0; };
+    var maxOf = function (rows, field) { return (rows || []).reduce(function (m, x) { return Math.max(m, x[field] || 0); }, 0); };
+    var lvl = function (v, top) { return top ? v / top : 0; };
+    var cmp = function (v, top, unit) { return fmt(v) + " " + unit + " today; busiest day ever " + fmt(top); };
+    var callsToday = todayOf(d.calls_by_day, "calls"), sessToday = todayOf(d.sessions_by_day, "sessions");
+    tiles.appendChild(tile("Tool calls", totals.calls, "questions agents actually asked", lvl(callsToday, pk.calls_per_day), cmp(callsToday, pk.calls_per_day || 0, "calls")));
+    tiles.appendChild(tile("Connections", totals.sessions, topSessions ? Math.round(100 * crawlerSessions / topSessions) + "% look like directory crawlers" : "no connections yet", lvl(sessToday, pk.sessions_per_day), cmp(sessToday, pk.sessions_per_day || 0, "connections")));
     tiles.appendChild(tile("Apps or agents", appClients, "clients that don't look like crawlers"));
     tiles.appendChild(tile("Asked for, not covered", notCovered, notCovered ? "requests for tools you don't cover" : "no gaps reported"));
     frag.appendChild(tiles);
@@ -434,8 +521,12 @@ details table { margin-top: 6px; }
     } else {
       var span = cf.days + " days" + (cf.capped ? " (Cloudflare's limit)" : "");
       var cfTiles = el("div", "tiles");
-      cfTiles.appendChild(tile("Requests", cf.requests, "every request, last " + span));
-      var er = tile("Error rate", 0, plural(cf.errors, "error", "errors"));
+      var reqTop = Math.max(maxOf(cf.by_day, "requests"), pk.requests_per_day || 0), reqToday = todayOf(cf.by_day, "requests");
+      cfTiles.appendChild(tile("Requests", cf.requests, "every request, last " + span, lvl(reqToday, reqTop), cmp(reqToday, reqTop, "requests")));
+      var rateOf = function (x) { return x && x.requests ? x.errors / x.requests : 0; };
+      var worstRate = (cf.by_day || []).reduce(function (m, x) { return Math.max(m, rateOf(x)); }, 0);
+      var todayRate = rateOf((cf.by_day || []).filter(function (x) { return x.day === todayKey; })[0]);
+      var er = tile("Error rate", 0, plural(cf.errors, "error", "errors"), lvl(todayRate, worstRate), "today's error rate vs the worst day on record");
       er.querySelector(".value").textContent = cf.error_rate + "%";
       cfTiles.appendChild(er);
       var cpu = tile("CPU time per request", 0, cf.cpu_ms_p99 != null ? "99% of requests under " + cf.cpu_ms_p99 + " ms" : "");
@@ -447,7 +538,7 @@ details table { margin-top: 6px; }
 
       var cfRow = el("div", "grid2");
       var r1 = card("Requests per day", "All requests Cloudflare counted for the server, crawlers and health checks included.");
-      chartJobs.push(function () { columnChart(r1, daily(cf.by_day, "requests", Math.min(days, cf.days)), "request", "requests"); });
+      chartJobs.push(function () { columnChart(r1, daily(cf.by_day, "requests", Math.min(days, cf.days)), "request", "requests", reqTop); });
       var r2 = card("How requests ended", "Outcomes as Cloudflare reports them" + (cf.by_colo && cf.by_colo.length ? ", and the data centres that answered." : "."));
       var LABEL = { success: "Succeeded", clientDisconnected: "Client hung up", scriptThrewException: "Code error", exceededResources: "Hit a resource limit", internalError: "Cloudflare error", exceededCpu: "Hit the CPU limit", exceededMemory: "Hit the memory limit" };
       if ((cf.by_status || []).length) r2.appendChild(table(["Outcome", "Requests"], cf.by_status.map(function (s) { return [LABEL[s.status] || s.status, fmt(s.requests)]; }), [1]));
@@ -481,7 +572,7 @@ details table { margin-top: 6px; }
       var maxC = countries[0].v || 1;
       countries.slice(0, 12).forEach(function (r) {
         var row = el("div", "geo-row"), bar = el("div", "geo-track"), fill = el("div", "geo-fill");
-        fill.style.width = Math.max(2, 100 * r.v / maxC) + "%"; bar.appendChild(fill);
+        fill.style.width = Math.max(2, 100 * r.v / maxC) + "%"; fill.style.background = heat(r.v / maxC); bar.appendChild(fill);
         row.appendChild(el("span", "geo-name", regionName(r.code))); row.appendChild(bar); row.appendChild(el("span", "num", fmt(r.v)));
         list.appendChild(row);
       });
@@ -510,9 +601,9 @@ details table { margin-top: 6px; }
     frag.appendChild(el("h3", "section-title", "Agent usage"));
     var charts = el("div", "grid2");
     var c1 = card("Tool calls per day", "Each one is an agent asking for prices, comparisons or compliance facts.");
-    chartJobs.push(function () { columnChart(c1, daily(d.calls_by_day, "calls", days), "call", "calls"); });
+    chartJobs.push(function () { columnChart(c1, daily(d.calls_by_day, "calls", days), "call", "calls", pk.calls_per_day); });
     var c2 = card("Connections per day", "Clients connecting and reading the tool list, crawlers included.");
-    chartJobs.push(function () { columnChart(c2, daily(d.sessions_by_day, "sessions", days), "connection", "connections"); });
+    chartJobs.push(function () { columnChart(c2, daily(d.sessions_by_day, "sessions", days), "connection", "connections", pk.sessions_per_day); });
     charts.appendChild(c1); charts.appendChild(c2); frag.appendChild(charts);
 
     var row2 = el("div", "grid2");
@@ -571,6 +662,143 @@ details table { margin-top: 6px; }
     }, 150);
   });
 
+  // ---------- live heartbeat ----------
+  var REFRESH_STORE = "saas-pricing-mcp:refresh-every", WINDOW_STORE = "saas-pricing-mcp:live-window";
+  function pref(k, dflt) { try { var v = localStorage.getItem(k); return v === null || !isFinite(Number(v)) ? dflt : Number(v); } catch (e) { return dflt; } }
+  function setPref(k, v) { try { localStorage.setItem(k, String(v)); } catch (e) { /* memory only */ } }
+  var live = { rows: {}, peak: null, minutes: pref(WINDOW_STORE, 60), every: pref(REFRESH_STORE, 10), f: 0, hoverX: null, started: false, busy: false, timer: null, statsTimer: null, clock: null, anim: null };
+  var WINDOW_LABEL = { 30: "30 minutes", 60: "hour", 360: "6 hours", 1440: "24 hours" };
+  function minuteKey(ms) { return new Date(ms).toISOString().slice(0, 16); }
+  function minuteLabel(k) { return new Date(k + ":00Z").toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }); }
+
+  function pollLive(full) {
+    if (!state.key || live.busy) return;
+    live.busy = true;
+    // After the first load only the last couple of minutes are fetched, so frequent updates stay cheap.
+    var url = "/stats/live?minutes=" + live.minutes + (full ? "" : "&since=" + minuteKey(Date.now() - 2 * 60000));
+    fetch(url, { headers: { Authorization: "Bearer " + state.key }, cache: "no-store" })
+      .then(function (r) {
+        if (r.status === 401) { stopTimers(); live.started = false; save(null); state.key = null; state.loaded = false; showLogin("That key didn't work. Check it and try again."); return null; }
+        if (!r.ok) throw new Error("live " + r.status);
+        return r.json();
+      })
+      .then(function (d) {
+        if (!d) return;
+        if (full) live.rows = {};
+        (d.per_minute || []).forEach(function (r) { live.rows[r.minute] = r; });
+        var cutoff = minuteKey(Date.now() - (live.minutes + 1) * 60000);
+        Object.keys(live.rows).forEach(function (k) { if (k < cutoff) delete live.rows[k]; });
+        live.peak = d.peak; updateLiveNumbers();
+      })
+      .catch(function () { /* keep the last frame; the next update will retry */ })
+      .then(function () { live.busy = false; });
+  }
+  function liveSeries() {
+    var out = [], now = Date.now();
+    for (var i = live.minutes - 1; i >= 0; i--) { var k = minuteKey(now - i * 60000), r = live.rows[k]; out.push({ k: k, v: r ? r.requests : 0, e: r ? r.errors : 0 }); }
+    return out;
+  }
+  function updateLiveNumbers() {
+    var s = liveSeries(), n = s.length, now = new Date();
+    var rate = Math.round(s[n - 1].v + (n > 1 ? s[n - 2].v : 0) * (1 - now.getUTCSeconds() / 60)); // about the last 60 seconds
+    var peak = live.peak && live.peak.requests ? live.peak.requests : 0;
+    live.f = peak ? rate / peak : 0;
+    beatState.bpm = bpmFor(live.f);
+    $("live-rate").textContent = fmt(rate);
+    var chip = $("live-chip");
+    chip.textContent = levelName(live.f) + (peak ? " · " + Math.round(100 * live.f) + "% of the busiest minute" : "");
+    chip.style.background = heat(live.f); chip.style.color = inkOn(live.f);
+    var total = s.reduce(function (a, x) { return a + x.v; }, 0), errs = s.reduce(function (a, x) { return a + x.e; }, 0);
+    $("live-sub").textContent = plural(total, "request", "requests") + " in the last " + WINDOW_LABEL[live.minutes] + (errs ? " · " + plural(errs, "error", "errors") : "") + " · heartbeat " + Math.round(beatState.bpm) + " bpm";
+    $("live-peak").textContent = peak ? " · Busiest minute ever: " + fmt(peak) + " requests at " + fmtTime(live.peak.minute + ":00Z") : " · No traffic recorded yet";
+  }
+
+  function drawLive(t) {
+    live.anim = requestAnimationFrame(drawLive);
+    if ($("dash").hidden || document.hidden) return;
+    var cv = $("live-canvas"), ctx = cv.getContext("2d"), card = $("live"), tip = $("live-tip");
+    var W = cv.clientWidth, H = cv.clientHeight, dpr = window.devicePixelRatio || 1;
+    if (!W) return;
+    if (cv.width !== Math.round(W * dpr) || cv.height !== Math.round(H * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    var css = getComputedStyle(document.documentElement), v = function (n) { return css.getPropertyValue(n).trim(); };
+    var s = liveSeries(), n = s.length, L = 40, R = 16, T = 14, B = 24, pw = W - L - R, ph = H - T - B;
+    var max = Math.max(1, s.reduce(function (m, d) { return Math.max(m, d.v); }, 0)), ticks = niceTicks(max), top = ticks[ticks.length - 1];
+    var X = function (i) { return L + (n === 1 ? pw : pw * i / (n - 1)); }, Y = function (val) { return T + ph * (1 - val / top); };
+    var f = live.f, color = heat(f), pulse = pulseAt(t), period = beatPeriod(), phase = (t % period) / period;
+
+    ctx.font = "11px system-ui, -apple-system, 'Segoe UI', sans-serif"; ctx.fillStyle = v("--ink-2");
+    ticks.forEach(function (tk) {
+      var y = Math.round(Y(tk)) + 0.5;
+      ctx.strokeStyle = tk === 0 ? v("--axis") : v("--grid"); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(L, y); ctx.lineTo(W - R, y); ctx.stroke();
+      ctx.textAlign = "right"; ctx.fillText(fmt(tk), L - 8, y + 4);
+    });
+    ctx.textAlign = "left"; ctx.fillText(minuteLabel(s[0].k), L, H - 6);
+    ctx.textAlign = "center"; ctx.fillText(minuteLabel(s[Math.floor(n / 2)].k), L + pw / 2, H - 6);
+    ctx.textAlign = "right"; ctx.fillText("now", W - R, H - 6);
+
+    var path = function () { ctx.beginPath(); for (var i = 0; i < n; i++) { if (i) ctx.lineTo(X(i), Y(s[i].v)); else ctx.moveTo(X(i), Y(s[i].v)); } };
+    // area wash that breathes with the beat
+    var g = ctx.createLinearGradient(0, T, 0, T + ph);
+    g.addColorStop(0, heat(f, 0.22 + 0.16 * pulse)); g.addColorStop(1, heat(f, 0));
+    path(); ctx.lineTo(X(n - 1), T + ph); ctx.lineTo(X(0), T + ph); ctx.closePath(); ctx.fillStyle = g; ctx.fill();
+    // the line
+    path(); ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.lineJoin = "round"; ctx.lineCap = "round"; ctx.stroke();
+    // a pulse wave runs back along the line on every beat
+    var travel = phase / 0.75;
+    if (travel < 1) {
+      var wx = W - R - travel * pw, wg = ctx.createLinearGradient(wx - 80, 0, wx + 80, 0);
+      wg.addColorStop(0, heat(f, 0)); wg.addColorStop(0.5, heat(f, 0.95 * (1 - travel * 0.6))); wg.addColorStop(1, heat(f, 0));
+      ctx.save(); ctx.shadowColor = color; ctx.shadowBlur = 14; path(); ctx.strokeStyle = wg; ctx.lineWidth = 4.5; ctx.stroke(); ctx.restore();
+    }
+    // the live point: a beating dot with an expanding ring
+    var lx = X(n - 1), ly = Y(s[n - 1].v);
+    ctx.beginPath(); ctx.arc(lx, ly, 6 + 26 * phase, 0, 2 * Math.PI); ctx.strokeStyle = heat(f, 0.55 * (1 - phase)); ctx.lineWidth = 2; ctx.stroke();
+    ctx.beginPath(); ctx.arc(lx, ly, 4 + 3.5 * pulse, 0, 2 * Math.PI); ctx.fillStyle = color; ctx.fill();
+    ctx.lineWidth = 2; ctx.strokeStyle = v("--surface"); ctx.stroke();
+    card.style.boxShadow = "0 0 0 1px " + heat(f, 0.2 + 0.5 * pulse) + ", 0 0 " + Math.round(8 + 26 * pulse) + "px " + heat(f, 0.12 + 0.3 * pulse);
+
+    // crosshair + tooltip: snaps to the nearest minute
+    if (live.hoverX != null) {
+      var idx = Math.max(0, Math.min(n - 1, Math.round((live.hoverX - L) / pw * (n - 1)))), hx = X(idx), hy = Y(s[idx].v);
+      ctx.strokeStyle = v("--ink-2"); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(Math.round(hx) + 0.5, T); ctx.lineTo(Math.round(hx) + 0.5, T + ph); ctx.stroke();
+      ctx.beginPath(); ctx.arc(hx, hy, 4.5, 0, 2 * Math.PI); ctx.fillStyle = color; ctx.fill(); ctx.strokeStyle = v("--surface"); ctx.lineWidth = 2; ctx.stroke();
+      tip.replaceChildren(el("strong", null, plural(s[idx].v, "request", "requests") + (s[idx].e ? " · " + plural(s[idx].e, "error", "errors") : "")), el("span", null, minuteLabel(s[idx].k)));
+      tip.hidden = false;
+      tip.style.left = Math.max(0, Math.min(W - tip.offsetWidth, hx - tip.offsetWidth / 2)) + "px";
+      tip.style.top = Math.max(0, hy - tip.offsetHeight - 10) + "px";
+    }
+  }
+
+  function stopTimers() { [live.timer, live.statsTimer, live.clock].forEach(clearInterval); live.timer = live.statsTimer = live.clock = null; }
+  function startTimers() {
+    stopTimers();
+    live.clock = setInterval(function () { if (!document.hidden) updateLiveNumbers(); }, 5000);
+    if (!live.every) return;
+    live.timer = setInterval(function () { if (!document.hidden) pollLive(false); }, live.every * 1000);
+    // The full stats are heavier on the database, so they refresh at most every 5 minutes.
+    live.statsTimer = setInterval(function () { if (!document.hidden) fetchData(); }, Math.max(300, live.every) * 1000);
+  }
+  function markLiveControls() {
+    Array.prototype.forEach.call($("live-window").children, function (b) { b.setAttribute("aria-pressed", String(Number(b.dataset.min) === live.minutes)); });
+    $("refresh-every").value = String(live.every);
+  }
+  function startLive() {
+    if (live.started) return;
+    live.started = true;
+    markLiveControls(); pollLive(true); startTimers();
+    if (!live.anim) live.anim = requestAnimationFrame(drawLive);
+  }
+  var lc = $("live-canvas");
+  lc.addEventListener("pointermove", function (e) { live.hoverX = e.clientX - lc.getBoundingClientRect().left; });
+  lc.addEventListener("pointerleave", function () { live.hoverX = null; $("live-tip").hidden = true; });
+  Array.prototype.forEach.call($("live-window").children, function (b) {
+    b.addEventListener("click", function () { live.minutes = Number(b.dataset.min); setPref(WINDOW_STORE, live.minutes); markLiveControls(); pollLive(true); });
+  });
+  $("refresh-every").addEventListener("change", function () { live.every = Number(this.value); setPref(REFRESH_STORE, live.every); startTimers(); });
+  document.addEventListener("visibilitychange", function () { if (!document.hidden && live.started) pollLive(false); });
+
   // ---------- wiring ----------
   $("login-form").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -580,8 +808,8 @@ details table { margin-top: 6px; }
     if ($("remember").checked) save(k); else memoryKey = k;
     fetchData();
   });
-  $("forget").addEventListener("click", function () { save(null); memoryKey = null; state.key = null; state.loaded = false; showLogin(""); });
-  $("refresh").addEventListener("click", function () { if (state.key) fetchData(); });
+  $("forget").addEventListener("click", function () { stopTimers(); live.started = false; save(null); memoryKey = null; state.key = null; state.loaded = false; showLogin(""); });
+  $("refresh").addEventListener("click", function () { if (state.key) { fetchData(); pollLive(true); } });
   Array.prototype.forEach.call($("range").children, function (b) {
     b.addEventListener("click", function () { state.days = Number(b.dataset.days); if (state.key) fetchData(); });
   });

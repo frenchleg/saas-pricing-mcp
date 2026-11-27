@@ -47,3 +47,13 @@ CREATE TABLE IF NOT EXISTS errors (
   country TEXT
 );
 CREATE INDEX IF NOT EXISTS errors_ts ON errors (ts);
+
+-- Live traffic: one row per minute (UTC), counting every request except test traffic and the
+-- dashboard's own /stats requests. Numbers only, no personal data. Created lazily too.
+CREATE TABLE IF NOT EXISTS traffic (
+  minute TEXT PRIMARY KEY,          -- 'YYYY-MM-DDTHH:MM'
+  requests INTEGER NOT NULL DEFAULT 0,
+  errors INTEGER NOT NULL DEFAULT 0, -- responses with status >= 400
+  mcp INTEGER NOT NULL DEFAULT 0     -- requests to /mcp
+);
+CREATE INDEX IF NOT EXISTS traffic_requests ON traffic (requests);

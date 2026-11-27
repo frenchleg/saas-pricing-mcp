@@ -182,15 +182,77 @@ function dashboardResponse(): Response {
   });
 }
 
-async function stats(request: Request, env: Env): Promise<Response> {
+function authorised(request: Request, env: Env): boolean {
   const auth = request.headers.get("authorization") ?? "";
   const key = new URL(request.url).searchParams.get("key");
-  if (!env.STATS_KEY || (auth !== `Bearer ${env.STATS_KEY}` && key !== env.STATS_KEY)) return new Response("Unauthorized", { status: 401, headers: { "Cache-Control": "no-store" } });
+  return !!env.STATS_KEY && (auth === `Bearer ${env.STATS_KEY}` || key === env.STATS_KEY);
+}
+const unauthorised = () => new Response("Unauthorized", { status: 401, headers: { "Cache-Control": "no-store" } });
+
+// ---- live traffic counter: one upsert per request into a per-minute row ----
+let trafficReady: Promise<unknown> | null = null;
+function ensureTraffic(db: D1Database): Promise<unknown> {
+  trafficReady ??= db.batch([
+    db.prepare("CREATE TABLE IF NOT EXISTS traffic (minute TEXT PRIMARY KEY, requests INTEGER NOT NULL DEFAULT 0, errors INTEGER NOT NULL DEFAULT 0, mcp INTEGER NOT NULL DEFAULT 0)"),
+    db.prepare("CREATE INDEX IF NOT EXISTS traffic_requests ON traffic (requests)"),
+  ]).catch((e) => { trafficReady = null; throw e; });
+  return trafficReady;
+}
+function recordTraffic(request: Request, url: URL, status: number, env: Env, ctx: ExecutionContext): void {
+  // Not counted: our own test traffic, and the dashboard's own requests (it would measure itself).
+  if (!env.DB || request.headers.get(TEST_HEADER) === "1" || url.pathname.startsWith("/stats")) return;
+  const db = env.DB;
+  const minute = new Date().toISOString().slice(0, 16);
+  const isMcp = url.pathname === "/mcp" || url.pathname === "/mcp/" ? 1 : 0;
+  ctx.waitUntil(
+    ensureTraffic(db)
+      .then(() => db.prepare("INSERT INTO traffic (minute, requests, errors, mcp) VALUES (?1, 1, ?2, ?3) ON CONFLICT(minute) DO UPDATE SET requests = requests + 1, errors = errors + ?2, mcp = mcp + ?3").bind(minute, status >= 400 ? 1 : 0, isMcp).run())
+      .catch((e) => console.error("traffic count failed", e)),
+  );
+}
+
+/** Per-minute traffic for the live chart. With ?since=<minute> it returns only newer rows, so frequent polling stays cheap. */
+async function live(request: Request, env: Env): Promise<Response> {
+  if (!authorised(request, env)) return unauthorised();
+  if (!env.DB) return Response.json({ error: "No D1 database bound" }, { status: 500 });
+  await ensureTraffic(env.DB);
+  const url = new URL(request.url);
+  const minutes = Math.min(Math.max(Number(url.searchParams.get("minutes")) || 60, 5), 1440);
+  const since = url.searchParams.get("since");
+  const from = since && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(since) ? since : new Date(Date.now() - (minutes - 1) * 60_000).toISOString().slice(0, 16);
+  const [rows, peak] = await Promise.all([
+    env.DB.prepare("SELECT minute, requests, errors, mcp FROM traffic WHERE minute >= ? ORDER BY minute").bind(from).all(),
+    env.DB.prepare("SELECT minute, requests FROM traffic ORDER BY requests DESC LIMIT 1").first(),
+  ]);
+  return Response.json({ now: new Date().toISOString(), from, per_minute: rows.results, peak: peak ?? null }, { headers: { "Cache-Control": "no-store" } });
+}
+
+// Highest-ever daily figures, for colouring each measure against its own record. These scan whole
+// tables, so they're cached per isolate for 10 minutes.
+let peaksCache: { at: number; value: Record<string, number> } | null = null;
+async function allTimePeaks(db: D1Database): Promise<Record<string, number>> {
+  if (peaksCache && Date.now() - peaksCache.at < 600_000) return peaksCache.value;
+  await ensureTraffic(db);
+  const one = async (sql: string) => Number(((await db.prepare(sql).first()) as { n?: number } | null)?.n ?? 0);
+  const [calls, sessions, requests, minute] = await Promise.all([
+    one("SELECT MAX(n) AS n FROM (SELECT COUNT(*) AS n FROM calls GROUP BY substr(ts, 1, 10))"),
+    one("SELECT MAX(n) AS n FROM (SELECT COUNT(*) AS n FROM sessions GROUP BY substr(ts, 1, 10))"),
+    one("SELECT MAX(n) AS n FROM (SELECT SUM(requests) AS n FROM traffic GROUP BY substr(minute, 1, 10))"),
+    one("SELECT MAX(requests) AS n FROM traffic"),
+  ]);
+  const value = { calls_per_day: calls, sessions_per_day: sessions, requests_per_day: requests, requests_per_minute: minute };
+  peaksCache = { at: Date.now(), value };
+  return value;
+}
+
+async function stats(request: Request, env: Env): Promise<Response> {
+  if (!authorised(request, env)) return unauthorised();
   if (!env.DB) return Response.json({ error: "No D1 database bound" }, { status: 500 });
   const days = Math.min(Number(new URL(request.url).searchParams.get("days") ?? 7) || 7, 365);
   const since = new Date(Date.now() - days * 86400_000).toISOString();
   const q = async (sql: string) => (await env.DB!.prepare(sql).bind(since).all()).results;
   const cloudflare = cloudflareMetrics(env, days, new URL(request.url).host);
+  const peaks = allTimePeaks(env.DB).catch(() => ({}));
   const [totalsRows, callCountries, sessionCountries, sessionsByDay, byTool, byClient, byDay, topProducts, missing, feedback] = await Promise.all([
     q("SELECT (SELECT COUNT(*) FROM calls WHERE ts >= ?1) AS calls, (SELECT COUNT(*) FROM sessions WHERE ts >= ?1) AS sessions, (SELECT COUNT(DISTINCT COALESCE(client_name, '(unknown)')) FROM sessions WHERE ts >= ?1) AS clients"),
     q("SELECT COALESCE(NULLIF(country, ''), '??') AS country, COUNT(*) AS calls FROM calls WHERE ts >= ? GROUP BY country ORDER BY calls DESC LIMIT 15"),
@@ -224,12 +286,20 @@ async function stats(request: Request, env: Env): Promise<Response> {
     /* errors table not created yet */
   }
   const totals = { ...(totalsRows[0] as Record<string, number>), failed: failedTotal };
-  return Response.json({ days, generated_at: new Date().toISOString(), totals, cloudflare: await cloudflare, calls_by_country: callCountries, sessions_by_country: sessionCountries, sessions_by_day: sessionsByDay, calls_by_tool: byTool, sessions_by_client: byClient, calls_by_day: byDay, most_requested_products: topProducts, requested_but_not_covered: missing, recent_feedback: feedback, failed_requests: failed }, { headers: { "Cache-Control": "no-store" } });
+  return Response.json({ days, generated_at: new Date().toISOString(), totals, cloudflare: await cloudflare, peaks: await peaks, calls_by_country: callCountries, sessions_by_country: sessionCountries, sessions_by_day: sessionsByDay, calls_by_tool: byTool, sessions_by_client: byClient, calls_by_day: byDay, most_requested_products: topProducts, requested_but_not_covered: missing, recent_feedback: feedback, failed_requests: failed }, { headers: { "Cache-Control": "no-store" } });
 }
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+    const response = await route(request, env, ctx, url);
+    recordTraffic(request, url, response.status, env, ctx);
+    return response;
+  },
+} satisfies ExportedHandler<Env>;
+
+async function route(request: Request, env: Env, ctx: ExecutionContext, url: URL): Promise<Response> {
+  {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
 
     // Uptime checkers and directory crawlers often send HEAD; answer it instead of logging a 405.
@@ -238,6 +308,7 @@ export default {
     }
 
     if (url.pathname === "/mcp" || url.pathname === "/mcp/") return withCors(await handleMcp(request, env, ctx));
+    if (url.pathname === "/stats/live") return live(request, env);
     if (url.pathname === "/stats") {
       // Browsers get the dashboard page; scripts (curl, the page itself via ?format=json) get the JSON.
       const wantsPage = request.method === "GET" && (request.headers.get("accept") ?? "").includes("text/html") && url.searchParams.get("format") !== "json";
@@ -248,5 +319,5 @@ export default {
       return new Response(landingPage(url.origin, products, CATEGORIES, dataset.dataset_version, history.tracking_since), { headers: { "Content-Type": "text/html; charset=utf-8" } });
     }
     return new Response("Not found", { status: 404 });
-  },
-} satisfies ExportedHandler<Env>;
+  }
+}

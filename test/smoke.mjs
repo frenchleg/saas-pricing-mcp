@@ -141,6 +141,8 @@ ok("recent_changes" in r.body, "get_pricing includes recent_changes");
   ok(page.status === 200 && /text\/html/.test(page.headers.get("content-type") ?? "") && csp.includes("script-src 'nonce-") && html.includes("SaaS Pricing MCP usage"), "stats dashboard page loads with a strict content security policy");
   const noKey = await fetch(base + "/stats?format=json", { headers: { Accept: "text/html" } });
   ok(noKey.status === 401, "stats data is refused without the key");
+  const liveNoKey = await fetch(base + "/stats/live");
+  ok(liveNoKey.status === 401, "live traffic data is refused without the key");
 }
 
 await client.close();

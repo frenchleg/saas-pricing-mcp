@@ -183,12 +183,12 @@ npx wrangler d1 create saas-pricing-mcp                                      # p
 npx wrangler d1 execute saas-pricing-mcp --remote --file=schema.sql
 npx wrangler dev      # run locally at http://localhost:8787/mcp
 npx wrangler deploy   # deploy to your own Cloudflare account
-node test/smoke.mjs https://<your-worker>.workers.dev/mcp                    # 42 end-to-end checks
+node test/smoke.mjs https://<your-worker>.workers.dev/mcp                    # 43 end-to-end checks
 ```
 
 Put local secrets in `.dev.vars`. That file is listed in `.gitignore`, so it isn't committed.
 
-To see who is using your server, set a stats key with `npx wrangler secret put STATS_KEY`, then open `https://<your-worker>.workers.dev/stats` in a browser. The dashboard asks for the key once, remembers it in that browser, and shows tool calls, connecting clients, requested and missing products, agent reports and failed requests. Scripts can fetch the same data as JSON with an `Authorization: Bearer <key>` header.
+To see who is using your server, set a stats key with `npx wrangler secret put STATS_KEY`, then open `https://<your-worker>.workers.dev/stats` in a browser. The dashboard asks for the key once, remembers it in that browser, and shows a live heartbeat of requests per minute (coloured from blue to deep red against the busiest minute ever, with an update interval you choose), tool calls, connecting clients, requested and missing products, agent reports and failed requests. Scripts can fetch the same data as JSON with an `Authorization: Bearer <key>` header. For Cloudflare's own metrics (requests, errors, CPU time, countries, status codes, paths, client IPs, device types), add a read-only API token with Account Analytics: Read: `npx wrangler secret put CF_API_TOKEN` and `npx wrangler secret put CF_ACCOUNT_ID`.
 
 Useful scripts:
 
