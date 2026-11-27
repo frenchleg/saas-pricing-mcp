@@ -72,4 +72,9 @@ export interface Rates {
 export interface Env {
   DB?: D1Database;
   STATS_KEY?: string;
+  /** Read-only Cloudflare API token (Account Analytics: Read) for the dashboard's Cloudflare section. */
+  CF_API_TOKEN?: string;
+  CF_ACCOUNT_ID?: string;
+  /** Test override for the GraphQL endpoint. */
+  CF_GRAPHQL_URL?: string;
 }

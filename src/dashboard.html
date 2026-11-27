@@ -12,7 +12,7 @@
   --page: #f9f9f9; --surface: #ffffff; --ink: #191919; --ink-2: #666666;
   --grid: #e7e7e7; --axis: #c2c2c2; --border: rgba(11, 11, 11, 0.10);
   --series: #257de0; --series-wash: rgba(37, 125, 224, 0.10); --chip: #f1f1f1;
-  --shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.08); --globe-sea: #f1f5fb;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -20,7 +20,7 @@
     --page: #0b0b0b; --surface: #191919; --ink: #efefef; --ink-2: #9c9c9c;
     --grid: #303030; --axis: #474747; --border: rgba(255, 255, 255, 0.10);
     --series: #338ced; --series-wash: rgba(51, 140, 237, 0.16); --chip: #262626;
-    --shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.5); --globe-sea: #10151d;
   }
 }
 * { box-sizing: border-box; }
@@ -76,6 +76,26 @@ details { margin-top: 10px; }
 summary { cursor: pointer; color: var(--ink-2); font-size: 12.5px; }
 details table { margin-top: 6px; }
 .empty { color: var(--ink-2); padding: 10px 0 4px; margin: 0; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-bottom: 12px; }
+.geo { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+.globe { flex: 0 0 auto; touch-action: none; cursor: grab; max-width: 100%; }
+.geo-list { flex: 1 1 260px; min-width: 0; }
+.geo-row { display: grid; grid-template-columns: minmax(90px, 40%) 1fr auto; gap: 10px; align-items: center; margin: 7px 0; font-size: 13px; }
+.geo-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.geo-track { height: 6px; border-radius: 3px; background: var(--series-wash); overflow: hidden; }
+.geo-fill { height: 100%; background: var(--series); border-radius: 3px; }
+.segbar { display: flex; gap: 2px; height: 28px; }
+.seg-part { border-radius: 4px; min-width: 3px; color: #ffffff; font-size: 12px; font-weight: 600; display: flex; align-items: center; padding-left: 8px; white-space: nowrap; }
+.seg-part.good, .sw.good { background: #0aac23; }
+.seg-part.neutral, .sw.neutral { background: var(--axis); }
+.seg-part.warning, .sw.warning { background: #fbb315; color: #0b0b0b; }
+.seg-part.critical, .sw.critical { background: #dc3c3d; }
+.seglegend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; font-size: 12.5px; color: var(--ink-2); }
+.segkey { display: inline-flex; align-items: center; gap: 6px; }
+.sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+.section-title { font-size: 13px; font-weight: 600; color: var(--ink-2); margin: 20px 0 8px; }
+.steps { margin: 0; padding-left: 20px; color: var(--ink); font-size: 13px; }
+.steps li { margin: 4px 0; }
 .foot { color: var(--ink-2); font-size: 12px; margin-top: 18px; }
 #dash { transition: opacity 0.15s; }
 #dash.loading { opacity: 0.55; }
@@ -123,6 +143,7 @@ details table { margin-top: 6px; }
     <p class="foot">Test traffic from the project's own checks is never logged. Times are shown in your local time zone; daily totals use UTC days. Your key is kept in this browser only.</p>
   </section>
 </main>
+<script type="application/json" id="geo-data">__GEO__</script>
 <script nonce="__NONCE__">
 (function () {
   "use strict";
@@ -289,6 +310,90 @@ details table { margin-top: 6px; }
     });
   }
 
+  // Rotating dotted globe (orthographic projection on a canvas). Land dots come from Natural
+  // Earth data inlined in the page; each country with traffic gets a bubble sized by its share.
+  var GEO = (function () { try { return JSON.parse(document.getElementById("geo-data").textContent); } catch (e) { return { dots: [], centres: {} }; } })();
+  var globeAnim = null;
+  function globe(countries) {
+    if (globeAnim) cancelAnimationFrame(globeAnim);
+    var size = 300, dpr = window.devicePixelRatio || 1, R = size / 2 - 6;
+    var cv = el("canvas", "globe"); cv.width = size * dpr; cv.height = size * dpr;
+    cv.style.width = size + "px"; cv.style.height = size + "px";
+    cv.setAttribute("role", "img");
+    cv.setAttribute("aria-label", "Globe of request locations. Top: " + countries.slice(0, 3).map(function (c) { return c.code + " " + fmt(c.v); }).join(", "));
+    var ctx = cv.getContext("2d"); ctx.scale(dpr, dpr);
+    var css = getComputedStyle(document.documentElement);
+    var col = { dot: css.getPropertyValue("--ink-2").trim(), sea: css.getPropertyValue("--globe-sea").trim(), rim: css.getPropertyValue("--border").trim(), hit: css.getPropertyValue("--series").trim() };
+    var max = countries.reduce(function (m, c) { return Math.max(m, c.v); }, 1);
+    var pts = countries.filter(function (c) { return GEO.centres[c.code]; }).map(function (c) { return { ll: GEO.centres[c.code], r: 3 + 13 * Math.sqrt(c.v / max) }; });
+    var rad = Math.PI / 180, tilt = 22 * rad;   // view centred on 22°N, where most traffic is
+    var top = pts[0] ? pts[0].ll : [30, 0];
+    var rot = -top[1];                                 // start facing the busiest country
+    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var dragging = false, lastX = 0, last = 0;
+    function project(lat, lon) {
+      var phi = lat * rad, lam = (lon + rot) * rad;
+      var cosc = Math.sin(tilt) * Math.sin(phi) + Math.cos(tilt) * Math.cos(phi) * Math.cos(lam);
+      return { x: size / 2 + R * Math.cos(phi) * Math.sin(lam), y: size / 2 - R * (Math.cos(tilt) * Math.sin(phi) - Math.sin(tilt) * Math.cos(phi) * Math.cos(lam)), z: cosc };
+    }
+    function draw() {
+      ctx.clearRect(0, 0, size, size);
+      ctx.beginPath(); ctx.arc(size / 2, size / 2, R, 0, 2 * Math.PI); ctx.fillStyle = col.sea; ctx.fill();
+      ctx.lineWidth = 1; ctx.strokeStyle = col.rim; ctx.stroke();
+      ctx.fillStyle = col.dot;
+      for (var i = 0; i < GEO.dots.length; i++) {
+        var p = project(GEO.dots[i][0], GEO.dots[i][1]);
+        if (p.z <= 0) continue;
+        ctx.globalAlpha = 0.3 + 0.6 * p.z;
+        ctx.fillRect(p.x - 1.1, p.y - 1.1, 2.2, 2.2);
+      }
+      for (var j = pts.length - 1; j >= 0; j--) {
+        var q = project(pts[j].ll[0], pts[j].ll[1]);
+        if (q.z <= 0.05) continue;
+        ctx.globalAlpha = 0.28 * q.z + 0.1; ctx.fillStyle = col.hit;
+        ctx.beginPath(); ctx.arc(q.x, q.y, pts[j].r * (0.6 + 0.4 * q.z), 0, 2 * Math.PI); ctx.fill();
+        ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(q.x, q.y, 2.5, 0, 2 * Math.PI); ctx.fill();
+        ctx.fillStyle = col.dot;
+      }
+      ctx.globalAlpha = 1;
+    }
+    function tick(t) {
+      if (!document.body.contains(cv)) return;     // card was re-rendered
+      if (!dragging && !still && last) rot += (t - last) * 0.006;
+      last = t; draw(); globeAnim = requestAnimationFrame(tick);
+    }
+    cv.addEventListener("pointerdown", function (e) { dragging = true; lastX = e.clientX; cv.setPointerCapture(e.pointerId); });
+    cv.addEventListener("pointermove", function (e) { if (!dragging) return; rot += (e.clientX - lastX) * 0.5; lastX = e.clientX; if (still) draw(); });
+    cv.addEventListener("pointerup", function () { dragging = false; });
+    cv.addEventListener("pointercancel", function () { dragging = false; });
+    draw(); globeAnim = requestAnimationFrame(tick);
+    return cv;
+  }
+
+  // Tall segmented bar of HTTP status classes, coloured with the reserved status palette and
+  // always labelled, so colour never carries the meaning alone.
+  function statusBar(codes) {
+    var classes = [["2xx", "Success", "good"], ["3xx", "Redirect", "neutral"], ["4xx", "Client error", "warning"], ["5xx", "Server error", "critical"]];
+    var counts = { "2xx": 0, "3xx": 0, "4xx": 0, "5xx": 0 }, total = 0;
+    codes.forEach(function (c) { var k = String(c.code).charAt(0) + "xx"; if (counts[k] != null) { counts[k] += c.requests; total += c.requests; } });
+    var wrap = el("div"), bar = el("div", "segbar"), legend = el("div", "seglegend");
+    classes.forEach(function (c) {
+      var v = counts[c[0]];
+      var item = el("span", "segkey"); item.appendChild(el("i", "sw " + c[2])); item.appendChild(document.createTextNode(c[0] + " " + c[1] + " · " + fmt(v)));
+      legend.appendChild(item);
+      if (!v) return;
+      var seg = el("div", "seg-part " + c[2]); seg.style.flexGrow = String(v);
+      seg.title = c[0] + " " + c[1] + ": " + fmt(v) + " (" + Math.round(100 * v / total) + "%)";
+      if (v / total > 0.08) seg.textContent = Math.round(100 * v / total) + "%";
+      bar.appendChild(seg);
+    });
+    wrap.appendChild(bar); wrap.appendChild(legend);
+    var det = el("details"); det.appendChild(el("summary", null, "Show each status code"));
+    det.appendChild(table(["Status", "Requests"], codes.map(function (c) { return [String(c.code), fmt(c.requests)]; }), [1]));
+    wrap.appendChild(det);
+    return wrap;
+  }
+
   // ---------- page ----------
   function render(d) {
     var days = d.days || state.days, totals = d.totals || {};
@@ -310,8 +415,100 @@ details table { margin-top: 6px; }
     tiles.appendChild(tile("Apps or agents", appClients, "clients that don't look like crawlers"));
     tiles.appendChild(tile("Asked for, not covered", notCovered, notCovered ? "requests for tools you don't cover" : "no gaps reported"));
     frag.appendChild(tiles);
+    var chartJobs = [];
 
-    var charts = el("div", "grid2"), chartJobs = [];
+    // ---- Cloudflare's own numbers for the Worker ----
+    var cf = d.cloudflare || { configured: false };
+    frag.appendChild(el("h3", "section-title", "Server health, from Cloudflare"));
+    if (!cf.configured) {
+      var setup = card("Connect Cloudflare metrics", "Shows every request the server handled, its error rate, CPU time and which Cloudflare data centres answered. It needs a read-only token, set once:");
+      var ol = el("ol", "steps");
+      ["In Cloudflare, go to My Profile, then API Tokens, then Create Token, then Create Custom Token.",
+       "Give it one permission: Account, Account Analytics, Read. Create it and copy the token.",
+       "In Terminal, in your project folder, run: npx wrangler secret put CF_API_TOKEN and paste the token when asked.",
+       "Run: npx wrangler whoami to see your Account ID, then: npx wrangler secret put CF_ACCOUNT_ID and paste it."].forEach(function (t) { ol.appendChild(el("li", null, t)); });
+      setup.appendChild(ol); setup.style.marginBottom = "12px"; frag.appendChild(setup);
+    } else if (cf.error) {
+      var bad = card("Couldn't load Cloudflare metrics", null);
+      bad.appendChild(el("p", "msg", cf.error)); bad.style.marginBottom = "12px"; frag.appendChild(bad);
+    } else {
+      var span = cf.days + " days" + (cf.capped ? " (Cloudflare's limit)" : "");
+      var cfTiles = el("div", "tiles");
+      cfTiles.appendChild(tile("Requests", cf.requests, "every request, last " + span));
+      var er = tile("Error rate", 0, plural(cf.errors, "error", "errors"));
+      er.querySelector(".value").textContent = cf.error_rate + "%";
+      cfTiles.appendChild(er);
+      var cpu = tile("CPU time per request", 0, cf.cpu_ms_p99 != null ? "99% of requests under " + cf.cpu_ms_p99 + " ms" : "");
+      cpu.querySelector(".value").textContent = cf.cpu_ms_p50 != null ? cf.cpu_ms_p50 + " ms" : "–";
+      cpu.querySelector(".label").textContent = "Typical CPU time";
+      cfTiles.appendChild(cpu);
+      cfTiles.appendChild(tile("Outside calls", cf.subrequests, "fetches the server made, e.g. exchange rates"));
+      frag.appendChild(cfTiles);
+
+      var cfRow = el("div", "grid2");
+      var r1 = card("Requests per day", "All requests Cloudflare counted for the server, crawlers and health checks included.");
+      chartJobs.push(function () { columnChart(r1, daily(cf.by_day, "requests", Math.min(days, cf.days)), "request", "requests"); });
+      var r2 = card("How requests ended", "Outcomes as Cloudflare reports them" + (cf.by_colo && cf.by_colo.length ? ", and the data centres that answered." : "."));
+      var LABEL = { success: "Succeeded", clientDisconnected: "Client hung up", scriptThrewException: "Code error", exceededResources: "Hit a resource limit", internalError: "Cloudflare error", exceededCpu: "Hit the CPU limit", exceededMemory: "Hit the memory limit" };
+      if ((cf.by_status || []).length) r2.appendChild(table(["Outcome", "Requests"], cf.by_status.map(function (s) { return [LABEL[s.status] || s.status, fmt(s.requests)]; }), [1]));
+      else r2.appendChild(el("p", "empty", "No requests in this period."));
+      if ((cf.by_colo || []).length) {
+        var colo = el("details"); colo.appendChild(el("summary", null, "Data centres that answered"));
+        colo.appendChild(table(["Data centre", "Requests"], cf.by_colo.map(function (c) { return [c.colo, fmt(c.requests)]; }), [1]));
+        r2.appendChild(colo);
+      }
+      cfRow.appendChild(r1); cfRow.appendChild(r2); frag.appendChild(cfRow);
+    }
+
+    // ---- where requests come from: Cloudflare's counts (all requests) when available, else the server's own logs ----
+    var regionName = function (code) { try { return code && code !== "??" && code !== "XX" ? new Intl.DisplayNames(["en-GB"], { type: "region" }).of(code) : "Unknown"; } catch (e) { return code || "Unknown"; } };
+    var countries, source;
+    if (cf.configured && !cf.error && cf.by_country && cf.by_country.length) {
+      countries = cf.by_country.map(function (r) { return { code: r.country, v: r.requests }; });
+      source = "All requests, as counted by Cloudflare.";
+    } else {
+      var cm = {};
+      (d.sessions_by_country || []).forEach(function (r) { cm[r.country] = (cm[r.country] || 0) + r.sessions; });
+      (d.calls_by_country || []).forEach(function (r) { cm[r.country] = (cm[r.country] || 0) + r.calls; });
+      countries = Object.keys(cm).map(function (k) { return { code: k, v: cm[k] }; });
+      source = "Connections and tool calls from the server's own logs.";
+    }
+    countries.sort(function (a, b) { return b.v - a.v; });
+    var cc = card("Where requests come from", source + " Crawlers run in data centres, so their country is where their servers are. Drag the globe to turn it.");
+    if (countries.length) {
+      var geoBox = el("div", "geo"), list = el("div", "geo-list");
+      geoBox.appendChild(globe(countries));
+      var maxC = countries[0].v || 1;
+      countries.slice(0, 12).forEach(function (r) {
+        var row = el("div", "geo-row"), bar = el("div", "geo-track"), fill = el("div", "geo-fill");
+        fill.style.width = Math.max(2, 100 * r.v / maxC) + "%"; bar.appendChild(fill);
+        row.appendChild(el("span", "geo-name", regionName(r.code))); row.appendChild(bar); row.appendChild(el("span", "num", fmt(r.v)));
+        list.appendChild(row);
+      });
+      geoBox.appendChild(list); cc.appendChild(geoBox);
+    } else cc.appendChild(el("p", "empty", "No traffic in this period yet."));
+    cc.style.marginBottom = "12px";
+    frag.appendChild(cc);
+
+    // ---- Cloudflare HTTP breakdowns: status codes, paths, client IPs, device types ----
+    if (cf.configured && !cf.error) {
+      if (cf.status_codes && cf.status_codes.length) {
+        var sc = card("Status codes", "HTTP responses by class. 4xx are mostly crawlers sending requests the server can't use.");
+        sc.appendChild(statusBar(cf.status_codes)); sc.style.marginBottom = "12px"; frag.appendChild(sc);
+      }
+      var row3c = el("div", "grid3"), any = false;
+      [["Top paths", "Pages and endpoints requested.", cf.top_paths, "path"],
+       ["Top client IPs", "Busiest addresses, from Cloudflare's analytics. Not stored by this server.", cf.top_ips, "ip"],
+       ["Requests by device type", "As Cloudflare classifies them. Agents and crawlers count as desktop.", cf.device_types, "device"]].forEach(function (s) {
+        if (!s[2]) return;
+        any = true;
+        var k = card(s[0], s[1]); barList(k, s[2], s[3], "requests"); row3c.appendChild(k);
+      });
+      if (any) frag.appendChild(row3c);
+    }
+
+    frag.appendChild(el("h3", "section-title", "Agent usage"));
+    var charts = el("div", "grid2");
     var c1 = card("Tool calls per day", "Each one is an agent asking for prices, comparisons or compliance facts.");
     chartJobs.push(function () { columnChart(c1, daily(d.calls_by_day, "calls", days), "call", "calls"); });
     var c2 = card("Connections per day", "Clients connecting and reading the tool list, crawlers included.");

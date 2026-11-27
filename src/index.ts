@@ -1,4 +1,9 @@
 import dashboardHtml from "./dashboard.html";
+import { cloudflareMetrics } from "./cloudflare";
+import geo from "./geo.json";
+
+// Map data for the dashboard globe, inlined once (JSON is inert inside a type="application/json" script).
+const GEO_JSON = JSON.stringify(geo).replace(/</g, "\\u003c");
 import { history } from "./history";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { LATEST_PROTOCOL_VERSION, SUPPORTED_PROTOCOL_VERSIONS } from "@modelcontextprotocol/sdk/types.js";
@@ -164,7 +169,7 @@ async function handleMcpInner(request: Request, env: Env, ctx: ExecutionContext,
 /** The browser dashboard. It holds no data itself: its script asks for the key, then fetches /stats?format=json with it. */
 function dashboardResponse(): Response {
   const nonce = crypto.randomUUID().replace(/-/g, "");
-  return new Response(dashboardHtml.split("__NONCE__").join(nonce), {
+  return new Response(dashboardHtml.split("__GEO__").join(GEO_JSON).split("__NONCE__").join(nonce), {
     headers: {
       "Content-Type": "text/html; charset=utf-8",
       // Only this page's own script and styles may run, and it may only talk to this server.
@@ -185,8 +190,11 @@ async function stats(request: Request, env: Env): Promise<Response> {
   const days = Math.min(Number(new URL(request.url).searchParams.get("days") ?? 7) || 7, 365);
   const since = new Date(Date.now() - days * 86400_000).toISOString();
   const q = async (sql: string) => (await env.DB!.prepare(sql).bind(since).all()).results;
-  const [totalsRows, sessionsByDay, byTool, byClient, byDay, topProducts, missing, feedback] = await Promise.all([
+  const cloudflare = cloudflareMetrics(env, days, new URL(request.url).host);
+  const [totalsRows, callCountries, sessionCountries, sessionsByDay, byTool, byClient, byDay, topProducts, missing, feedback] = await Promise.all([
     q("SELECT (SELECT COUNT(*) FROM calls WHERE ts >= ?1) AS calls, (SELECT COUNT(*) FROM sessions WHERE ts >= ?1) AS sessions, (SELECT COUNT(DISTINCT COALESCE(client_name, '(unknown)')) FROM sessions WHERE ts >= ?1) AS clients"),
+    q("SELECT COALESCE(NULLIF(country, ''), '??') AS country, COUNT(*) AS calls FROM calls WHERE ts >= ? GROUP BY country ORDER BY calls DESC LIMIT 15"),
+    q("SELECT COALESCE(NULLIF(country, ''), '??') AS country, COUNT(*) AS sessions FROM sessions WHERE ts >= ? GROUP BY country ORDER BY sessions DESC LIMIT 15"),
     q("SELECT substr(ts, 1, 10) AS day, COUNT(*) AS sessions FROM sessions WHERE ts >= ? GROUP BY day ORDER BY day"),
     q("SELECT tool, COUNT(*) AS calls FROM calls WHERE ts >= ? GROUP BY tool ORDER BY calls DESC"),
     q("SELECT COALESCE(client_name, '(unknown)') AS client, COUNT(*) AS sessions FROM sessions WHERE ts >= ? GROUP BY client ORDER BY sessions DESC LIMIT 20"),
@@ -216,7 +224,7 @@ async function stats(request: Request, env: Env): Promise<Response> {
     /* errors table not created yet */
   }
   const totals = { ...(totalsRows[0] as Record<string, number>), failed: failedTotal };
-  return Response.json({ days, generated_at: new Date().toISOString(), totals, sessions_by_day: sessionsByDay, calls_by_tool: byTool, sessions_by_client: byClient, calls_by_day: byDay, most_requested_products: topProducts, requested_but_not_covered: missing, recent_feedback: feedback, failed_requests: failed }, { headers: { "Cache-Control": "no-store" } });
+  return Response.json({ days, generated_at: new Date().toISOString(), totals, cloudflare: await cloudflare, calls_by_country: callCountries, sessions_by_country: sessionCountries, sessions_by_day: sessionsByDay, calls_by_tool: byTool, sessions_by_client: byClient, calls_by_day: byDay, most_requested_products: topProducts, requested_but_not_covered: missing, recent_feedback: feedback, failed_requests: failed }, { headers: { "Cache-Control": "no-store" } });
 }
 
 export default {
