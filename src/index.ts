@@ -5,6 +5,7 @@ import geo from "./geo.json";
 // Map data for the dashboard globe, inlined once (JSON is inert inside a type="application/json" script).
 const GEO_JSON = JSON.stringify(geo).replace(/</g, "\\u003c");
 import { history } from "./history";
+import { looksLikeCrawler } from "./crawlers";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { LATEST_PROTOCOL_VERSION, SUPPORTED_PROTOCOL_VERSIONS } from "@modelcontextprotocol/sdk/types.js";
 import { buildServer, SERVER_NAME, SERVER_VERSION, type CallLog } from "./server";
@@ -253,13 +254,13 @@ async function stats(request: Request, env: Env): Promise<Response> {
   const q = async (sql: string) => (await env.DB!.prepare(sql).bind(since).all()).results;
   const cloudflare = cloudflareMetrics(env, days, new URL(request.url).host);
   const peaks = allTimePeaks(env.DB).catch(() => ({}));
-  const [totalsRows, callCountries, sessionCountries, sessionsByDay, byTool, byClient, byDay, topProducts, missing, feedback] = await Promise.all([
+  const [totalsRows, callCountries, sessionCountries, sessionsByDay, byTool, allClients, byDay, topProducts, missing, feedback, clientDays, clientCountries] = await Promise.all([
     q("SELECT (SELECT COUNT(*) FROM calls WHERE ts >= ?1) AS calls, (SELECT COUNT(*) FROM sessions WHERE ts >= ?1) AS sessions, (SELECT COUNT(DISTINCT COALESCE(client_name, '(unknown)')) FROM sessions WHERE ts >= ?1) AS clients"),
     q("SELECT COALESCE(NULLIF(country, ''), '??') AS country, COUNT(*) AS calls FROM calls WHERE ts >= ? GROUP BY country ORDER BY calls DESC LIMIT 15"),
     q("SELECT COALESCE(NULLIF(country, ''), '??') AS country, COUNT(*) AS sessions FROM sessions WHERE ts >= ? GROUP BY country ORDER BY sessions DESC LIMIT 15"),
     q("SELECT substr(ts, 1, 10) AS day, COUNT(*) AS sessions FROM sessions WHERE ts >= ? GROUP BY day ORDER BY day"),
     q("SELECT tool, COUNT(*) AS calls FROM calls WHERE ts >= ? GROUP BY tool ORDER BY calls DESC"),
-    q("SELECT COALESCE(client_name, '(unknown)') AS client, COUNT(*) AS sessions FROM sessions WHERE ts >= ? GROUP BY client ORDER BY sessions DESC LIMIT 20"),
+    q("SELECT COALESCE(client_name, '(unknown)') AS client, COUNT(*) AS sessions FROM sessions WHERE ts >= ? GROUP BY client ORDER BY sessions DESC"),
     q("SELECT substr(ts, 1, 10) AS day, COUNT(*) AS calls FROM calls WHERE ts >= ? GROUP BY day ORDER BY day"),
     q(`WITH RECURSIVE split(p, rest) AS (
          SELECT '', products_requested || ',' FROM calls WHERE ts >= ? AND products_requested != ''
@@ -270,7 +271,24 @@ async function stats(request: Request, env: Env): Promise<Response> {
          UNION ALL SELECT lower(trim(substr(rest, 1, instr(rest, ',') - 1))), substr(rest, instr(rest, ',') + 1) FROM split WHERE rest != '')
        SELECT p AS product, COUNT(*) AS requests FROM split WHERE p != '' GROUP BY p ORDER BY requests DESC LIMIT 30`),
     q("SELECT ts, product, plan, details, suggested_price FROM feedback WHERE ts >= ? ORDER BY ts DESC LIMIT 50"),
+    q("SELECT substr(ts, 1, 10) AS day, COALESCE(client_name, '(unknown)') AS client, COUNT(*) AS sessions FROM sessions WHERE ts >= ? GROUP BY day, client"),
+    q("SELECT COALESCE(NULLIF(country, ''), '??') AS country, COALESCE(client_name, '(unknown)') AS client, COUNT(*) AS sessions FROM sessions WHERE ts >= ? GROUP BY country, client"),
   ]);
+  // Split connections into likely crawlers (directories, registries, monitors) and apps or agents.
+  type ClientRow = { client: string; sessions: number };
+  const clients = (allClients as ClientRow[]).map((c) => ({ ...c, sessions: Number(c.sessions), crawler: looksLikeCrawler(c.client) }));
+  const crawlerSessions = clients.filter((c) => c.crawler).reduce((sum, c) => sum + c.sessions, 0);
+  const appClients = clients.filter((c) => !c.crawler);
+  const appByDay = new Map<string, number>();
+  for (const r of clientDays as (ClientRow & { day: string })[]) {
+    if (!looksLikeCrawler(r.client)) appByDay.set(r.day, (appByDay.get(r.day) ?? 0) + Number(r.sessions));
+  }
+  const appByCountry = new Map<string, number>();
+  for (const r of clientCountries as (ClientRow & { country: string })[]) {
+    if (!looksLikeCrawler(r.client)) appByCountry.set(r.country, (appByCountry.get(r.country) ?? 0) + Number(r.sessions));
+  }
+  const appSessionsByCountry = [...appByCountry].map(([country, sessions]) => ({ country, sessions })).sort((a, b) => b.sessions - a.sessions).slice(0, 15);
+  const sessionsByDayWithApps = (sessionsByDay as { day: string; sessions: number }[]).map((r) => ({ ...r, app_sessions: appByDay.get(r.day) ?? 0 }));
   // failed requests (table is created lazily on the first failure)
   let failed: Record<string, unknown> = { note: "no failed requests logged yet" };
   let failedTotal = 0;
@@ -285,8 +303,14 @@ async function stats(request: Request, env: Env): Promise<Response> {
   } catch {
     /* errors table not created yet */
   }
-  const totals = { ...(totalsRows[0] as Record<string, number>), failed: failedTotal };
-  return Response.json({ days, generated_at: new Date().toISOString(), totals, cloudflare: await cloudflare, peaks: await peaks, calls_by_country: callCountries, sessions_by_country: sessionCountries, sessions_by_day: sessionsByDay, calls_by_tool: byTool, sessions_by_client: byClient, calls_by_day: byDay, most_requested_products: topProducts, requested_but_not_covered: missing, recent_feedback: feedback, failed_requests: failed }, { headers: { "Cache-Control": "no-store" } });
+  const totals = {
+    ...(totalsRows[0] as Record<string, number>),
+    crawler_sessions: crawlerSessions,
+    app_sessions: appClients.reduce((sum, c) => sum + c.sessions, 0),
+    app_clients: appClients.length,
+    failed: failedTotal,
+  };
+  return Response.json({ days, generated_at: new Date().toISOString(), crawler_note: "Crawlers (directories, registries, monitors) are guessed from the client name; see src/crawlers.ts.", totals, cloudflare: await cloudflare, peaks: await peaks, calls_by_country: callCountries, sessions_by_country: sessionCountries, app_sessions_by_country: appSessionsByCountry, sessions_by_day: sessionsByDayWithApps, calls_by_tool: byTool, sessions_by_client: clients.slice(0, 20), app_sessions_by_client: appClients.slice(0, 20), calls_by_day: byDay, most_requested_products: topProducts, requested_but_not_covered: missing, recent_feedback: feedback, failed_requests: failed }, { headers: { "Cache-Control": "no-store" } });
 }
 
 export default {
