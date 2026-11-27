@@ -208,7 +208,7 @@ details table { margin-top: 6px; }
   function plural(n, one, many) { return fmt(n) + " " + (n === 1 ? one : many); }
   function fmtDay(iso) { var d = new Date(iso + "T00:00:00Z"); return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" }); }
   function fmtTime(iso) { var d = new Date(iso); if (isNaN(d.getTime())) return String(iso); return d.toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }); }
-  var CRAWLER = /(probe|prober|crawl|spider|bot\b|health|check|monitor|catalog|registry|index|observer|verif|scan|uptime|glama|mcpbeat|inspector|ping|validator)/i;
+  var CRAWLER = /(probe|prober|crawl|spider|(?<!chat)bot\b|health|check|monitor|catalog|registry|index|observer|verif|scan|uptime|glama|mcpbeat|inspector|ping|validator|watch)/i; // keep in step with src/crawlers.ts
   function looksLikeCrawler(name) { return CRAWLER.test(name || ""); }
 
   function showLogin(message) {
@@ -478,9 +478,11 @@ details table { margin-top: 6px; }
   function render(d) {
     var days = d.days || state.days, totals = d.totals || {};
     var clients = d.sessions_by_client || [];
-    var crawlerSessions = clients.filter(function (c) { return looksLikeCrawler(c.client); }).reduce(function (s, c) { return s + c.sessions; }, 0);
-    var topSessions = clients.reduce(function (s, c) { return s + c.sessions; }, 0);
-    var appClients = clients.filter(function (c) { return !looksLikeCrawler(c.client); }).length;
+    // The server classifies every client (see src/crawlers.ts); fall back to guessing from the top 20.
+    var serverSplit = typeof totals.crawler_sessions === "number";
+    var crawlerSessions = serverSplit ? totals.crawler_sessions : clients.filter(function (c) { return looksLikeCrawler(c.client); }).reduce(function (s, c) { return s + c.sessions; }, 0);
+    var topSessions = serverSplit ? (totals.sessions || 0) : clients.reduce(function (s, c) { return s + c.sessions; }, 0);
+    var appClients = serverSplit ? totals.app_clients : clients.filter(function (c) { return !looksLikeCrawler(c.client); }).length;
     var notCovered = (d.requested_but_not_covered || []).reduce(function (s, r) { return s + r.requests; }, 0);
     var failedTotal = totals.failed || 0;
 
@@ -612,7 +614,7 @@ details table { margin-top: 6px; }
     var c4 = card("Who's connecting", "Top 20 clients by connections. The type is a guess from the name each client sends.");
     if (clients.length) {
       c4.appendChild(table(["Client", "Looks like", "Connections"], clients.map(function (cl) {
-        var crawler = looksLikeCrawler(cl.client);
+        var crawler = typeof cl.crawler === "boolean" ? cl.crawler : looksLikeCrawler(cl.client);
         return [el("span", "mono", cl.client), el("span", crawler ? "chip" : "chip app", crawler ? "Directory or crawler" : "App or agent"), fmt(cl.sessions)];
       }), [2]));
     } else c4.appendChild(el("p", "empty", "No connections in this period yet."));
